@@ -1,3 +1,5 @@
+import 'package:africanbus_mobile/router/router.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -53,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          prefixIcon: Icon(Icons.email , color: Colors.teal,)
+          prefixIcon: Icon(Icons.person , color: Colors.teal,)
       ),
     );
 
@@ -72,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          prefixIcon: Icon(Icons.email , color: Colors.teal,)
+          prefixIcon: Icon(Icons.person_add, color: Colors.teal,)
       ),
     );
 
@@ -98,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
     final password = TextField(
       cursorColor: Colors.teal,
       decoration: InputDecoration(
-          hintText: "E-mail ou pseudo",
+          hintText: "Mot de passe",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.teal),
             borderRadius: BorderRadius.circular(20.0),
@@ -110,14 +112,14 @@ class _RegisterPageState extends State<RegisterPage> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          prefixIcon: Icon(Icons.email , color: Colors.teal,)
+          prefixIcon: Icon(Icons.lock , color: Colors.teal,)
       ),
     );
 
     final passwordConfirm = TextField(
       cursorColor: Colors.teal,
       decoration: InputDecoration(
-          hintText: "E-mail ou pseudo",
+          hintText: "Confirmer le mot de passe",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.teal),
             borderRadius: BorderRadius.circular(20.0),
@@ -129,7 +131,7 @@ class _RegisterPageState extends State<RegisterPage> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          prefixIcon: Icon(Icons.email , color: Colors.teal,)
+          prefixIcon: Icon(Icons.verified_user , color: Colors.teal,)
       ),
     );
 
@@ -144,16 +146,45 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
 
+    final haveAnAccount = Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.only(top: 40.0),
+      child: RichText(
+        key: Key("registerRouter"),
+        text: TextSpan(
+          text: "Vous avez déja un compte ? ",
+          style: defaultTextStyle,
+          recognizer: TapGestureRecognizer()
+            ..onTap = () {
+              Navigator.of(context).pushNamed(loginViewRoute);
+            },
+          children: <TextSpan>[
+            TextSpan(
+              text: 'Connectez-vous ?',
+              style: linkTextStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  Navigator.of(context).pushNamed(loginViewRoute);
+                },
+            ),
+          ],
+        ),
+      ),
+    );
+
     final form = Form(
         child: Column(
           children: [
             spacer,
+            nom,
+            spacer,
+            prenom,
             spacer,
             email,
             spacer,
-            spacer,
             password,
-
+            spacer,
+            passwordConfirm,
             spacer,
             registerBtn,
             spacer,
@@ -179,7 +210,7 @@ class _RegisterPageState extends State<RegisterPage> {
             title2,
             form,
             spacer,
-
+            haveAnAccount,
           ],
         ),
       ),

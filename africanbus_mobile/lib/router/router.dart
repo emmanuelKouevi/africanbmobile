@@ -1,11 +1,13 @@
 import 'package:africanbus_mobile/views/authentification/inscription.dart';
 import 'package:africanbus_mobile/views/splash/splash_screen.dart';
+import 'package:africanbus_mobile/views/tabs/login/authentification.dart';
 import 'package:africanbus_mobile/views/tabs/tabs.dart';
 import 'package:flutter/material.dart';
 
 const String homeViewRoute = '/';
 const String splashViewRoute = 'splash_screen';
 const String tabsViewRoute = 'tabs';
+const String loginViewRoute = 'login';
 const String registerViewRoute = 'register';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -18,6 +20,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case registerViewRoute:
       return MaterialPageRoute(builder: (_) => RegisterPage());
+
+    case loginViewRoute:
+      return MaterialPageRoute(builder: (_) => AuthentificationTab());
 
     default:
       return MaterialPageRoute(builder: (_) => SplashScreen());
