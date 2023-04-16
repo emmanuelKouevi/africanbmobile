@@ -28,15 +28,9 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
     final spacer = SizedBox(height: 20.0);
     
     final title1 = Container(
-      margin: EdgeInsets.only(left: 80 , bottom: 70),
-      child: Text(
-          "AFRICANBUS",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.teal,
-          fontSize: 30
-        ),
-      ),
+      height: MediaQuery.of(context).size.height/4,
+      margin: EdgeInsets.only(left: 65 ),
+      child: Image.asset( 'assets/logo_africanbus.jpg', fit: BoxFit.cover,)
     );
 
     final title2 = Text(
@@ -76,23 +70,40 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
     );
 
     final email = TextField(
-
+      cursorColor: Colors.teal,
       decoration: InputDecoration(
-          labelText: "E-mail ou Pseudo",
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20.0),
+          hintText: "E-mail ou pseudo",
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.teal),
+            borderRadius: BorderRadius.circular(20.0),
           ),
-          prefixIcon: Icon(Icons.email)
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.teal , width: 2),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          prefixIcon: Icon(Icons.email , color: Colors.teal,)
       ),
     );
 
     final password = TextField(
+      cursorColor: Colors.teal,
       decoration: InputDecoration(
-        labelText: "Password",
+        hintText: "Password",
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.teal),
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.teal , width: 2),
+          borderRadius: BorderRadius.circular(20.0),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        prefixIcon: Icon(Icons.lock)
+        prefixIcon: Icon(Icons.lock , color: Colors.teal,)
       ),
     );
 
@@ -118,7 +129,7 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
           style: defaultTextStyle,
           recognizer: TapGestureRecognizer()
             ..onTap = () {
-              Navigator.of(context).pushNamed(tabsViewRoute);
+              Navigator.of(context).pushNamed(registerViewRoute);
             },
           children: <TextSpan>[
             TextSpan(
@@ -126,7 +137,7 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
               style: linkTextStyle,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Navigator.of(context).pushNamed(tabsViewRoute);
+                  Navigator.of(context).pushNamed(registerViewRoute);
                 },
             ),
           ],
@@ -137,7 +148,6 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
     final form = Form(
         child: Column(
           children: [
-            spacer,
             spacer,
             email,
             spacer,
@@ -160,16 +170,12 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
         padding: EdgeInsets.only(
           left: 20.0,
           right: 20.0,
-          top: 30.0,
           bottom: 30.0,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             title1,
-            spacer,
-            spacer,
-            spacer,
             title2,
             form,
             spacer,

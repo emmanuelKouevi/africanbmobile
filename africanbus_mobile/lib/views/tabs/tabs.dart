@@ -29,11 +29,11 @@ class _TabsPageState extends State<TabsPage> {
       backgroundColor: Colors.white,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.search),
+          icon: Icon(Icons.search , size: 30,),
           label: 'Recherche',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.login),
+          icon: Icon(Icons.login , size: 30),
           label: 'Connexion',
         ),
       ],

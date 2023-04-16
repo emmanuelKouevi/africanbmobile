@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
       initialRoute: router.splashViewRoute,
     );

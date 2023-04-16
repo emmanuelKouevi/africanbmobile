@@ -41,14 +41,11 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              child: Text(
-                'AFRICANBUS',
-                style: TextStyle(
-                  fontSize: 50,
-                  color: Colors.teal,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
+              height: MediaQuery.of(context).size.height/4,
+              child: Image.asset(
+                  'assets/logo_africanbus.jpg',
+                fit: BoxFit.cover,
+              )
             ),
           ],
         ),
