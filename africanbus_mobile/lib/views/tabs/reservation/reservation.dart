@@ -1,3 +1,4 @@
+import 'package:africanbus_mobile/router/router.dart';
 import 'package:flutter/material.dart';
 
 class ReservationTab extends StatefulWidget {
@@ -17,6 +18,10 @@ class _ReservationTabState extends State<ReservationTab> {
   Widget build(BuildContext context) {
 
     final hr = SizedBox(height: 10.0);
+
+    final exchangeBtn = Positioned(
+      child: Container(),
+    );
 
     final searchTicket = Container(
       width: MediaQuery.of(context).size.width,
@@ -45,23 +50,38 @@ class _ReservationTabState extends State<ReservationTab> {
       )
     );
 
-    final gareDepart = TextField(
-      cursorColor: Colors.teal,
-      decoration: InputDecoration(
-          hintText: "Gare de départ",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal , width: 2),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          prefixIcon: Icon(Icons.email , color: Colors.teal,)
+    final gareDepart = Container(
+      margin: EdgeInsets.only(left: 15 , right: 30),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: Colors.white24
       ),
+      child: GestureDetector(
+        onTap: () => Navigator.popAndPushNamed(context, loginViewRoute),
+        child: TextField(
+          autofocus: true,
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 14.0),
+            border: InputBorder.none,
+          ),
+        ),
+      )
+    );
+
+    final gareRetour = Container(
+      margin: EdgeInsets.only(left: 15 , right: 30),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          color: Colors.white24
+      ),
+        child: TextField(
+          autofocus: true,
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 14.0),
+            border: InputBorder.none,
+            prefixText: 'Arrivée',
+          ),
+        )
     );
 
     final jourAller = TextField(
@@ -115,15 +135,21 @@ class _ReservationTabState extends State<ReservationTab> {
             pinned: _pinned,
             snap: _snap,
             floating: _floating,
-            expandedHeight: 250,
+            expandedHeight: MediaQuery.of(context).size.height/4,
             backgroundColor: Colors.teal,
             backwardsCompatibility: true,
             flexibleSpace: FlexibleSpaceBar(
-              background: Container(
+              background: Padding(
+                padding: EdgeInsets.only(top: 60),
                 child: Column(
-                  children: [],
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    gareDepart,
+                    hr,
+                    gareRetour,
+                  ],
                 ),
-              ),
+              )
             ),
           ),
           SliverToBoxAdapter(
@@ -136,6 +162,7 @@ class _ReservationTabState extends State<ReservationTab> {
               margin: EdgeInsets.only(top: 20 , right: 10 , left: 10),
               child: Column(
                 children: [
+                  hr,
                   jourAller,
                   hr,
                   jourRetour,
