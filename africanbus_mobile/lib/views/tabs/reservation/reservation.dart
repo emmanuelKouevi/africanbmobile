@@ -1,4 +1,4 @@
-import 'package:africanbus_mobile/router/router.dart';
+import 'package:africanbus_mobile/dialogService/dialogService.dart';
 import 'package:flutter/material.dart';
 
 class ReservationTab extends StatefulWidget {
@@ -20,8 +20,20 @@ class _ReservationTabState extends State<ReservationTab> {
     final hr = SizedBox(height: 10.0);
 
     final exchangeBtn = Positioned(
-      child: Container(),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            onPressed: () => null,
+            icon: Icon(Icons.sync, color: Colors.white),
+          ),
+        ),
+      top: 30,
+      left: 324,
     );
+
 
     final searchTicket = Container(
       width: MediaQuery.of(context).size.width,
@@ -39,12 +51,9 @@ class _ReservationTabState extends State<ReservationTab> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Passagers" ,style: TextStyle(
-            fontWeight: FontWeight.w600
-          ),),
+          Icon(Icons.person , color: Colors.black),
           Text("1 Adulte" , style: TextStyle(
             fontWeight: FontWeight.bold
-
           ),),
         ],
       )
@@ -56,14 +65,20 @@ class _ReservationTabState extends State<ReservationTab> {
         borderRadius: BorderRadius.circular(5.0),
         color: Colors.white24
       ),
-      child: GestureDetector(
-        onTap: () => Navigator.popAndPushNamed(context, loginViewRoute),
-        child: TextField(
-          autofocus: true,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 14.0),
-            border: InputBorder.none,
-          ),
+      child: TextField(
+        autofocus: false,
+        showCursor: false,
+        onTap: () {
+          DialogService().showSelectCityForTravelDialog(context);
+        },
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 14.0),
+          border: InputBorder.none,
+          hintText: 'Depart',
+          hintStyle:TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black26
+          )
         ),
       )
     );
@@ -75,11 +90,16 @@ class _ReservationTabState extends State<ReservationTab> {
           color: Colors.white24
       ),
         child: TextField(
-          autofocus: true,
+          autofocus: false,
+          showCursor: false,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 14.0),
             border: InputBorder.none,
-            prefixText: 'Arrivée',
+            hintText: 'Arrivée',
+            hintStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black26
+            )
           ),
         )
     );
@@ -87,17 +107,18 @@ class _ReservationTabState extends State<ReservationTab> {
     final jourAller = TextField(
       cursorColor: Colors.teal,
       decoration: InputDecoration(
-          hintText: "Aller",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal),
-            borderRadius: BorderRadius.circular(20.0),
+          hintText: "Date de départ",
+          isDense: false,
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.teal
+            )
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal , width: 2),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                  color: Colors.teal,
+                  width: 3
+              )
           ),
           prefixIcon: Icon(Icons.calendar_today , color: Colors.teal,)
       ),
@@ -106,17 +127,17 @@ class _ReservationTabState extends State<ReservationTab> {
     final jourRetour = TextField(
       cursorColor: Colors.teal,
       decoration: InputDecoration(
-          hintText: "Retour",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal),
-            borderRadius: BorderRadius.circular(20.0),
+          hintText: "Date de retour",
+          enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                  color: Colors.teal
+              )
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal , width: 2),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                  color: Colors.teal,
+                  width: 3
+              )
           ),
           prefixIcon: Icon(Icons.calendar_today, color: Colors.teal,)
       ),
@@ -141,12 +162,17 @@ class _ReservationTabState extends State<ReservationTab> {
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
                 padding: EdgeInsets.only(top: 60),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                child: Stack(
                   children: [
-                    gareDepart,
-                    hr,
-                    gareRetour,
+                    exchangeBtn,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        gareDepart,
+                        hr,
+                        gareRetour,
+                      ],
+                    )
                   ],
                 ),
               )
