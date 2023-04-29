@@ -1,5 +1,6 @@
 import 'package:africanbus_mobile/dialogService/dialogService.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ReservationTab extends StatefulWidget {
   const ReservationTab({Key? key}) : super(key: key);
@@ -13,6 +14,9 @@ class _ReservationTabState extends State<ReservationTab> {
   bool _pinned = false ;
   bool _snap = false;
   bool _floating = false;
+
+  TextEditingController dateAllerInput = TextEditingController();
+  TextEditingController dateRetourInput = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +52,17 @@ class _ReservationTabState extends State<ReservationTab> {
 
     final passagers = Container(
       width: MediaQuery.of(context).size.width,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(Icons.person , color: Colors.black),
-          Text("1 Adulte" , style: TextStyle(
-            fontWeight: FontWeight.bold
-          ),),
-        ],
+      child: GestureDetector(
+        onTap: () => DialogService().showPassagersSectionDialog(context),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(Icons.person , color: Colors.black),
+            Text("1 Adulte" , style: TextStyle(
+              fontWeight: FontWeight.bold
+            ),),
+          ],
+        ),
       )
     );
 
@@ -92,6 +99,9 @@ class _ReservationTabState extends State<ReservationTab> {
         child: TextField(
           autofocus: false,
           showCursor: false,
+          onTap: () {
+            DialogService().showSelectCityForTravelDialog(context);
+          },
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 14.0),
             border: InputBorder.none,
@@ -106,6 +116,25 @@ class _ReservationTabState extends State<ReservationTab> {
 
     final jourAller = TextField(
       cursorColor: Colors.teal,
+      controller: dateAllerInput,
+      onTap: () async {
+        DateTime? pickedDate = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1950),
+            //DateTime.now() - not to allow to choose before today.
+            lastDate: DateTime(2100));
+
+        if (pickedDate != null) {
+          print(
+              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+          String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+          print(formattedDate); //formatted date output using intl package =>  2021-03-16
+          setState(() {
+            dateAllerInput.text = formattedDate; //set output date to TextField value.
+          });
+        } else {}
+      },
       decoration: InputDecoration(
           hintText: "Date de départ",
           isDense: false,
@@ -126,6 +155,28 @@ class _ReservationTabState extends State<ReservationTab> {
 
     final jourRetour = TextField(
       cursorColor: Colors.teal,
+      controller: dateRetourInput,
+      onTap: () async {
+        DateTime? pickedDate = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1950),
+            //DateTime.now() - not to allow to choose before today.
+            lastDate: DateTime(2100));
+
+        if (pickedDate != null) {
+          print(
+              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+          String formattedDate =
+          DateFormat('yyyy-MM-dd').format(pickedDate);
+          print(
+              formattedDate); //formatted date output using intl package =>  2021-03-16
+          setState(() {
+            dateRetourInput.text =
+                formattedDate; //set output date to TextField value.
+          });
+        } else {}
+      },
       decoration: InputDecoration(
           hintText: "Date de retour",
           enabledBorder: UnderlineInputBorder(
@@ -192,6 +243,7 @@ class _ReservationTabState extends State<ReservationTab> {
                   jourAller,
                   hr,
                   jourRetour,
+                  hr,
                   hr,
                   passagers,
                   hr,

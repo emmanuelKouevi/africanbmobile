@@ -38,7 +38,7 @@ class _TravelDialogState extends State<TravelDialog> {
                 color: Colors.white,
           ),
           )
-      ),
+        ),
       ],
 
     );
