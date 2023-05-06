@@ -1,4 +1,6 @@
 import 'package:africanbus_mobile/dialogService/dialogService.dart';
+import 'package:africanbus_mobile/models/passagerType.dart';
+import 'package:africanbus_mobile/service_web/service_web.dart';
 import 'package:flutter/material.dart';
 
 class PassagersSection extends StatefulWidget {
@@ -9,6 +11,19 @@ class PassagersSection extends StatefulWidget {
 }
 
 class _PassagersSectionState extends State<PassagersSection> {
+
+  List<PassagersType> passagersTypeList = [];
+
+  initializeTypePassagers() async{
+    passagersTypeList = await ServiceWebApi().getTypePassagers();
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    initializeTypePassagers();
+  }
+
   @override
   Widget build(BuildContext context) {
 
