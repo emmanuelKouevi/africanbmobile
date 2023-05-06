@@ -46,7 +46,7 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
       margin: EdgeInsets.only(top: 20.0),
       alignment: Alignment.centerRight,
       child: GestureDetector(
-        onTap: () => Navigator.of(context).pushNamed(tabsViewRoute),
+        onTap: () => Navigator.of(context).pushNamed(forgetPasswordViewRoute),
         child: Text(
           "Mot de passe oublié?",
           style: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:africanbus_mobile/dialogService/dialogService.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ReservationTab extends StatefulWidget {
   const ReservationTab({Key? key}) : super(key: key);
@@ -26,16 +27,16 @@ class _ReservationTabState extends State<ReservationTab> {
     final exchangeBtn = Positioned(
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Colors.transparent,
             shape: BoxShape.circle,
           ),
           child: IconButton(
             onPressed: () => null,
-            icon: Icon(Icons.sync, color: Colors.white),
+            icon: FaIcon(FontAwesomeIcons.arrowsRotate , color: Colors.white, size: 30,)
           ),
         ),
       top: 30,
-      left: 324,
+      left: 325,
     );
 
 
@@ -165,15 +166,11 @@ class _ReservationTabState extends State<ReservationTab> {
             lastDate: DateTime(2100));
 
         if (pickedDate != null) {
-          print(
-              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-          String formattedDate =
-          DateFormat('yyyy-MM-dd').format(pickedDate);
-          print(
-              formattedDate); //formatted date output using intl package =>  2021-03-16
+          print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+          String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+          print(formattedDate); //formatted date output using intl package =>  2021-03-16
           setState(() {
-            dateRetourInput.text =
-                formattedDate; //set output date to TextField value.
+            dateRetourInput.text = formattedDate; //set output date to TextField value.
           });
         } else {}
       },

@@ -1,0 +1,103 @@
+[
+  {
+    "id" : 1 ,
+    "designation" : "Abidjan",
+    "pays" : "Cote d'Ivoire"
+  },
+  {
+    "id" : 2,
+    "designation" : "Bouake",
+    "pays" : "Cote d'Ivoire"
+  },
+  {
+    "id" : 3 ,
+    "designation" : "Yamoussokro",
+    "pays" : "Cote d'Ivoire"
+  },
+  {
+    "id" : 4,
+    "designation" : "Man",
+    "pays" : "Cote d'Ivoire"
+  },
+  {
+    "id" : 5,
+    "designation" : "Danané",
+    "pays" : "Cote d'Ivoire"
+  },
+  {
+    "id" : 6,
+    "designation" : "Korhogo",
+    "pays" : "Cote d'Ivoire"
+  },
+  {
+    "id" : 7,
+    "designation" : "Lomé",
+    "pays" : "Togo"
+  },
+  {
+    "id" : 8,
+    "designation" : "Niamey",
+    "pays" : "Niger"
+  },
+  {
+    "id" : 9,
+    "designation" : "Paris",
+    "pays" : "France"
+  },
+  {
+    "id" : 10,
+    "designation" : "Nairobi",
+    "pays" : "Kenya"
+  },
+  {
+    "id" : 11,
+    "designation" : "Bucarest",
+    "pays" : "Roumanie"
+  },
+  {
+    "id" : 12,
+    "designation" : "Athènes",
+    "pays" : "Grèce"
+  },
+  {
+    "id" : 13,
+    "designation" : "Varsovie",
+    "pays" : "Pologne"
+  },
+  {
+    "id" : 14,
+    "designation" : "Moscou",
+    "pays" : "Russie"
+  },
+  {
+    "id" : 15,
+    "designation" : "Californie",
+    "pays" : "United States"
+  },
+  {
+    "id" : 16,
+    "designation" : "Chernobyl",
+    "pays" : "Ukraine"
+  },
+  {
+    "id" : 17,
+    "designation" : "Tokyo",
+    "pays" : "Japon"
+  },
+  {
+    "id" : 18,
+    "designation" : "Sao Paolo",
+    "pays" : "Brésil"
+  },
+  {
+    "id" : 19,
+    "designation" : "Sion",
+    "pays" : "Suisse"
+  },
+  {
+    "id" : 20,
+    "designation" : "Rio de Janeiro",
+    "pays" : "Brésil"
+  }
+
+]
