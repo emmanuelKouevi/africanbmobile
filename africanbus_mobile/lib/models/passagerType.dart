@@ -1,17 +1,17 @@
-class PassagersType{
+class TypePassager{
   String id ;
   String typeDesignation ;
 
-  PassagersType({ required this.id , required this.typeDesignation });
+  TypePassager({ required this.id , required this.typeDesignation });
 
-  factory PassagersType.fromJson(Map<String , dynamic> json){
-    return PassagersType(
+  factory TypePassager.fromJson(Map<String , dynamic> json){
+    return TypePassager(
       id: json['id'],
       typeDesignation: json['typeDesignation'],
     );
   }
 
-  PassagersType.fromMap(Map map)
+  TypePassager.fromMap(Map map)
       :this.id = map['id'],
         this.typeDesignation = map['typeDesignation'];
 

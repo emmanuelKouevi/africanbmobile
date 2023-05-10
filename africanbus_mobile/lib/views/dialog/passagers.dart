@@ -1,7 +1,6 @@
 import 'package:africanbus_mobile/dialogService/dialogService.dart';
-import 'package:africanbus_mobile/models/passagerType.dart';
-import 'package:africanbus_mobile/service_web/service_web.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PassagersSection extends StatefulWidget {
   const PassagersSection({Key? key}) : super(key: key);
@@ -11,18 +10,6 @@ class PassagersSection extends StatefulWidget {
 }
 
 class _PassagersSectionState extends State<PassagersSection> {
-
-  List<PassagersType> passagersTypeList = [];
-
-  initializeTypePassagers() async{
-    passagersTypeList = await ServiceWebApi().getTypePassagers();
-  }
-
-  @override
-  void initState(){
-    super.initState();
-    initializeTypePassagers();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +28,95 @@ class _PassagersSectionState extends State<PassagersSection> {
       ),
     );
 
-    return Container(
-      child: addPassagersBtn,
+    final validatePassagersBtn = Container(
+      width: MediaQuery.of(context).size.width/1.3,
+      child: ElevatedButton.icon(
+        onPressed: () => DialogService().showSelectTypePassagersDialog(context),
+        icon: Icon(Icons.check , color: Colors.white),
+        label: Text('Valider' , style: TextStyle(
+            color: Colors.white
+        ),),
+        style: ElevatedButton.styleFrom(
+            primary: Colors.teal
+        ),
+      ),
+    );
+
+    final bottom = Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              blurRadius: 6.0,
+              spreadRadius: 1.0,
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            addPassagersBtn,
+            validatePassagersBtn
+          ],
+        ),
+      ),
+    );
+
+    
+    final noPassager = Center(
+      child: Container(
+        margin: EdgeInsets.only(top: 150),
+        child: Column(
+          children: [
+            FaIcon(FontAwesomeIcons.solidCircleUser, size: 100, color: Colors.black.withOpacity(0.5),),
+            SizedBox(height: 10),
+            Text('Oups... Pas de Passagers' , style: TextStyle(
+              fontWeight: FontWeight.bold
+            ),)
+          ],
+        ),
+      ),
+    );
+
+
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
+        title: Text('Passagers', style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.black
+        ),),
+      ),
+      body: Stack(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  children: [
+                    noPassager,
+                  ],
+                ),
+              ),
+            ),
+          ),
+          bottom,
+        ],
+      ),
     );
   }
 }
