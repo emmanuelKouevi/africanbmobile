@@ -1,6 +1,9 @@
 import 'package:africanbus_mobile/dialogService/dialogService.dart';
+import 'package:africanbus_mobile/views/dialog/viewModel/categoryPassagerViewModel.dart';
+import 'package:africanbus_mobile/views/dialog/widgets/selectedCategoryTravellerList.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class PassagersSection extends StatefulWidget {
   const PassagersSection({Key? key}) : super(key: key);
@@ -14,11 +17,13 @@ class _PassagersSectionState extends State<PassagersSection> {
   @override
   Widget build(BuildContext context) {
 
+    final travellerCategoryProvider = Provider.of<CategoryPassagerViewModel>(context);
+
     final addPassagersBtn = Container(
       width: MediaQuery.of(context).size.width/1.3,
       child: ElevatedButton.icon(
           onPressed: () => DialogService().showSelectTypePassagersDialog(context),
-          icon: Icon(Icons.add , color: Colors.teal),
+          icon: FaIcon(FontAwesomeIcons.plus , color: Colors.teal),
           label: Text('Ajouter un passager' , style: TextStyle(
             color: Colors.teal
           ),),
@@ -33,8 +38,9 @@ class _PassagersSectionState extends State<PassagersSection> {
       child: ElevatedButton.icon(
         onPressed: () => DialogService().showSelectTypePassagersDialog(context),
         icon: Icon(Icons.check , color: Colors.white),
-        label: Text('Valider' , style: TextStyle(
-            color: Colors.white
+        label: Text('VALIDER' , style: TextStyle(
+            color: Colors.white,
+            fontSize: 15
         ),),
         style: ElevatedButton.styleFrom(
             primary: Colors.teal
@@ -68,23 +74,36 @@ class _PassagersSectionState extends State<PassagersSection> {
       ),
     );
 
-    
-    final noPassager = Center(
-      child: Container(
-        margin: EdgeInsets.only(top: 150),
-        child: Column(
-          children: [
-            FaIcon(FontAwesomeIcons.solidCircleUser, size: 100, color: Colors.black.withOpacity(0.5),),
-            SizedBox(height: 10),
-            Text('Oups... Pas de Passagers' , style: TextStyle(
-              fontWeight: FontWeight.bold
-            ),)
-          ],
-        ),
+
+    final noTraveller = SingleChildScrollView(
+      child: Column(
+        children: [
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(top: 150),
+              child: Column(
+                children: [
+                  FaIcon(FontAwesomeIcons.solidCircleUser, size: 100, color: Colors.black.withOpacity(0.5),),
+                  SizedBox(height: 10),
+                  Text('Oups... Pas de Passagers' , style: TextStyle(
+                      fontWeight: FontWeight.bold
+                  ),)
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
 
-
+    final travellerExist = SingleChildScrollView(
+      child: Column(
+        children: [
+          SelectedCategoryTravellerList(categoryPassagerViewModel: travellerCategoryProvider),
+        ],
+      ),
+    );
+    
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -104,15 +123,7 @@ class _PassagersSectionState extends State<PassagersSection> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  children: [
-                    noPassager,
-                  ],
-                ),
-              ),
-            ),
+            child: travellerCategoryProvider.data.length == 0 ? noTraveller : travellerExist
           ),
           bottom,
         ],

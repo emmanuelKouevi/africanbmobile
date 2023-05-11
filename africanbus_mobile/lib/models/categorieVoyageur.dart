@@ -1,5 +1,5 @@
 class TypePassager{
-  String id ;
+  int id ;
   String typeDesignation ;
 
   TypePassager({ required this.id , required this.typeDesignation });

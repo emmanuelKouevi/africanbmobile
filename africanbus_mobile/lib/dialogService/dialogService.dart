@@ -1,4 +1,4 @@
-import 'package:africanbus_mobile/views/dialog/passagerType.dart';
+import 'package:africanbus_mobile/views/dialog/passagerTypeDialog.dart';
 import 'package:africanbus_mobile/views/dialog/passagers.dart';
 import 'package:africanbus_mobile/views/dialog/travelDialog.dart';
 import 'package:flutter/material.dart';
