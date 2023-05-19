@@ -1,6 +1,7 @@
+import 'package:africanbus_mobile/views/dialog/gareDestinationDialog.dart';
 import 'package:africanbus_mobile/views/dialog/passagerTypeDialog.dart';
 import 'package:africanbus_mobile/views/dialog/passagers.dart';
-import 'package:africanbus_mobile/views/dialog/travelDialog.dart';
+import 'package:africanbus_mobile/views/dialog/gareDepartDialog.dart';
 import 'package:flutter/material.dart';
 
 class DialogService {
@@ -10,13 +11,20 @@ class DialogService {
     - Création d'un service de dialogue.
    */
 
-  Future<void> showSelectCityForTravelDialog(BuildContext context) {
+  Future<void> showSelectCityDepartureTravelDialog(BuildContext context , TextEditingController villeDepart) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return Scaffold(
-          body: TravelDialog(),
-        );
+        return GareDepartDialog(villeGareDepart: villeDepart,);
+      },
+    );
+  }
+
+  Future<void> showSelectCityDestinationTravelDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return GareDestinationDialog();
       },
     );
   }

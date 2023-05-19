@@ -16,6 +16,9 @@ class _ReservationTabState extends State<ReservationTab> {
   bool _snap = false;
   bool _floating = false;
 
+  TextEditingController depart = TextEditingController();
+  TextEditingController destination = TextEditingController();
+
   TextEditingController dateAllerInput = TextEditingController();
   TextEditingController dateRetourInput = TextEditingController();
 
@@ -74,10 +77,11 @@ class _ReservationTabState extends State<ReservationTab> {
         color: Colors.white24
       ),
       child: TextField(
+        controller: depart,
         autofocus: false,
         showCursor: false,
         onTap: () {
-          DialogService().showSelectCityForTravelDialog(context);
+          DialogService().showSelectCityDepartureTravelDialog(context , depart);
         },
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 14.0),
@@ -98,10 +102,11 @@ class _ReservationTabState extends State<ReservationTab> {
           color: Colors.white24
       ),
         child: TextField(
+          controller: destination,
           autofocus: false,
           showCursor: false,
           onTap: () {
-            DialogService().showSelectCityForTravelDialog(context);
+            DialogService().showSelectCityDestinationTravelDialog(context);
           },
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 14.0),

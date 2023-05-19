@@ -1,5 +1,5 @@
 import 'package:africanbus_mobile/models/categorieVoyageur.dart';
-import 'package:africanbus_mobile/views/dialog/viewModel/categoryPassagerViewModel.dart';
+import 'package:africanbus_mobile/views/dialog/viewModel/traveller/categoryPassagerViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,5 +1,5 @@
 class City {
-  String id ;
+  int id ;
   String designation ;
   String pays ;
 
@@ -8,7 +8,7 @@ class City {
   factory City.fromJson(Map<String , dynamic> json){
     return City(
       id: json['id'],
-      designation: json['typeDesignation'],
+      designation: json['designation'],
       pays: json['pays']
     );
   }

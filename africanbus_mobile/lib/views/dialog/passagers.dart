@@ -1,6 +1,6 @@
 import 'package:africanbus_mobile/dialogService/dialogService.dart';
-import 'package:africanbus_mobile/views/dialog/viewModel/categoryPassagerViewModel.dart';
-import 'package:africanbus_mobile/views/dialog/widgets/selectedCategoryTravellerList.dart';
+import 'package:africanbus_mobile/views/dialog/viewModel/traveller/categoryPassagerViewModel.dart';
+import 'package:africanbus_mobile/views/dialog/widgets/categoryTraveller/selectedCategoryTravellerList.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CategoryPassagerViewModel extends ChangeNotifier {
   List<TypePassager> _categoryVoyageurList = [];
-  List<dynamic> get data => this._categoryVoyageurList;
+  List<TypePassager> get data => this._categoryVoyageurList;
 
   void addCategoryVoyageur(TypePassager typePassager){
     _categoryVoyageurList.add(typePassager);
@@ -13,6 +13,11 @@ class CategoryPassagerViewModel extends ChangeNotifier {
 
   void removeCategoryVoyageur(TypePassager typePassager){
     _categoryVoyageurList.remove(typePassager);
+    notifyListeners();
+  }
+
+  void removeAllCategoryVoyageur(){
+    _categoryVoyageurList.clear();
     notifyListeners();
   }
 }

@@ -2,102 +2,166 @@
   {
     "id" : 1 ,
     "designation" : "Abidjan",
-    "pays" : "Cote d'Ivoire"
+    "pays" : "CIV"
   },
   {
     "id" : 2,
     "designation" : "Bouake",
-    "pays" : "Cote d'Ivoire"
+    "pays" : "CIV"
   },
   {
     "id" : 3 ,
     "designation" : "Yamoussokro",
-    "pays" : "Cote d'Ivoire"
+    "pays" : "CIV"
   },
   {
     "id" : 4,
     "designation" : "Man",
-    "pays" : "Cote d'Ivoire"
+    "pays" : "CIV"
   },
   {
     "id" : 5,
     "designation" : "Danané",
-    "pays" : "Cote d'Ivoire"
+    "pays" : "CIV"
   },
   {
     "id" : 6,
     "designation" : "Korhogo",
-    "pays" : "Cote d'Ivoire"
+    "pays" : "CIV"
   },
   {
     "id" : 7,
     "designation" : "Lomé",
-    "pays" : "Togo"
+    "pays" : "TG"
   },
   {
     "id" : 8,
     "designation" : "Niamey",
-    "pays" : "Niger"
+    "pays" : "NG"
   },
   {
     "id" : 9,
     "designation" : "Paris",
-    "pays" : "France"
+    "pays" : "FR"
   },
   {
     "id" : 10,
     "designation" : "Nairobi",
-    "pays" : "Kenya"
+    "pays" : "KYA"
   },
   {
     "id" : 11,
     "designation" : "Bucarest",
-    "pays" : "Roumanie"
+    "pays" : "RMN"
   },
   {
     "id" : 12,
     "designation" : "Athènes",
-    "pays" : "Grèce"
+    "pays" : "GRC"
   },
   {
     "id" : 13,
     "designation" : "Varsovie",
-    "pays" : "Pologne"
+    "pays" : "PO"
   },
   {
     "id" : 14,
     "designation" : "Moscou",
-    "pays" : "Russie"
+    "pays" : "RU"
   },
   {
     "id" : 15,
     "designation" : "Californie",
-    "pays" : "United States"
+    "pays" : "US"
   },
   {
     "id" : 16,
     "designation" : "Chernobyl",
-    "pays" : "Ukraine"
+    "pays" : "UKR"
   },
   {
     "id" : 17,
     "designation" : "Tokyo",
-    "pays" : "Japon"
+    "pays" : "JPN"
   },
   {
     "id" : 18,
     "designation" : "Sao Paolo",
-    "pays" : "Brésil"
+    "pays" : "BR"
   },
   {
     "id" : 19,
     "designation" : "Sion",
-    "pays" : "Suisse"
+    "pays" : "SUI"
   },
   {
     "id" : 20,
     "designation" : "Rio de Janeiro",
-    "pays" : "Brésil"
+    "pays" : "BR"
+  },
+  {
+    "id" : 21,
+    "designation" : "Nasser",
+    "pays" : "AEM"
+  },
+  {
+    "id" : 22,
+    "designation" : "Aberdeen",
+    "pays" : "EC"
+  },
+  {
+    "id" : 23,
+    "designation" : "Leeds",
+    "pays" : "GB"
+  },
+  {
+    "id" : 24,
+    "designation" : "Armsterdam",
+    "pays" : "PB"
+  },
+  {
+    "id" : 25,
+    "designation" : "Turin",
+    "pays" : "IT"
+  },
+  {
+    "id" : 26,
+    "designation" : "Rome",
+    "pays" : "IT"
+  },
+  {
+    "id" : 27,
+    "designation" : "Berlin",
+    "pays" : "ALL"
+  },
+  {
+    "id" : 28,
+    "designation" : "Madrid",
+    "pays" : "ESP"
+  },
+  {
+    "id" : 29,
+    "designation" : "Londres",
+    "pays" : "GB"
+  },
+  {
+    "id" : 30,
+    "designation" : "Helsinki",
+    "pays" : "FIN"
+  },
+  {
+    "id" : 31,
+    "designation" : "Barcelona",
+    "pays" : "ESP"
+  },
+  {
+    "id" : 32,
+    "designation" : "Brazzaville",
+    "pays" : "CO"
+  },
+  {
+    "id" : 33,
+    "designation" : "Anderlecht",
+    "pays" : "BEL"
   }
-
 ]
