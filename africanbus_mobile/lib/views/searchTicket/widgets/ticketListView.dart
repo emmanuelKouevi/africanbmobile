@@ -8,12 +8,10 @@ class TicketListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      child: ListView.builder(
-        itemCount: ticketList.length,
-        itemBuilder: (context , index) => TicketItem(ticket: ticketList[index]),
-      ),
+    return ListView.builder(
+      padding: EdgeInsets.only(top: 10),
+      itemCount: ticketList.length,
+      itemBuilder: (context , index) => TicketItem(ticket: ticketList[index]),
     );
   }
 }

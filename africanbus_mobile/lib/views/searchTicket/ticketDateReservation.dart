@@ -26,9 +26,8 @@ class _TicketDateReservationState extends State<TicketDateReservation> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      child: billets.isNotEmpty ? CircularProgressIndicator() : TicketListView(ticketList: billets)
-    );
+    return billets.isNotEmpty ? TicketListView(ticketList: billets) : Center(
+      child: CircularProgressIndicator(),
+    )  ;
   }
 }

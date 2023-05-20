@@ -1,5 +1,5 @@
 class Billet {
-  int id;
+  String id;
   String depart;
   String destination;
   double coutReservation;

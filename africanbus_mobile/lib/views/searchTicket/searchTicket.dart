@@ -38,25 +38,34 @@ class _SearchTicketState extends State<SearchTicket> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height,
-              child: SingleChildScrollView(
-                child: TicketDateReservation(),
-              )
+              width: MediaQuery.of(context).size.width,
+              child: TicketDateReservation()
             ),
-            Center(
-              child: Icon(Icons.account_circle),
+            Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: TicketDateReservation()
             ),
-            Center(
-              child: Icon(Icons.alarm),
+            Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: TicketDateReservation()
             ),
-            Center(
-              child: Icon(Icons.home),
+            Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: TicketDateReservation()
             ),
-            Center(
-              child: Icon(Icons.account_circle),
+            Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: TicketDateReservation()
             ),
-            Center(
-              child: Icon(Icons.alarm),
-            )
+            Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: TicketDateReservation()
+            ),
           ],
         ),
       ),
