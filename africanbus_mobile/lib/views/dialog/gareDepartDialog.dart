@@ -51,7 +51,6 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
   @override
   Widget build(BuildContext context) {
 
-    //final gareDepartProvider = Provider.of<GareDepartViewModel>(context);
 
     final positionOrLocalisation = Container(
       child: Row(
@@ -73,10 +72,6 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
         controller: villeDepart,
         onChanged: (value) {
           _runFilter(value);
-          setState(() {
-            widget.villeGareDepart.text = villeDepart.text ;
-            print(widget.villeGareDepart.text);
-          });
         },
         showCursor: false,
         decoration: InputDecoration(
@@ -123,7 +118,7 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
       child: Container(
         child: ListView.builder(
           itemCount: foundCities.length,
-          itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: villeDepart,),
+          itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: widget.villeGareDepart,),
         ),
       )
     ) : Container(

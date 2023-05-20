@@ -4,7 +4,8 @@ import 'package:africanbus_mobile/views/dialog/widgets/cities/cityItem.dart';
 import 'package:flutter/material.dart';
 
 class GareDestinationDialog extends StatefulWidget {
-  const GareDestinationDialog({Key? key}) : super(key: key);
+  final TextEditingController villeGareDestination ;
+  const GareDestinationDialog({Key? key , required this.villeGareDestination}) : super(key: key);
 
   @override
   State<GareDestinationDialog> createState() => _GareDestinationDialogState();
@@ -92,7 +93,7 @@ class _GareDestinationDialogState extends State<GareDestinationDialog> {
         child: Container(
           child: ListView.builder(
             itemCount: foundCities.length,
-            itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: villeDestination,),
+            itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: widget.villeGareDestination),
           ),
         )
     ) : Container(

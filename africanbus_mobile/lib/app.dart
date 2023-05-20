@@ -1,4 +1,5 @@
 import 'package:africanbus_mobile/views/dialog/viewModel/station/gareDepartViewModel.dart';
+import 'package:africanbus_mobile/views/dialog/viewModel/station/gareDestinationViewModel.dart';
 import 'package:africanbus_mobile/views/dialog/viewModel/traveller/categoryPassagerViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:africanbus_mobile/router/router.dart' as router;
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => GareDepartViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => GareDestinationViewModel(),
         )
       ],
       child: MaterialApp(

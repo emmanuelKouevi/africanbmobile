@@ -20,11 +20,11 @@ class DialogService {
     );
   }
 
-  Future<void> showSelectCityDestinationTravelDialog(BuildContext context) {
+  Future<void> showSelectCityDestinationTravelDialog(BuildContext context, TextEditingController villeDestination) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return GareDestinationDialog();
+        return GareDestinationDialog(villeGareDestination: villeDestination ,);
       },
     );
   }

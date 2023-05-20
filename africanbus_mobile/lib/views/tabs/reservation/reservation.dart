@@ -1,4 +1,5 @@
 import 'package:africanbus_mobile/dialogService/dialogService.dart';
+import 'package:africanbus_mobile/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -34,7 +35,15 @@ class _ReservationTabState extends State<ReservationTab> {
             shape: BoxShape.circle,
           ),
           child: IconButton(
-            onPressed: () => null,
+            onPressed: () {
+              var departureField = depart.text ;
+              var destinationField = destination.text ;
+              setState(() {
+                depart.text = destinationField ;
+                destination.text = departureField ;
+              });
+
+            },
             icon: FaIcon(FontAwesomeIcons.arrowsRotate , color: Colors.white, size: 30,)
           ),
         ),
@@ -49,7 +58,7 @@ class _ReservationTabState extends State<ReservationTab> {
           style: ElevatedButton.styleFrom(
               primary: Colors.teal
           ),
-          onPressed: () => print('Bonjour'),
+          onPressed: () => Navigator.of(context).pushNamed(searchTicketViewRoute),
           child: Text("RECHERCHER")
       ),
     );
@@ -92,6 +101,11 @@ class _ReservationTabState extends State<ReservationTab> {
               color: Colors.black26
           )
         ),
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.white70
+        ),
       )
     );
 
@@ -106,7 +120,7 @@ class _ReservationTabState extends State<ReservationTab> {
           autofocus: false,
           showCursor: false,
           onTap: () {
-            DialogService().showSelectCityDestinationTravelDialog(context);
+            DialogService().showSelectCityDestinationTravelDialog(context , destination);
           },
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 14.0),
@@ -116,6 +130,11 @@ class _ReservationTabState extends State<ReservationTab> {
               fontWeight: FontWeight.bold,
               color: Colors.black26
             )
+          ),
+          style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white70
           ),
         )
     );

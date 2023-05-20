@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CityItem extends StatefulWidget {
   final City city ;
-  final TextEditingController textEditingController ;
+  final TextEditingController textEditingController;
   const CityItem({Key? key , required this.city , required this.textEditingController }) : super(key: key);
 
   @override
@@ -17,9 +17,7 @@ class _CityItemState extends State<CityItem> {
       margin: EdgeInsets.only(top: 10 , bottom: 5),
       child: GestureDetector(
         onTap: () {
-          setState(() {
-            widget.textEditingController.text = widget.city.designation ;
-          });
+          widget.textEditingController.text = widget.city.designation ;
           Navigator.of(context).pop();
         },
         child: ListTile(

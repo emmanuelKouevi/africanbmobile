@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "depart": "Abidjan",
+    "destination" : "Man",
+    "coutReservation" : 27500.00,
+    "compagnieTransport" : "African Bus",
+    "heureDepart" : "15h30",
+    "heureArrivee": "19h55"
+  },
+  {
+    "id": 2,
+    "depart": "Bouaké",
+    "destination" : "Abengourou",
+    "coutReservation" : 21000.00,
+    "compagnieTransport" : "UTB",
+    "heureDepart" : "7h",
+    "heureArrivee": "9h30"
+  },
+  {
+    "id": 3,
+    "depart": "Korhogo",
+    "destination" : "San-Pedro",
+    "coutReservation" : 8500.00,
+    "compagnieTransport" : "KOUEVI CT",
+    "heureDepart" : "21h",
+    "heureArrivee": "2h13"
+  },
+  {
+    "id": 4,
+    "depart": "Dimbokro",
+    "destination" : "Gagnoa",
+    "coutReservation" : 17320.00,
+    "compagnieTransport" : "FICTIVE TP",
+    "heureDepart" : "5h35",
+    "heureArrivee": "9h23"
+  },
+  {
+    "id": 5,
+    "depart": "Tiassalé",
+    "destination" : "Yamoussokro",
+    "coutReservation" : 13600.00,
+    "compagnieTransport" : "MANU TP",
+    "heureDepart" : "14h03",
+    "heureArrivee": "18h14"
+  }
+]

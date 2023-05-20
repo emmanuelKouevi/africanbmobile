@@ -1,6 +1,7 @@
 import 'package:africanbus_mobile/globalConfig/globalConst.dart';
 import 'package:africanbus_mobile/models/city.dart';
 import 'package:africanbus_mobile/models/categorieVoyageur.dart';
+import 'package:africanbus_mobile/models/ticket.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -18,7 +19,6 @@ class ServiceWebApi{
   Future <List<City>>getTravelCities() async {
     final url = GlobalConst.remoteApiUrl +"villes.json";
     final response = await http.get(Uri.parse(url));
-    print(response);
     if (response.statusCode == 200) {
       List<City> cities = [];
       cities = (json.decode(response.body) as List)
@@ -41,6 +41,21 @@ class ServiceWebApi{
           .map((i) => TypePassager.fromJson(i))
           .toList();
       return typePassagers;
+    } else {
+      throw Exception('Failed to load campaigns');
+    }
+  }
+
+  // RECUPERER LA LISTE DES OFFRES DE VOYAGES DISPONIBLES DEPUIS UN SERVICE WEB
+  Future <List<Billet>>getOffersTravels() async{
+    final url = GlobalConst.remoteApiUrl +"billet.json";
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      List<Billet> billetsList = [];
+      billetsList = (json.decode(response.body) as List)
+          .map((i) => Billet.fromJson(i))
+          .toList();
+      return billetsList;
     } else {
       throw Exception('Failed to load campaigns');
     }

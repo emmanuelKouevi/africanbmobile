@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class GareDepartViewModel extends ChangeNotifier{
+class GareDestinationViewModel extends ChangeNotifier{
   TextEditingController _gareDepart = TextEditingController();
   TextEditingController get data => this._gareDepart;
 
