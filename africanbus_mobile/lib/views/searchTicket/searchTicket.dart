@@ -1,3 +1,4 @@
+import 'package:africanbus_mobile/views/searchTicket/ticketDateReservation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -35,8 +36,11 @@ class _SearchTicketState extends State<SearchTicket> {
         ),
         body: TabBarView(
           children: [
-            Center(
-              child: Icon(Icons.home),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              child: SingleChildScrollView(
+                child: TicketDateReservation(),
+              )
             ),
             Center(
               child: Icon(Icons.account_circle),

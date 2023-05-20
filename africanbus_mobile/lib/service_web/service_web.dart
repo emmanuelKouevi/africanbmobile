@@ -50,11 +50,13 @@ class ServiceWebApi{
   Future <List<Billet>>getOffersTravels() async{
     final url = GlobalConst.remoteApiUrl +"billet.json";
     final response = await http.get(Uri.parse(url));
+    print(response);
     if (response.statusCode == 200) {
       List<Billet> billetsList = [];
       billetsList = (json.decode(response.body) as List)
           .map((i) => Billet.fromJson(i))
           .toList();
+      print(billetsList);
       return billetsList;
     } else {
       throw Exception('Failed to load campaigns');

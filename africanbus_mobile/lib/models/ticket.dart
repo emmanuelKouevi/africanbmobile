@@ -1,10 +1,8 @@
-import 'dart:ffi';
-
 class Billet {
   int id;
   String depart;
   String destination;
-  Float coutReservation;
+  double coutReservation;
   String compagnieTransport;
   String heureDepart;
   String heureArrivee;
