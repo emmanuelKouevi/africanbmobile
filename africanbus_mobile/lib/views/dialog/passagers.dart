@@ -28,7 +28,7 @@ class _PassagersSectionState extends State<PassagersSection> {
             color: Colors.teal
           ),),
         style: ElevatedButton.styleFrom(
-          primary: Colors.white
+          backgroundColor: Colors.white
         ),
       ),
     );
@@ -43,7 +43,7 @@ class _PassagersSectionState extends State<PassagersSection> {
             fontSize: 15
         ),),
         style: ElevatedButton.styleFrom(
-            primary: Colors.teal
+            backgroundColor: Colors.teal
         ),
       ),
     );

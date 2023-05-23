@@ -56,10 +56,13 @@ class _ReservationTabState extends State<ReservationTab> {
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              primary: Colors.teal
+              backgroundColor: Colors.teal
           ),
           onPressed: () => Navigator.of(context).pushNamed(searchTicketViewRoute),
-          child: Text("RECHERCHER")
+          child: Text("RECHERCHER" , style: TextStyle(
+            color: Colors.white
+
+          ),)
       ),
     );
 
@@ -230,7 +233,6 @@ class _ReservationTabState extends State<ReservationTab> {
             floating: _floating,
             expandedHeight: MediaQuery.of(context).size.height/4,
             backgroundColor: Colors.teal,
-            backwardsCompatibility: true,
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
                 padding: EdgeInsets.only(top: 60),

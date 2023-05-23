@@ -112,7 +112,7 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.teal
+          backgroundColor: Colors.teal
         ),
           onPressed: () => print('Bonjour'),
           child: Text("Connexion")
