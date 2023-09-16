@@ -172,46 +172,78 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
 
-    final form = Form(
-        child: Column(
-          children: [
-            spacer,
-            nom,
-            spacer,
-            prenom,
-            spacer,
-            email,
-            spacer,
-            password,
-            spacer,
-            passwordConfirm,
-            spacer,
-            registerBtn,
-            spacer,
-
-            spacer,
-
-          ],
-        )
-    );
-
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(
-          left: 20.0,
-          right: 20.0,
-          bottom: 30.0,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              colors: [
+                Color(0xff192a56),
+                Colors.teal.shade700,
+                Colors.teal
+              ]
+          ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            title1,
-            title2,
-            form,
-            spacer,
-            haveAnAccount,
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 80),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Bienvenue", style: TextStyle(color: Colors.white, fontSize: 40 , fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
+                    Text("Connectez-vous à votre compte" , style: TextStyle(color: Colors.white, fontSize: 18),)
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(60) , topRight: Radius.circular(60)),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 60),
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color.fromRGBO(0, 75, 0, .3),
+                                blurRadius: 20,
+                                offset: Offset(0, 10)
+                            )
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              child: email,
+                            ),
+                            Container(
+                              child: password,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      SizedBox(height: 5),
+                      registerBtn,
+                      SizedBox(height: 5),
+                      haveAnAccount
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

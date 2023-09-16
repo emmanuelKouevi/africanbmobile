@@ -5,5 +5,5 @@
  */
 
 class GlobalConst{
-  static final String remoteApiUrl = 'http://192.168.1.2:8000/';
+  static final String remoteApiUrl = 'http://192.168.1.15:8000/';
 }

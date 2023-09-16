@@ -1,3 +1,4 @@
+import 'package:africanbus_mobile/custom_widgets/custom_text_form_field.dart';
 import 'package:africanbus_mobile/router/router.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ class AuthentificationTab extends StatefulWidget {
 }
 
 class _AuthentificationTabState extends State<AuthentificationTab> {
+  TextEditingController id = new TextEditingController();
+  TextEditingController code = new TextEditingController();
   @override
   Widget build(BuildContext context) {
 
@@ -20,27 +23,10 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
     );
 
     final linkTextStyle = TextStyle(
-      color: Colors.teal,
+      color: Colors.teal.shade900,
       fontWeight: FontWeight.w600,
     );
 
-
-    final spacer = SizedBox(height: 20.0);
-    
-    final title1 = Container(
-      height: MediaQuery.of(context).size.height/4,
-      margin: EdgeInsets.only(left: 65 ),
-      child: Image.asset( 'assets/logo_africanbus.jpg', fit: BoxFit.cover,)
-    );
-
-    final title2 = Text(
-        "Connectez-vous à votre compte.",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-          color: Colors.black.withOpacity(0.6)
-        ),
-    );
 
     final forgotPassword = Container(
       margin: EdgeInsets.only(top: 20.0),
@@ -69,53 +55,49 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
         onPressed: (){}
     );
 
-    final email = TextField(
-      cursorColor: Colors.teal,
-      decoration: InputDecoration(
-          hintText: "E-mail ou pseudo",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal , width: 2),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          prefixIcon: Icon(Icons.email , color: Colors.teal,)
+    final email = Container(
+      child: CustomTextFormField(
+        controller: id,
+        icon: Icons.mail,
+        key: Key("idField"),
+        labelText: "E-mail",
+        enabled: true,
       ),
     );
 
-    final password = TextField(
-      cursorColor: Colors.teal,
-      decoration: InputDecoration(
-        hintText: "Password",
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.teal),
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.teal , width: 2),
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        prefixIcon: Icon(Icons.lock , color: Colors.teal,)
+    final password = Container(
+      child: CustomTextFormField(
+        labelText: "Mot de Passe",
+        key: Key("motDePasse"),
+        icon: Icons.lock,
+        isPasswordField: true,
+        controller: code,
+        enabled: true,
       ),
     );
-
 
     final connexionBtn = Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [
+            Color(0xff273c75),
+            Colors.teal.shade700,
+            Colors.teal
+          ]
+        )
+      ),
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.teal
+          backgroundColor: Colors.transparent.withOpacity(0.0),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
         ),
           onPressed: () => print('Bonjour'),
-          child: Text("Connexion")
+          child: Text("Connexion".toUpperCase(), style: TextStyle(
+            color: Colors.white
+          ),)
       ),
     );
 
@@ -145,42 +127,79 @@ class _AuthentificationTabState extends State<AuthentificationTab> {
       ),
     );
 
-    final form = Form(
-        child: Column(
-          children: [
-            spacer,
-            email,
-            spacer,
-            spacer,
-            password,
-            forgotPassword,
-            spacer,
-            connexionBtn,
-            spacer,
-            tiersFournisseurFacebookBtn,
-            spacer,
-            tiersFournisseurGoogleBtn
-          ],
-        )
-    );
-
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(
-          left: 20.0,
-          right: 20.0,
-          bottom: 30.0,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [
+              Color(0xff192a56),
+              Colors.teal.shade700,
+              Colors.teal
+            ]
+          ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            title1,
-            title2,
-            form,
-            spacer,
-            dontHaveAnAccount
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 80),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Bienvenue", style: TextStyle(color: Colors.white, fontSize: 40 , fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
+                    Text("Connectez-vous à votre compte" , style: TextStyle(color: Colors.white, fontSize: 18),)
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(60) , topRight: Radius.circular(60)),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 60),
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromRGBO(0, 75, 0, .3),
+                              blurRadius: 20,
+                              offset: Offset(0, 10)
+                            )
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              child: email,
+                            ),
+                            Container(
+                              child: password,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      forgotPassword,
+                      SizedBox(height: 5),
+                      connexionBtn,
+                      SizedBox(height: 5),
+                      dontHaveAnAccount
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

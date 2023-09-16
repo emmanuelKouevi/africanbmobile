@@ -1,15 +1,15 @@
 import 'dart:async';
-import 'package:africanbus_mobile/router/router.dart';
+import 'package:africanbus_mobile/router/app_pages.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class SplashScreenView extends StatefulWidget {
+  const SplashScreenView({Key? key}) : super(key: key);
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashScreenView> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreenView> {
   // Define time of visibility app
   startTimer() async{
     var _duration = Duration(seconds: 6);
@@ -19,9 +19,9 @@ class _SplashScreenState extends State<SplashScreen> {
   // callback function for Startimer() method. Navigation after splash screen
   void navigationPage(){
     bool viewLoginPage = true;
-    String showToTabs= loginViewRoute;
+    String showToTabs= Routes.login;
     if(viewLoginPage){
-      showToTabs = loginViewRoute;
+      showToTabs = Routes.login;
     }
     Navigator.of(context).pushReplacementNamed(showToTabs);
   }
@@ -41,11 +41,11 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              height: MediaQuery.of(context).size.height/4,
-              child: Image.asset(
+                height: MediaQuery.of(context).size.height/4,
+                child: Image.asset(
                   'assets/logo_africanbus.jpg',
-                fit: BoxFit.cover,
-              )
+                  fit: BoxFit.cover,
+                )
             ),
           ],
         ),

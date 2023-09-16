@@ -1,5 +1,5 @@
-import 'package:africanbus_mobile/models/city.dart';
 import 'package:flutter/material.dart';
+import '../../../../app/models/city.dart';
 
 class CityItem extends StatefulWidget {
   final City city ;

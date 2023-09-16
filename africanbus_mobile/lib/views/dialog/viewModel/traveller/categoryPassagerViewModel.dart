@@ -1,5 +1,5 @@
-import 'package:africanbus_mobile/models/categorieVoyageur.dart';
 import 'package:flutter/material.dart';
+import '../../../../app/models/categorieVoyageur.dart';
 
 
 class CategoryPassagerViewModel extends ChangeNotifier {

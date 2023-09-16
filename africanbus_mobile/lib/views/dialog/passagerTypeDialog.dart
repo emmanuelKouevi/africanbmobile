@@ -1,7 +1,8 @@
-import 'package:africanbus_mobile/models/categorieVoyageur.dart';
 import 'package:africanbus_mobile/service_web/service_web.dart';
 import 'package:africanbus_mobile/views/dialog/widgets/categoryTraveller/categoryPassagerItem.dart';
 import 'package:flutter/material.dart';
+
+import '../../app/models/categorieVoyageur.dart';
 
 /*
    - Date : 11-05-2023

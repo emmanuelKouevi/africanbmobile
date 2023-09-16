@@ -1,9 +1,10 @@
 import 'package:africanbus_mobile/globalConfig/globalConst.dart';
-import 'package:africanbus_mobile/models/city.dart';
-import 'package:africanbus_mobile/models/categorieVoyageur.dart';
-import 'package:africanbus_mobile/models/ticket.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+import '../app/models/categorieVoyageur.dart';
+import '../app/models/city.dart';
+import '../app/models/ticket.dart';
 
 
 /*
@@ -13,7 +14,6 @@ import 'package:http/http.dart' as http;
  */
 
 class ServiceWebApi{
-
 
   // RECUPERER LA LISTE DES VILLES DEPUIS UN SERVICE WEB
   Future <List<City>>getTravelCities() async {

@@ -3,13 +3,20 @@ import 'package:africanbus_mobile/views/dialog/viewModel/station/gareDestination
 import 'package:africanbus_mobile/views/dialog/viewModel/traveller/categoryPassagerViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:africanbus_mobile/router/router.dart' as router;
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
+    );
+    /*return MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (context) => CategoryPassagerViewModel(),
@@ -29,8 +36,8 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: router.generateRoute,
-        initialRoute: router.splashViewRoute,
+        initialRoute: router.homeViewRoute,
       ),
-    );
+    );*/
   }
 }
