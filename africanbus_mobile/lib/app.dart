@@ -1,10 +1,7 @@
-import 'package:africanbus_mobile/views/dialog/viewModel/station/gareDepartViewModel.dart';
-import 'package:africanbus_mobile/views/dialog/viewModel/station/gareDestinationViewModel.dart';
-import 'package:africanbus_mobile/views/dialog/viewModel/traveller/categoryPassagerViewModel.dart';
+import 'package:africanbus_mobile/router/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:africanbus_mobile/router/router.dart' as router;
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -15,6 +12,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
+      initialRoute: Routes.splash,
+      getPages: AppPages.routes,
     );
     /*return MultiProvider(
       providers: [
