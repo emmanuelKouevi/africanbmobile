@@ -27,6 +27,7 @@ dependencies:
   font_awesome_flutter:
   http:
   provider:
+  flutter_svg:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -52,7 +53,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
       - assets/logo_africanbus.jpg
-  #   - images/a_dot_ham.jpeg
+      - assets/svg_icons/passager.svg
+      - assets/svg_icons/profil.svg
+      - assets/svg_icons/ticket.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

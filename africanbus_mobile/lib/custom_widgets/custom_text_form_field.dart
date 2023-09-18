@@ -6,11 +6,13 @@ class CustomTextFormField extends StatefulWidget {
   final bool isPasswordField;
   final TextEditingController controller;
   final bool enabled;
+  final bool isOutlined ;
   const CustomTextFormField({
     required Key key,
     required this.labelText,
     required this.icon,
     required this.controller,
+    this.isOutlined = true ,
     this.isPasswordField = false,
     this.enabled = false
   }):super(key: key);
@@ -30,6 +32,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           color: Colors.black.withOpacity(0.5)
       ),
       decoration: InputDecoration(
+        border: widget.isOutlined == true ? OutlineInputBorder() : null,
         focusColor: Colors.teal,
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(

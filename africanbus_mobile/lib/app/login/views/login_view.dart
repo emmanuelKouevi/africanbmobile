@@ -1,6 +1,7 @@
 import 'package:africanbus_mobile/app/forgot_password/views/forget_password_view.dart';
 import 'package:africanbus_mobile/app/home/views/home_view.dart';
 import 'package:africanbus_mobile/app/register/views/register_view.dart';
+import 'package:africanbus_mobile/views/tabs/tabs.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,7 +58,7 @@ class _LoginViewState extends State<LoginView> {
           ),
         ),
         IconButton(
-            onPressed: () => Get.to(HomeView()),
+            onPressed: () => Get.to(TabsPage()),
             icon: Icon(Icons.arrow_forward, color: Colors.white,)
         )
       ],
@@ -68,8 +69,9 @@ class _LoginViewState extends State<LoginView> {
         controller: id,
         icon: Icons.mail,
         key: Key("idField"),
-        labelText: "E-mail",
+        labelText: "E-mail Ou Pseudo",
         enabled: true,
+        isOutlined: false,
       ),
     );
 
@@ -81,6 +83,7 @@ class _LoginViewState extends State<LoginView> {
         isPasswordField: true,
         controller: code,
         enabled: true,
+        isOutlined: false,
       ),
     );
 

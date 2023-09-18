@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../custom_widgets/custom_text_form_field.dart';
+
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({Key? key}) : super(key: key);
 
@@ -8,27 +10,19 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
+  TextEditingController email = TextEditingController();
   @override
   Widget build(BuildContext context) {
 
     final spacer = SizedBox(height: 10);
 
-    final emailRetrieving = TextField(
-      cursorColor: Colors.teal,
-      decoration: InputDecoration(
-          hintText: "E-mail",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal , width: 2),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          prefixIcon: Icon(Icons.email , color: Colors.teal,)
+    final emailRetrieving = Container(
+      child: CustomTextFormField(
+        controller: email,
+        icon: Icons.mail,
+        key: Key("idField"),
+        labelText: "E-mail",
+        enabled: false,
       ),
     );
 

@@ -43,6 +43,7 @@ class _TabsPageState extends State<TabsPage> {
     );
 
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: _pages[_currentIndex],
       ),

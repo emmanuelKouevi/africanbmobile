@@ -18,6 +18,7 @@ class _RegisterViewState extends State<RegisterView> {
   TextEditingController prenom = new TextEditingController();
   TextEditingController pseudo = new TextEditingController();
   TextEditingController email = new TextEditingController();
+  TextEditingController tel = new TextEditingController();
   @override
   Widget build(BuildContext context) {
 
@@ -56,7 +57,8 @@ class _RegisterViewState extends State<RegisterView> {
         icon: Icons.person,
         key: Key("nameField"),
         labelText: "Votre Nom",
-        enabled: false,
+        isOutlined: false,
+        enabled: true,
       ),
     );
 
@@ -66,7 +68,8 @@ class _RegisterViewState extends State<RegisterView> {
         key: Key("surnameField"),
         icon: Icons.person_add,
         controller: prenom,
-        enabled: false,
+        enabled: true,
+        isOutlined: false,
       ),
     );
 
@@ -76,7 +79,8 @@ class _RegisterViewState extends State<RegisterView> {
         key: Key("pseudoField"),
         icon: Icons.verified_user,
         controller: pseudo,
-        enabled: false,
+        enabled: true,
+        isOutlined: false,
       ),
     );
 
@@ -86,7 +90,19 @@ class _RegisterViewState extends State<RegisterView> {
         key: Key("mailField"),
         icon: Icons.email,
         controller: email,
-        enabled: false,
+        enabled: true,
+        isOutlined : false
+      ),
+    );
+
+    final telephone = Container(
+      child: CustomTextFormField(
+        labelText: "Numero de télephone",
+        key: Key("phoneNumber"),
+        icon: Icons.phone,
+        controller: tel,
+        enabled: true,
+        isOutlined: false
       ),
     );
 
@@ -204,6 +220,10 @@ class _RegisterViewState extends State<RegisterView> {
                             SizedBox(height: 5),
                             Container(
                               child: mail,
+                            ),
+                            SizedBox(height: 5),
+                            Container(
+                              child: telephone,
                             ),
                           ],
                         ),
