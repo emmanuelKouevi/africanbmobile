@@ -1,7 +1,6 @@
 import 'package:africanbus_mobile/app/forgot_password/views/forget_password_view.dart';
 import 'package:africanbus_mobile/app/home/views/home_view.dart';
 import 'package:africanbus_mobile/app/register/views/register_view.dart';
-import 'package:africanbus_mobile/views/tabs/tabs.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,7 +57,7 @@ class _LoginViewState extends State<LoginView> {
           ),
         ),
         IconButton(
-            onPressed: () => Get.to(TabsPage()),
+            onPressed: () => Get.to(HomeView()),
             icon: Icon(Icons.arrow_forward, color: Colors.white,)
         )
       ],

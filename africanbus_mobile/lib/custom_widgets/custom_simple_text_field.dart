@@ -35,13 +35,13 @@ class _CustomSimpleTextFieldState extends State<CustomSimpleTextField> {
         ),
         border: widget.isOutlined ? OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.teal,
+            color: Colors.teal.shade900,
             width: 5
           )
         ) : null,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.teal,
+            color: Colors.teal.shade900,
             width: 3
           )
         )

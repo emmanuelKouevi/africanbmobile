@@ -1,22 +1,17 @@
-import 'package:africanbus_mobile/views/dialog/viewModel/traveller/categoryPassagerViewModel.dart';
-import 'package:flutter/material.dart';
+import 'package:africanbus_mobile/app/data/models/categorieVoyageur.dart';
+import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
-import '../../../../app/data/models/categorieVoyageur.dart';
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
-class SelectedCategoryItem extends StatefulWidget {
+class CategorieSelectionneItem extends GetView{
+  const CategorieSelectionneItem(this.typePassager, {Key? key}) : super(key: key);
   final TypePassager typePassager ;
-  const SelectedCategoryItem({Key? key , required this.typePassager}) : super(key: key);
 
-  @override
-  State<SelectedCategoryItem> createState() => _SelectedCategoryItemState();
-}
-
-class _SelectedCategoryItemState extends State<SelectedCategoryItem> {
   @override
   Widget build(BuildContext context) {
 
-    var providerCategoryTraveller = Provider.of<CategoryPassagerViewModel>(context);
+    final homeController = Get.put(HomeController());
 
     return Container(
       margin: EdgeInsets.only(bottom: 20),
@@ -30,12 +25,15 @@ class _SelectedCategoryItemState extends State<SelectedCategoryItem> {
                 color: Colors.grey.withOpacity(0.3),
               ),
               child: ListTile(
-                title: Text(widget.typePassager.typeDesignation , style: TextStyle(
-                  fontWeight: FontWeight.bold
+                title: Text(typePassager.typeDesignation , style: TextStyle(
+                    fontWeight: FontWeight.bold
                 ),),
                 trailing: IconButton(
-                  icon: FaIcon(FontAwesomeIcons.xmark),
-                  onPressed: () => providerCategoryTraveller.removeCategoryVoyageur(widget.typePassager)
+                    icon: FaIcon(FontAwesomeIcons.xmark),
+                    onPressed: () {
+                      homeController.removeVoyageur(typePassager);
+                      homeController.update();
+                    },
                 ),
               ),
             ),

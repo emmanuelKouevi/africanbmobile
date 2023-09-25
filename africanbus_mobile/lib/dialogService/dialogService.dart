@@ -38,12 +38,4 @@ class DialogService {
     );
   }
 
-  Future<void> showSelectTypePassagersDialog(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return PassagersType();
-      },
-    );
-  }
 }

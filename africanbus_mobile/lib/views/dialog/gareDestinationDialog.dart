@@ -2,7 +2,7 @@ import 'package:africanbus_mobile/service_web/service_web.dart';
 import 'package:africanbus_mobile/views/dialog/widgets/cities/cityItem.dart';
 import 'package:flutter/material.dart';
 
-import '../../app/models/city.dart';
+import '../../app/data/models/city.dart';
 
 class GareDestinationDialog extends StatefulWidget {
   final TextEditingController villeGareDestination ;

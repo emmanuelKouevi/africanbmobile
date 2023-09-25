@@ -1,11 +1,12 @@
-import 'package:africanbus_mobile/views/dialog/viewModel/traveller/categoryPassagerViewModel.dart';
 import 'package:africanbus_mobile/views/dialog/widgets/categoryTraveller/selectedCategoryItem.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../app/data/models/categorieVoyageur.dart';
+
 
 class SelectedCategoryTravellerList extends StatelessWidget {
-  final CategoryPassagerViewModel categoryPassagerViewModel ; 
-  const SelectedCategoryTravellerList({Key? key , required this.categoryPassagerViewModel}) : super(key: key);
+  final List<TypePassager>categoriesPassagerList ;
+  const SelectedCategoryTravellerList({Key? key, required this.categoriesPassagerList , }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,9 @@ class SelectedCategoryTravellerList extends StatelessWidget {
       margin: EdgeInsets.all(25),
       height: MediaQuery.of(context).size.height,
       child: ListView.builder(
-        itemCount: categoryPassagerViewModel.data.length,
+        itemCount: categoriesPassagerList.length,
         itemBuilder: (context, index) {
-          return SelectedCategoryItem(typePassager: categoryPassagerViewModel.data[index]);
+          return SelectedCategoryItem(typePassager: categoriesPassagerList[index]);
         },
       ),
     );

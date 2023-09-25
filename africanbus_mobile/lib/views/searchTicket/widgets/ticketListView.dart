@@ -1,7 +1,7 @@
 import 'package:africanbus_mobile/views/searchTicket/widgets/ticketItem.dart';
 import 'package:flutter/material.dart';
 
-import '../../../app/models/ticket.dart';
+import '../../../app/data/models/ticket.dart';
 
 class TicketListView extends StatelessWidget {
   final List<Billet> ticketList ;

@@ -1,8 +1,7 @@
-import 'package:africanbus_mobile/views/dialog/viewModel/traveller/categoryPassagerViewModel.dart';
+import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../../app/models/categorieVoyageur.dart';
+import 'package:get/get.dart';
+import '../../../../app/data/models/categorieVoyageur.dart';
 
 class CategoryTravellerItem extends StatefulWidget {
 
@@ -17,12 +16,15 @@ class _CategoryTravellerItemState extends State<CategoryTravellerItem> {
   @override
   Widget build(BuildContext context) {
 
-    var actionCategoryTraveller = Provider.of<CategoryPassagerViewModel>(context);
+    final homeController = Get.put(HomeController());
 
     return Container(
       margin: EdgeInsets.only(top: 7 , bottom: 7),
       child: GestureDetector(
-        onTap: () => actionCategoryTraveller.addCategoryVoyageur(widget.typePassager),
+        onTap:() {
+          homeController.categoriesVoyageurList.add(widget.typePassager);
+          homeController.update();
+        },
         child: Text(widget.typePassager.typeDesignation , style: TextStyle(
           color: Colors.black.withOpacity(0.9),
           fontSize: 17,

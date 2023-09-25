@@ -2,9 +2,10 @@ import 'package:africanbus_mobile/globalConfig/globalConst.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../app/models/categorieVoyageur.dart';
-import '../app/models/city.dart';
-import '../app/models/ticket.dart';
+import '../app/data/models/categorieVoyageur.dart';
+import '../app/data/models/city.dart';
+import '../app/data/models/ticket.dart';
+
 
 
 /*

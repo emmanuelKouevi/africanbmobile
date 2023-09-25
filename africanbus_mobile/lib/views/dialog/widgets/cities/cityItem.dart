@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../app/models/city.dart';
+
+import '../../../../app/data/models/city.dart';
 
 class CityItem extends StatefulWidget {
   final City city ;

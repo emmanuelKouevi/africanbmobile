@@ -1,9 +1,9 @@
+import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:africanbus_mobile/dialogService/dialogService.dart';
-import 'package:africanbus_mobile/views/dialog/viewModel/traveller/categoryPassagerViewModel.dart';
 import 'package:africanbus_mobile/views/dialog/widgets/categoryTraveller/selectedCategoryTravellerList.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class PassagersSection extends StatefulWidget {
   const PassagersSection({Key? key}) : super(key: key);
@@ -17,12 +17,13 @@ class _PassagersSectionState extends State<PassagersSection> {
   @override
   Widget build(BuildContext context) {
 
-    final travellerCategoryProvider = Provider.of<CategoryPassagerViewModel>(context);
+    //final travellerCategoryProvider = Provider.of<CategoryPassagerViewModel>(context);
+    final homeController = Get.put(HomeController());
 
     final addPassagersBtn = Container(
       width: MediaQuery.of(context).size.width/1.3,
       child: ElevatedButton.icon(
-          onPressed: () => DialogService().showSelectTypePassagersDialog(context),
+          onPressed: () => null,//DialogService().showSelectTypePassagersDialog(context),
           icon: FaIcon(FontAwesomeIcons.plus , color: Colors.teal),
           label: Text('Ajouter un passager' , style: TextStyle(
             color: Colors.teal
@@ -36,7 +37,7 @@ class _PassagersSectionState extends State<PassagersSection> {
     final validatePassagersBtn = Container(
       width: MediaQuery.of(context).size.width/1.3,
       child: ElevatedButton.icon(
-        onPressed: () => DialogService().showSelectTypePassagersDialog(context),
+        onPressed: () => null, //DialogService().showSelectTypePassagersDialog(context),
         icon: Icon(Icons.check , color: Colors.white),
         label: Text('VALIDER' , style: TextStyle(
             color: Colors.white,
@@ -99,7 +100,7 @@ class _PassagersSectionState extends State<PassagersSection> {
     final travellerExist = SingleChildScrollView(
       child: Column(
         children: [
-          SelectedCategoryTravellerList(categoryPassagerViewModel: travellerCategoryProvider),
+          SelectedCategoryTravellerList(categoriesPassagerList: homeController.categoriesVoyageurList),
         ],
       ),
     );
@@ -123,7 +124,7 @@ class _PassagersSectionState extends State<PassagersSection> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            child: travellerCategoryProvider.data.length == 0 ? noTraveller : travellerExist
+            child: homeController.categoriesVoyageurList.length == 0 ? noTraveller : travellerExist
           ),
           bottom,
         ],

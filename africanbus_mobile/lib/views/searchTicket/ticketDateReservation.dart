@@ -2,7 +2,8 @@ import 'package:africanbus_mobile/service_web/service_web.dart';
 import 'package:africanbus_mobile/views/searchTicket/widgets/ticketListView.dart';
 import 'package:flutter/material.dart';
 
-import '../../app/models/ticket.dart';
+import '../../app/data/models/ticket.dart';
+
 
 class TicketDateReservation extends StatefulWidget {
   const TicketDateReservation({Key? key}) : super(key: key);

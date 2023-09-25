@@ -5,7 +5,6 @@ import 'package:africanbus_mobile/app/register/bindings/register_binding.dart';
 import 'package:africanbus_mobile/app/register/views/register_view.dart';
 import 'package:africanbus_mobile/app/splash/bindings/splash_binding.dart';
 import 'package:africanbus_mobile/app/splash/views/splash_screen_view.dart';
-import 'package:africanbus_mobile/views/tabs/tabs.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../app/forgot_password/bindings/forget_password_binding.dart';
@@ -42,7 +41,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.home,
-      page: () => const TabsPage(),
+      page: () => const HomeView(),
       binding: HomeBinding(),
     ),
   ];

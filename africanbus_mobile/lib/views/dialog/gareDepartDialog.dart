@@ -3,7 +3,7 @@ import 'package:africanbus_mobile/views/dialog/widgets/cities/cityItem.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../app/models/city.dart';
+import '../../app/data/models/city.dart';
 
 class GareDepartDialog extends StatefulWidget {
   final TextEditingController villeGareDepart ;

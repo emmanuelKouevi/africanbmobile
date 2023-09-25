@@ -1,8 +1,9 @@
 import 'package:africanbus_mobile/custom_widgets/custom_simple_text_field.dart';
-import 'package:africanbus_mobile/dialogService/dialogService.dart';
-import 'package:africanbus_mobile/router/router.dart';
+import 'package:africanbus_mobile/presentations/dialog/travellers_selected_dialog.dart';
+import 'package:africanbus_mobile/views/searchTicket/searchTicket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -14,10 +15,6 @@ class ReservationTab extends StatefulWidget {
 }
 
 class _ReservationTabState extends State<ReservationTab> {
-
-  bool _pinned = false ;
-  bool _snap = false;
-  bool _floating = false;
 
   TextEditingController depart = TextEditingController();
   TextEditingController destination = TextEditingController();
@@ -32,12 +29,12 @@ class _ReservationTabState extends State<ReservationTab> {
 
 
     final exchangeBtn = Positioned(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            shape: BoxShape.circle,
-          ),
-          child: IconButton(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          shape: BoxShape.circle,
+        ),
+        child: IconButton(
             onPressed: () {
               var departureField = depart.text ;
               var destinationField = destination.text ;
@@ -48,8 +45,8 @@ class _ReservationTabState extends State<ReservationTab> {
 
             },
             icon: FaIcon(FontAwesomeIcons.arrowsRotate , color: Colors.white, size: 30,)
-          ),
         ),
+      ),
       top: 30,
       left: 325,
     );
@@ -61,38 +58,39 @@ class _ReservationTabState extends State<ReservationTab> {
           style: ElevatedButton.styleFrom(
               backgroundColor: Colors.teal
           ),
-          onPressed: () => Navigator.of(context).pushNamed(searchTicketViewRoute),
+          onPressed: () => Get.to(const SearchTicket()),
           child: Text("RECHERCHER" , style: TextStyle(
-            color: Colors.white
+              color: Colors.white
 
           ),)
       ),
     );
 
     final passagers = Container(
-      width: MediaQuery.of(context).size.width/1.1,
-      child: GestureDetector(
-        onTap: () => DialogService().showPassagersSectionDialog(context),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SvgPicture.asset(
-              'assets/svg_icons/passager.svg',
-              width: 50,
+        width: MediaQuery.of(context).size.width/1.1,
+        child: GestureDetector(
+          onTap: () => Get.dialog(
+              Center(child: TypePassagerDialog())),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SvgPicture.asset(
+                'assets/svg_icons/passager.svg', width: 50,
+                color: Colors.teal.shade900,
 
-            ),
-            Row(
-              children: [
-                Text("1 Adulte" , style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20
-                ),),
-                Icon(Icons.arrow_circle_right, color: Colors.teal.shade800,)
-              ],
-            ),
-          ],
-        ),
-      )
+              ),
+              Row(
+                children: [
+                  Text("1 Adulte" , style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20
+                  ),),
+                  Icon(Icons.arrow_circle_right, color: Colors.teal.shade900,)
+                ],
+              ),
+            ],
+          ),
+        )
     );
 
     final gareDepart = Container(
@@ -229,9 +227,9 @@ class _ReservationTabState extends State<ReservationTab> {
           hintText: "Date de départ",
           isDense: false,
           enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.teal
-            )
+              borderSide: BorderSide(
+                  color: Colors.teal
+              )
           ),
           focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(
@@ -280,7 +278,7 @@ class _ReservationTabState extends State<ReservationTab> {
 
 
 
-    final searchBtn = Container(
+    final searchTicketBtn = Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.bottomCenter,
@@ -298,7 +296,7 @@ class _ReservationTabState extends State<ReservationTab> {
             backgroundColor: Colors.transparent.withOpacity(0.0),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
           ),
-          onPressed: () => print('Bonjour'),
+          onPressed: () => Get.to(SearchTicket()),
           child: Text("RECHERHCHER".toUpperCase(), style: TextStyle(
               color: Colors.white
           ),)
@@ -323,7 +321,7 @@ class _ReservationTabState extends State<ReservationTab> {
             SizedBox(height: 30),
             passagers,
             SizedBox(height: 30),
-            searchBtn
+            searchTicketBtn
             //jourAller,
             //jourRetour
           ],
