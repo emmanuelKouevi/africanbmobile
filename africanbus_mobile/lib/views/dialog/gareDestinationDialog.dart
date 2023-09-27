@@ -1,4 +1,4 @@
-import 'package:africanbus_mobile/service_web/service_web.dart';
+import 'package:africanbus_mobile/services/service_web.dart';
 import 'package:africanbus_mobile/views/dialog/widgets/cities/cityItem.dart';
 import 'package:flutter/material.dart';
 

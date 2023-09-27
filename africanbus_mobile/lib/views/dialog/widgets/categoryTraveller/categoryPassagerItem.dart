@@ -22,7 +22,7 @@ class _CategoryTravellerItemState extends State<CategoryTravellerItem> {
       margin: EdgeInsets.only(top: 7 , bottom: 7),
       child: GestureDetector(
         onTap:() {
-          homeController.categoriesVoyageurList.add(widget.typePassager);
+          homeController.addVoyageur(widget.typePassager);
           homeController.update();
         },
         child: Text(widget.typePassager.typeDesignation , style: TextStyle(

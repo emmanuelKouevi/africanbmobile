@@ -17,7 +17,6 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
 
   List<City>cities = [];
   List<City>foundCities = [];
-
   TextEditingController villeDepart = TextEditingController();
 
   void initializeCities() async{
@@ -41,7 +40,6 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
           .where((city) =>
           city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
-      // we use the toLowerCase() method to make it case-insensitive
     }
     // Refresh the UI
     setState(() {
@@ -52,16 +50,16 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
   @override
   Widget build(BuildContext context) {
 
-
     final positionOrLocalisation = Container(
       child: Row(
         children: [
           FaIcon(FontAwesomeIcons.locationCrosshairs),
           Container(
             margin: EdgeInsets.only(left: 15),
-            child: Text('Mon emplacement actuel' , style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w400
+            child: Text('Mon emplacement' , style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.w400
             ),),
           )
         ],
@@ -70,19 +68,20 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
 
     final departureCity = Container(
       child: TextField(
+        style: TextStyle( fontSize: 17 , fontWeight: FontWeight.bold , color: Colors.black.withOpacity(0.7) ),
         controller: villeDepart,
         onChanged: (value) {
           _runFilter(value);
         },
-        showCursor: false,
         decoration: InputDecoration(
-          border: UnderlineInputBorder(),
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Colors.teal,
-              )
-          ),
-            focusedBorder: OutlineInputBorder(
+            border: UnderlineInputBorder(),
+            enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.teal.shade900,
+                  width: 2
+                )
+            ),
+            focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                     color: Colors.teal.shade900,
                     width: 2
@@ -90,7 +89,7 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
             ),
             labelText: 'De',
             labelStyle: TextStyle(
-              color: Colors.teal
+                color: Colors.teal
             )
         ),
       ),
@@ -105,46 +104,43 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
           hr,
           hr,
           hr,
-          hr,
           positionOrLocalisation
         ],
       ),
     );
 
     final cityList = foundCities.isNotEmpty ? Container(
-      width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-      child: Container(
-        child: ListView.builder(
-          itemCount: foundCities.length,
-          itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: widget.villeGareDepart,),
-        ),
-      )
+        child: Container(
+          child: ListView.builder(
+            itemCount: foundCities.length,
+            itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: widget.villeGareDepart,),
+          ),
+        )
     ) : Container(
-      margin: EdgeInsets.only(top: 60),
-      child: Center(
-        child: Text('Nous n\'avons pas trouvé de gars correspondant à votre recherche',style: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-          fontSize: 18
-        ),),
-      )
+        margin: EdgeInsets.only(top: 60),
+        child: Center(
+          child: Text('Nous n\'avons pas trouvé de gars correspondant à votre recherche',style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 18
+          ),),
+        )
     );
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
         iconTheme: IconThemeData(
-          color: Colors.black
+            weight: 3.0
         ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(left: 40 , right: 30),
         child: Column(
           children: [
-            hr,
             hr,
             hr,
             section,

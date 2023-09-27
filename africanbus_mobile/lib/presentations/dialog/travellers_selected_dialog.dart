@@ -1,11 +1,10 @@
 import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:africanbus_mobile/app/home/views/categorie_voyageur_selectionnes_view_list.dart';
+import 'package:africanbus_mobile/app/home/views/home_view.dart';
 import 'package:africanbus_mobile/views/dialog/passagerTypeDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
-import '../../views/dialog/widgets/categoryTraveller/selectedCategoryTravellerList.dart';
 
 class TypePassagerDialog extends GetView{
   const TypePassagerDialog({Key? key}): super(key: key);
@@ -64,7 +63,9 @@ class TypePassagerDialog extends GetView{
             color: Colors.white
         ),
       ),
-      onPressed: () => print('Bonjour'),
+      onPressed: () {
+        Get.to(HomeView());
+      },
     );
 
     return Scaffold(
@@ -75,7 +76,6 @@ class TypePassagerDialog extends GetView{
       body: Stack(
         children: [
           Obx(() => homeController.categoriesVoyageurList.length == 0 ? noTraveller : travellerExist),
-          //homeController.categoriesVoyageurList.length == 0 ? noTraveller : travellerExist,
           Positioned(
             bottom: 0,
               right: 0,

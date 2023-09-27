@@ -25,12 +25,26 @@ class _SearchTicketState extends State<SearchTicket> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.teal,
-          title: Text("RECHERCHE DE BILLETS"),
+          backgroundColor: Colors.teal.shade900,
+          title: Text("RECHERCHE DE BILLETS" , style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),),
           bottom: TabBar(
             isScrollable: true,
             tabs: dateList.map((date){
-              return Tab(text: DateFormat('EEE').format(date).toUpperCase() + ' ' + date.day.toString() + ' ' + DateFormat('MMMM').format(date).toUpperCase() );
+              return Tab(
+                  //text: DateFormat('EEE').format(date).toUpperCase() + ' ' + date.day.toString() + ' ' + DateFormat('MMMM').format(date).toUpperCase(),
+                child: Text(
+                  DateFormat('EEE').format(date).toUpperCase() + ' ' + date.day.toString() + ' ' + DateFormat('MMMM').format(date).toUpperCase(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontStyle: FontStyle.italic
+                    ),
+                ),
+              );
             }).toList(),
           ),
         ),

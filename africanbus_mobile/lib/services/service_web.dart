@@ -1,4 +1,4 @@
-import 'package:africanbus_mobile/globalConfig/globalConst.dart';
+import 'package:africanbus_mobile/global_config/globalConst.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 

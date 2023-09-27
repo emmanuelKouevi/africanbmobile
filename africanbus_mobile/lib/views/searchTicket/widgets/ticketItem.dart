@@ -16,6 +16,9 @@ class _TicketItemState extends State<TicketItem> {
   Widget build(BuildContext context) {
 
     final infosTravel = Container(
+      decoration: BoxDecoration(
+        color: Colors.white70
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -119,7 +122,7 @@ class _TicketItemState extends State<TicketItem> {
       height: MediaQuery.of(context).size.height/5,
       width: MediaQuery.of(context).size.width,
       child: Card(
-        elevation: 3,
+        elevation: 5,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -1,7 +1,6 @@
-import 'package:africanbus_mobile/service_web/service_web.dart';
+import 'package:africanbus_mobile/services/service_web.dart';
 import 'package:africanbus_mobile/views/searchTicket/widgets/ticketListView.dart';
 import 'package:flutter/material.dart';
-
 import '../../app/data/models/ticket.dart';
 
 
@@ -29,7 +28,7 @@ class _TicketDateReservationState extends State<TicketDateReservation> {
   @override
   Widget build(BuildContext context) {
     return billets.isNotEmpty ? TicketListView(ticketList: billets) : Center(
-      child: CircularProgressIndicator(),
+      child: CircularProgressIndicator( color: Colors.teal.shade900),
     )  ;
   }
 }

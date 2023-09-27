@@ -1,24 +1,23 @@
 import 'package:africanbus_mobile/services/service_web.dart';
 import 'package:africanbus_mobile/views/dialog/widgets/cities/cityItem.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../app/data/models/city.dart';
 
-class GareDepartDialog extends StatefulWidget {
-  final TextEditingController villeGareDepart ;
-  const GareDepartDialog({Key? key , required this.villeGareDepart }) : super(key: key);
+class GareDestinationDialog extends StatefulWidget {
+  final TextEditingController villeGareDestination ;
+  const GareDestinationDialog({Key? key , required this.villeGareDestination}) : super(key: key);
 
   @override
-  State<GareDepartDialog> createState() => _GareDepartDialogState();
+  State<GareDestinationDialog> createState() => _GareDestinationDialogState();
 }
 
-class _GareDepartDialogState extends State<GareDepartDialog> {
+class _GareDestinationDialogState extends State<GareDestinationDialog> {
 
   List<City>cities = [];
   List<City>foundCities = [];
 
-  TextEditingController villeDepart = TextEditingController();
+  TextEditingController villeDestination = TextEditingController();
 
   void initializeCities() async{
     cities = await ServiceWebApi().getTravelCities();
@@ -48,87 +47,65 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
       foundCities = results;
     });
   }
-
   @override
   Widget build(BuildContext context) {
 
+    final hr = SizedBox(height: 5);
 
-    final positionOrLocalisation = Container(
-      child: Row(
-        children: [
-          FaIcon(FontAwesomeIcons.locationCrosshairs),
-          Container(
-            margin: EdgeInsets.only(left: 15),
-            child: Text('Mon emplacement actuel' , style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w400
-            ),),
-          )
-        ],
-      ),
-    );
-
-    final departureCity = Container(
+    final destinationCity = Container(
       child: TextField(
-        controller: villeDepart,
-        onChanged: (value) {
-          _runFilter(value);
-        },
+        onChanged: (value) => _runFilter(value),
+        controller: villeDestination,
         showCursor: false,
         decoration: InputDecoration(
-          border: UnderlineInputBorder(),
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Colors.teal,
-              )
-          ),
-            focusedBorder: OutlineInputBorder(
+            border: UnderlineInputBorder(),
+            enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.teal.shade900,
+                )
+            ),
+            focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                     color: Colors.teal.shade900,
                     width: 2
                 )
             ),
-            labelText: 'De',
+            labelText: 'À',
             labelStyle: TextStyle(
-              color: Colors.teal
+                color: Colors.teal
             )
         ),
       ),
     );
 
-    final hr = SizedBox(height: 5);
-
     final section = Container(
       child: Column(
         children: [
-          departureCity,
+          destinationCity,
           hr,
           hr,
-          hr,
-          hr,
-          positionOrLocalisation
         ],
       ),
     );
 
     final cityList = foundCities.isNotEmpty ? Container(
-      width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-      child: Container(
-        child: ListView.builder(
-          itemCount: foundCities.length,
-          itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: widget.villeGareDepart,),
-        ),
-      )
+        child: Container(
+          child: ListView.builder(
+            itemCount: foundCities.length,
+            itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: widget.villeGareDestination),
+          ),
+        )
     ) : Container(
-      margin: EdgeInsets.only(top: 60),
-      child: Center(
-        child: Text('Nous n\'avons pas trouvé de gars correspondant à votre recherche',style: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-          fontSize: 18
-        ),),
-      )
+        margin: EdgeInsets.only(top: 60),
+        child: Center(
+          child: Text('Nous n\'avons pas trouvé de gars correspondant à votre recherche',style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 18
+          ),),
+        )
     );
 
     return Scaffold(
@@ -137,7 +114,7 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: IconThemeData(
-          color: Colors.black
+            color: Colors.black
         ),
       ),
       body: SingleChildScrollView(
