@@ -1,5 +1,8 @@
+import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
+import 'package:africanbus_mobile/app/search_ticket/views/ticket_selected_for_reservation.dart';
 import 'package:africanbus_mobile/views/searchTicket/ticketDateReservation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class SearchTicket extends StatefulWidget {
@@ -10,6 +13,8 @@ class SearchTicket extends StatefulWidget {
 }
 
 class _SearchTicketState extends State<SearchTicket> {
+
+  final searchTicketController = Get.put(SearchTicketController());
 
   final dateList = List<DateTime>.generate(6, (i) =>
       DateTime.utc(
@@ -31,6 +36,18 @@ class _SearchTicketState extends State<SearchTicket> {
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),),
+          actions: [
+            Obx(() => Badge.count(
+              count: searchTicketController.ticketsSelectedList.length,
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                onPressed: (){
+                  Get.to(TicketListSelected(searchTicketController.ticketsSelectedList));
+                },
+                icon: Icon(Icons.shopping_cart_rounded , size: 30, color: Colors.white70,),
+              ),)
+            )
+          ],
           bottom: TabBar(
             isScrollable: true,
             tabs: dateList.map((date){

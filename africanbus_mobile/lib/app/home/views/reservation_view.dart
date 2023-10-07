@@ -113,10 +113,11 @@ class _ReservationTabState extends State<ReservationTab> {
         isOutlined: true,
         onTap:() async{
           DateTime? pickedDate = await showDatePicker(
-              context: context, initialDate: DateTime.now(),
-              firstDate: DateTime(1950), //DateTime.now() - not to allow to choose before today.
-              lastDate: DateTime(2100));
-
+            context: context, initialDate: DateTime.now(),
+            firstDate: DateTime(1950), //DateTime.now() - not to allow to choose before today.
+            lastDate: DateTime(2100),
+            //locale: Locale("fr" , "Fr")
+          );
           if (pickedDate != null) {
             print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
             String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);

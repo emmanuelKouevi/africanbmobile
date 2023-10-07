@@ -1,6 +1,7 @@
+import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:get/get.dart';
 import '../../../app/data/models/ticket.dart';
 
 class TicketItem extends StatefulWidget {
@@ -15,10 +16,10 @@ class _TicketItemState extends State<TicketItem> {
   @override
   Widget build(BuildContext context) {
 
+    final searchTicketController = Get.put(SearchTicketController());
+
     final infosTravel = Container(
-      decoration: BoxDecoration(
-        color: Colors.white70
-      ),
+      margin: EdgeInsets.only(left: 10 , right: 10 , top: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -34,12 +35,14 @@ class _TicketItemState extends State<TicketItem> {
                   ),
                   SizedBox(height: 10,),
                   Container(
-                    child: Text(''),
+                    child: Text('Départ', style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700
+                  ),),
                   ),
                   SizedBox(height: 10,),
                   Container(
                     child: Text(widget.ticket.depart , style: TextStyle(
-                      color: Colors.grey,
                       fontSize: 15
                     ),),
                   ),
@@ -61,7 +64,7 @@ class _TicketItemState extends State<TicketItem> {
                   ),
                   SizedBox(height: 10,),
                   Container(
-                    child: Text('Arrivé' , style: TextStyle(
+                    child: Text('Arrivée' , style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700
                     ),),
@@ -69,7 +72,6 @@ class _TicketItemState extends State<TicketItem> {
                   SizedBox(height: 10,),
                   Container(
                     child: Text(widget.ticket.destination , style: TextStyle(
-                        color: Colors.grey,
                         fontSize: 15
                     ),),
                   ),
@@ -87,6 +89,11 @@ class _TicketItemState extends State<TicketItem> {
     );
 
     final infosOperator = Container(
+      padding: EdgeInsets.only(left: 15, right: 15),
+      alignment: Alignment.center,
+      /*decoration: BoxDecoration(
+        color: Colors.white70
+      ),*/
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -99,7 +106,7 @@ class _TicketItemState extends State<TicketItem> {
               ),
               Container(
                 child: Text(widget.ticket.id , style: TextStyle(
-                  color: Colors.black.withOpacity(0.7),
+                  //color: Colors.black.withOpacity(0.7),
                   fontSize: 15
                 ),),
               ),
@@ -107,7 +114,7 @@ class _TicketItemState extends State<TicketItem> {
           ),
           Container(
             child: Text(widget.ticket.compagnieTransport, style: TextStyle(
-              color: Colors.teal.withOpacity(0.7),
+              //color: Colors.teal.withOpacity(0.7),
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),),
@@ -116,19 +123,55 @@ class _TicketItemState extends State<TicketItem> {
       ),
     );
 
+    final addTicketToCart = ListTile(
+      leading: Text("Places restantes :  4", style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w700
+      ),),
+      trailing: OutlinedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll<Color>(Colors.teal.shade900),
+        ),
+        onPressed:() {
+          searchTicketController.selectTicket(widget.ticket);
+          searchTicketController.update();
+          Get.snackbar("Succes", "Ticket sélectionné avec succes" ,
+              backgroundColor: Colors.green, colorText: Colors.white
+          );
+        },
+        child: Icon(Icons.arrow_forward_ios_rounded , size: 30 , color: Colors.white,),
+      )
+    );
+
+    final carDetails = ListTile(
+      leading: Text("Bus n°715", style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w700
+      ),),
+      trailing: TextButton(
+          onPressed: null,
+          child: Text('Voir détail')
+      )
+    );
+
 
     return Container(
-      padding: EdgeInsets.only(bottom: 10),
-      height: MediaQuery.of(context).size.height/5,
+      padding: EdgeInsets.only(bottom: 15),
+      height: MediaQuery.of(context).size.height/2.8,
       width: MediaQuery.of(context).size.width,
       child: Card(
+        color: Colors.white,
+        shadowColor: Colors.teal.shade900,
         elevation: 5,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             infosTravel,
+            SizedBox(height: 10,),
             infosOperator,
-            SizedBox(height: 1)
+            addTicketToCart,
+            carDetails
+            //SizedBox(height: 1)
           ],
         ),
       ),

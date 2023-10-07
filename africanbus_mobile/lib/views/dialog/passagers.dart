@@ -100,7 +100,7 @@ class _PassagersSectionState extends State<PassagersSection> {
     final travellerExist = SingleChildScrollView(
       child: Column(
         children: [
-          SelectedCategoryTravellerList(categoriesPassagerList: homeController.categoriesVoyageurList),
+          //SelectedCategoryTravellerList(categoriesPassagerList: homeController.categoriesVoyageurList),
         ],
       ),
     );

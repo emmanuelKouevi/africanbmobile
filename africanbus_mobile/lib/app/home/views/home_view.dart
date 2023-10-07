@@ -10,6 +10,8 @@ class HomeView extends StatefulWidget {
 
 class _TabsPageState extends State<HomeView> {
 
+  int _index = 0 ;
+
   int _currentIndex = 0;
   final List<Widget> _pages = [
     ReservationTab(),
@@ -28,12 +30,16 @@ class _TabsPageState extends State<HomeView> {
       backgroundColor: Colors.white,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.search , size: 30,),
-          label: 'Recherche',
+          icon: Icon(Icons.home , size: 40,),
+          label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.login , size: 30),
-          label: 'Connexion',
+          icon: Icon(Icons.airplane_ticket , size: 40),
+          label: 'Mes billets',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person , size: 40),
+          label: 'Mon profil',
         ),
       ],
       currentIndex: _currentIndex,
@@ -54,7 +60,7 @@ class _TabsPageState extends State<HomeView> {
       body: SafeArea(
         child: _pages[_currentIndex],
       ),
-      bottomNavigationBar: bottomNavigation,
+      bottomNavigationBar: bottomNavigation
     );
   }
 }

@@ -1,4 +1,8 @@
+import 'package:africanbus_mobile/app/forgot_password/views/check_opt_verification.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:intl_phone_field/countries.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../../custom_widgets/custom_text_form_field.dart';
 
@@ -11,21 +15,37 @@ class ForgetPasswordView extends StatefulWidget {
 
 class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   TextEditingController email = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
 
     final spacer = SizedBox(height: 10);
 
-    final emailRetrieving = Container(
-      child: CustomTextFormField(
-        controller: email,
-        icon: Icons.mail,
-        key: Key("idField"),
-        labelText: "E-mail",
-        enabled: true,
-        isOutlined: false,
+    final emailRetrieving = IntlPhoneField(
+      decoration: const InputDecoration(
+        labelText: 'Numéro de téléphone',
+        labelStyle: TextStyle(
+          color: Colors.black
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.teal,
+            width: 2
+          )
+        )
       ),
+      initialCountryCode: 'CI',
+      controller: phoneController,
+      onChanged: (phone) {
+        //controller.phoneNumberController(phone.number);
+        //controller.countryCode(phone.countryISOCode);
+      },
+      keyboardType: TextInputType.phone,
+      invalidNumberMessage: "Numéro de téléphone invalide",
+      countries: countries,
+      // ignore: deprecated_member_use
     );
+
 
     final sendCodeBtn = Container(
       decoration: BoxDecoration(
@@ -45,7 +65,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
             backgroundColor: Colors.transparent.withOpacity(0.0),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
           ),
-          onPressed: () => print('Bonjour'),
+          onPressed: () => Get.to(CheckOptMail()),
           child: Text("Envoyer le code".toUpperCase(), style: TextStyle(
               color: Colors.white
           ),)

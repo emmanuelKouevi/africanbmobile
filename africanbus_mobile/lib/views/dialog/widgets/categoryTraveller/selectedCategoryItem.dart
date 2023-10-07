@@ -16,7 +16,7 @@ class _SelectedCategoryItemState extends State<SelectedCategoryItem> {
   @override
   Widget build(BuildContext context) {
 
-    var providerCategoryTraveller = Provider.of<CategoryPassagerViewModel>(context);
+    //var providerCategoryTraveller = Provider.of<CategoryPassagerViewModel>(context);
 
     return Container(
       margin: EdgeInsets.only(bottom: 20),
@@ -35,7 +35,7 @@ class _SelectedCategoryItemState extends State<SelectedCategoryItem> {
                 ),),
                 trailing: IconButton(
                   icon: FaIcon(FontAwesomeIcons.xmark),
-                  onPressed: () => providerCategoryTraveller.removeCategoryVoyageur(widget.typePassager)
+                  onPressed: () => null//providerCategoryTraveller.removeCategoryVoyageur(widget.typePassager)
                 ),
               ),
             ),
