@@ -1,4 +1,5 @@
 import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
+import 'package:africanbus_mobile/app/search_ticket/views/ticket_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -149,7 +150,7 @@ class _TicketItemState extends State<TicketItem> {
           fontWeight: FontWeight.w700
       ),),
       trailing: TextButton(
-          onPressed: null,
+          onPressed: () => Get.dialog(TicketDetailView(widget.ticket)),
           child: Text('Voir détail')
       )
     );

@@ -75,9 +75,8 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
     final title1 = Container(
         child: Text(
             "Mot de passe oublié !!!".toUpperCase(),
-          textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 30,
+            fontSize: 25,
             fontWeight: FontWeight.bold
           ),
         ),
@@ -122,7 +121,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
           right: 20.0,
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             title1,
             title2,

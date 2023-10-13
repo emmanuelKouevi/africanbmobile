@@ -1,3 +1,4 @@
+import 'package:africanbus_mobile/app/search_ticket/views/reservation_process_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -48,7 +49,7 @@ class TicketListSelected extends GetView{
             backgroundColor: Colors.teal.shade900,
           ),
           onPressed: (){
-            print('Bonjour');
+            Get.to(ReservationProcess());
           },
           child: Text("FAIRE MA RESERVATION", style: TextStyle(
             color: Colors.white,
