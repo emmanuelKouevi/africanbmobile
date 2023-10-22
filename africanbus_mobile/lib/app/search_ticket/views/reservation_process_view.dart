@@ -1,3 +1,6 @@
+import 'package:africanbus_mobile/app/data/models/reservation_ticket_model.dart';
+import 'package:africanbus_mobile/app/data/models/ticket.dart';
+import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
 import 'package:africanbus_mobile/presentations/dialog/infos_passagers_section_dialog.dart';
 import 'package:africanbus_mobile/presentations/dialog/reservation_section_dialog.dart';
 import 'package:flutter/material.dart';
@@ -281,7 +284,24 @@ class ReservationProcess extends GetView {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.teal.shade900
           ),
-          onPressed: () => print('Bonjour'),
+          onPressed:() async{
+            SearchTicketController().checkingToken();
+            SearchTicketController().addReservation(
+                ReservationTicketModel(
+                    designation: "Reservation 1",
+                    description: "Reservation du trajet",
+                    billet: Billet(
+                        id: "AbMan27",
+                        depart: "Abidjan",
+                        destination: "Man",
+                        coutReservation: 27500.00,
+                        compagnieTransport: "African Bus",
+                        heureDepart: "15h30",
+                        heureArrivee: "19h55"
+                    ))
+            );
+            SearchTicketController().update();
+          },
           child: Text("PROCEDER À LA RESERVATION" , style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold

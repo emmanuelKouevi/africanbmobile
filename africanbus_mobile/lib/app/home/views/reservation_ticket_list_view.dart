@@ -1,4 +1,6 @@
+import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class ReservationListTab extends StatefulWidget {
@@ -11,6 +13,8 @@ class ReservationListTab extends StatefulWidget {
 class _ReservationListTabState extends State<ReservationListTab> {
   @override
   Widget build(BuildContext context) {
+
+    final reservationController = Get.put(SearchTicketController());
 
     final noReservation = LottieBuilder.asset("assets/lottie/not_ticket.json");
     
@@ -38,7 +42,8 @@ class _ReservationListTabState extends State<ReservationListTab> {
         child: Column(
           children: [
             Center(
-              child: noReservation,
+              child: Obx(() => reservationController.reservationTicketModelList.isEmpty
+              ? noReservation : CircularProgressIndicator()),
             ),
             label,
             SizedBox(height: 25,),
