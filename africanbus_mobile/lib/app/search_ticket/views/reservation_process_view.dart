@@ -2,6 +2,7 @@ import 'package:africanbus_mobile/app/data/models/reservation_ticket_model.dart'
 import 'package:africanbus_mobile/app/data/models/ticket.dart';
 import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
 import 'package:africanbus_mobile/presentations/dialog/infos_passagers_section_dialog.dart';
+import 'package:africanbus_mobile/presentations/dialog/payment_type_choice.dart';
 import 'package:africanbus_mobile/presentations/dialog/reservation_section_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -279,33 +280,58 @@ class ReservationProcess extends GetView {
         ),
       ),
       bottomNavigationBar: Container(
+        height: MediaQuery.of(context).size.height/9,
         margin: EdgeInsets.only(left: 10 , right: 10),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.teal.shade900
-          ),
-          onPressed:() async{
-            SearchTicketController().checkingToken();
-            SearchTicketController().addReservation(
-                ReservationTicketModel(
-                    designation: "Reservation 1",
-                    description: "Reservation du trajet",
-                    billet: Billet(
-                        id: "AbMan27",
-                        depart: "Abidjan",
-                        destination: "Man",
-                        coutReservation: 27500.00,
-                        compagnieTransport: "African Bus",
-                        heureDepart: "15h30",
-                        heureArrivee: "19h55"
-                    ))
-            );
-            SearchTicketController().update();
-          },
-          child: Text("PROCEDER À LA RESERVATION" , style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold
-          ),),
+        child: Column(
+          children: [
+            SizedBox(height: 10,),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text("TOTAL:" ,style: TextStyle(
+                    color: Colors.black.withOpacity(0.5),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold
+                  ),),
+                  Text('23500 FRANCS CFA' , style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold
+                  ),)
+                ],
+              ),
+            ),
+            SizedBox(height: 10,),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.teal.shade900
+              ),
+              onPressed:() async{
+                //SearchTicketController().checkingToken();
+                SearchTicketController().addReservation(
+                    ReservationTicketModel(
+                        designation: "Reservation 1",
+                        description: "Reservation du trajet",
+                        billet: Billet(
+                            id: "AbMan27",
+                            depart: "Abidjan",
+                            destination: "Man",
+                            coutReservation: 27500.00,
+                            compagnieTransport: "African Bus",
+                            heureDepart: "15h30",
+                            heureArrivee: "19h55"
+                        ))
+                );
+                SearchTicketController().update();
+                Get.to(PaymentChoice());
+              },
+              child: Text("PROCEDER À LA RESERVATION" , style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold
+              ),),
+            ),
+          ],
         ),
       ),
     );

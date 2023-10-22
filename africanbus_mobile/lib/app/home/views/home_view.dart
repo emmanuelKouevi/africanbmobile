@@ -1,3 +1,4 @@
+import 'package:africanbus_mobile/app/home/views/profil_view_tab.dart';
 import 'package:africanbus_mobile/app/home/views/reservation_ticket_list_view.dart';
 import 'package:africanbus_mobile/app/home/views/reservation_view.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class _TabsPageState extends State<HomeView> {
   final List<Widget> _pages = [
     ReservationTab(),
     ReservationListTab(),
+    ProfilView()
     //AuthentificationTab(),
   ];
 
