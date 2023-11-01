@@ -3,7 +3,6 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  flutter_localization
   smart_auth
   url_launcher_windows
 )
