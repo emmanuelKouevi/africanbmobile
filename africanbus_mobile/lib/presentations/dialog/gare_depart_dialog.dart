@@ -2,7 +2,7 @@ import 'package:africanbus_mobile/services/service_web.dart';
 import 'package:africanbus_mobile/views/dialog/widgets/cities/cityItem.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../../app/data/models/city.dart';
 
 class GareDepartDialog extends StatefulWidget {
@@ -36,8 +36,7 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
       // if the search field is empty or only contains white-space, we'll display all users
       results = cities;
     } else {
-      results = cities
-          .where((city) =>
+      results = cities.where((city) =>
           city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
     }
@@ -118,14 +117,16 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
             itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: widget.villeGareDepart,),
           ),
         )
-    ) : Container(
+    ):Container(
         margin: EdgeInsets.only(top: 60),
         child: Center(
-          child: Text('Nous n\'avons pas trouvé de gars correspondant à votre recherche',style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 18
-          ),),
+          child: Text('Nous n\'avons pas trouvé de gars correspondant à votre recherche',
+            style: GoogleFonts.ubuntu(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 18
+            ),
+          ),
         )
     );
 

@@ -1,6 +1,7 @@
 import 'package:africanbus_mobile/app/home/views/profil_view_tab.dart';
 import 'package:africanbus_mobile/app/home/views/reservation_ticket_list_view.dart';
 import 'package:africanbus_mobile/app/home/views/reservation_view.dart';
+import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -11,8 +12,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _TabsPageState extends State<HomeView> {
-
-  int _index = 0 ;
 
   int _currentIndex = 0;
   final List<Widget> _pages = [
@@ -30,28 +29,36 @@ class _TabsPageState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
 
-    final bottomNavigation = BottomNavigationBar(
-      backgroundColor: Colors.white,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home , size: 40,),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.airplane_ticket , size: 40),
-          label: 'Mes billets',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person , size: 40),
-          label: 'Mon profil',
-        ),
-      ],
-      currentIndex: _currentIndex,
-      selectedItemColor: Colors.teal.shade900,
-      onTap: onTabTapped,
+    final bottomNavigation = Container(
+      height: MediaQuery.of(context).size.height/6,
+      child: DotNavigationBar(
+        margin: EdgeInsets.only(left: 10, right: 10),
+        currentIndex: _currentIndex,
+        dotIndicatorColor: Colors.white,
+        unselectedItemColor: Colors.grey[300],
+        splashBorderRadius: 50,
+        onTap: onTabTapped,
+        items: [
+          /// Home
+          DotNavigationBarItem( icon: Icon(Icons.home , size: 40,),
+            selectedColor: Colors.teal.shade900,
+          ),
+
+          /// Likes
+          DotNavigationBarItem(
+            icon: Icon(Icons.airplane_ticket , size: 40,),
+            selectedColor: Colors.teal.shade900,
+          ),
+          /// Profile
+          DotNavigationBarItem(icon: Icon(Icons.person , size: 40,),
+            selectedColor: Colors.teal.shade900,
+          ),
+        ],
+      ),
     );
 
     return Scaffold(
+      extendBody: true,
       body: SafeArea(
         child: _pages[_currentIndex],
       ),

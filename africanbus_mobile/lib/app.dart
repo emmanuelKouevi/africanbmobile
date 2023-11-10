@@ -8,10 +8,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
 
-  @override
-  void initState(){
-
-  }
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,

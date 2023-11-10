@@ -6,6 +6,7 @@ import '../../data/models/categorieVoyageur.dart';
 class HomeController extends GetxController{
 
   RxList<TypePassager> categoriesVoyageurList = <TypePassager>[].obs;
+  RxList<TypePassager> categorieTypeSelectedList = <TypePassager>[].obs;
 
   // ADD A TRAVELLER IN LIST OF TRAVELLERS
   void addVoyageur(TypePassager typePassager) {
