@@ -17,7 +17,7 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
 
   final searchTicketController = Get.put(SearchTicketController());
 
-  final dateList = List<DateTime>.generate(5, (i) =>
+  final dateList = List<DateTime>.generate(6, (i) =>
       DateTime.utc(
         DateTime.now().year,
         DateTime.now().month,
@@ -28,7 +28,7 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
 
   @override
   void initState() {
-    tabController = TabController(length: 5, vsync: this);
+    tabController = TabController(length: 6, vsync: this);
     super.initState();
   }
 
@@ -76,54 +76,57 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
                 ),),
               ],
             )//Text(DateFormat('EEE').format(date).toUpperCase() + ' ' + date.day.toString()),
-          );
-        }).toList()
+          );}
+        ).toList()
     );
 
-    return Scaffold(
+    final bodyListTicket = Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(
+        color: Colors.teal.shade900,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(35),
+          topLeft: Radius.circular(35)
+        )
+      ),
+      child: TicketDateReservation()
+    );
+
+    /*return Scaffold(
       extendBody: true,
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 50 , left: 10),
+        padding: EdgeInsets.only(top: 50),
         child: Column(
           children: [
             title,
             hr,
-            dates
+            dates,
+            hr,
+            bodyListTicket
           ],
         ),
       ),
-    );
+    );*/
 
-    /*return DefaultTabController(
+    return DefaultTabController(
       length: 6,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.teal.shade900,
-          title: Text("RECHERCHE DE BILLETS" , style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),),
-          actions: [
-            Obx(() => Badge.count(
-              count: searchTicketController.ticketsSelectedList.length,
-              alignment: Alignment.topLeft,
-              child: IconButton(
-                onPressed: (){
-                  Get.to(TicketListSelected(searchTicketController.ticketsSelectedList));
-                },
-                icon: Icon(Icons.shopping_cart_rounded , size: 30, color: Colors.white70,),
-              ),)
-            )
-          ],
+          backgroundColor: Colors.white,
+          title: title,
           bottom: TabBar(
             isScrollable: true,
+            unselectedLabelColor: Colors.grey,
+            dividerColor: Colors.transparent,
+            indicatorPadding: EdgeInsets.only(top: 50),
+            labelColor: Colors.teal,
+            indicatorColor: Colors.teal,
             tabs: dateList.map((date){
               return Tab(
-                  //text: DateFormat('EEE').format(date).toUpperCase() + ' ' + date.day.toString() + ' ' + DateFormat('MMMM').format(date).toUpperCase(),
                 child: Text(
-                  DateFormat('EEE').format(date).toUpperCase() + ' ' + date.day.toString() + ' ' + DateFormat('MMMM').format(date).toUpperCase(),
+                  DateFormat('EEE' , 'fr_FR').format(date).toUpperCase() + ' ' + date.day.toString(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 17,
@@ -136,10 +139,15 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
         ),
         body: TabBarView(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: TicketDateReservation()
+            SingleChildScrollView(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.teal.shade900
+                ),
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: TicketDateReservation()
+              ),
             ),
             Container(
                 height: MediaQuery.of(context).size.height,
@@ -169,6 +177,6 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
           ],
         ),
       ),
-    );*/
+    );
   }
 }
