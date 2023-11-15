@@ -2,6 +2,8 @@ import 'package:africanbus_mobile/app/login/views/login_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_field/countries.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../../custom_widgets/custom_text_form_field.dart';
 import '../../home/views/home_view.dart';
@@ -95,15 +97,29 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
 
-    final telephone = Container(
-      child: CustomTextFormField(
-        labelText: "Numero de télephone",
-        key: Key("phoneNumber"),
-        icon: Icons.phone,
-        controller: tel,
-        enabled: true,
-        isOutlined: false
+    final telephone = IntlPhoneField(
+      decoration: const InputDecoration(
+          labelText: 'Numéro de téléphone',
+          labelStyle: TextStyle(
+              color: Colors.black
+          ),
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                  color: Colors.teal,
+                  width: 2
+              )
+          )
       ),
+      initialCountryCode: 'CI',
+      controller: tel,
+      onChanged: (phone) {
+        //controller.phoneNumberController(phone.number);
+        //controller.countryCode(phone.countryISOCode);
+      },
+      keyboardType: TextInputType.phone,
+      invalidNumberMessage: "Numéro de téléphone invalide",
+      countries: countries,
+      // ignore: deprecated_member_use
     );
 
     final connexionBtn = Container(

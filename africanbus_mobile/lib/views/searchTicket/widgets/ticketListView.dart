@@ -12,7 +12,10 @@ class TicketListView extends StatelessWidget {
     return ListView.builder(
       padding: EdgeInsets.only(top: 30 , left: 15 , right: 15),
       itemCount: ticketList.length,
-      itemBuilder: (context , index) => TicketItem(ticket: ticketList[index]),
+      itemBuilder: (context , index) => Padding(
+        padding: EdgeInsets.only(bottom: 20),
+        child: TicketItem(ticket: ticketList[index]),
+      ),
     );
   }
 }

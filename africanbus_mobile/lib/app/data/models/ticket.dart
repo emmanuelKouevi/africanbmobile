@@ -6,9 +6,10 @@ class Billet {
   String compagnieTransport;
   String heureDepart;
   String heureArrivee;
+  int nombrePlaceRestant ;
 
   Billet({ required this.id , required this.depart, required this.destination , required this.coutReservation , required this.compagnieTransport,
-          required this.heureDepart , required this.heureArrivee});
+          required this.heureDepart , required this.heureArrivee , required this.nombrePlaceRestant});
 
   factory Billet.fromJson(Map<String , dynamic> json){
     return Billet(
@@ -18,7 +19,8 @@ class Billet {
         coutReservation: json['coutReservation'],
         compagnieTransport: json['compagnieTransport'],
         heureDepart: json['heureDepart'],
-        heureArrivee: json['heureArrivee']
+        heureArrivee: json['heureArrivee'],
+        nombrePlaceRestant: json['nombrePlaceRestant']
     );
   }
 
@@ -29,6 +31,7 @@ class Billet {
         this.coutReservation = map['coutReservation'],
         this.compagnieTransport = map['compagnieTransport'],
         this.heureDepart = map['heureDepart'],
+        this.nombrePlaceRestant = map['nombrePlaceRestant'],
         this.heureArrivee = map['heureArrivee'];
 
   Map toMap() {
@@ -40,6 +43,7 @@ class Billet {
       'compagnieTransport': this.compagnieTransport,
       'heureDepart': this.heureDepart,
       'heureArrivee': this.heureArrivee,
+      'nombrePlaceRestant': this.nombrePlaceRestant,
     };
   }
 
@@ -52,6 +56,7 @@ class Billet {
       'compagnieTransport': compagnieTransport,
       'heureDepart': heureDepart,
       'heureArrivee': heureArrivee,
+      'nombrePlaceRestant': nombrePlaceRestant,
     };
   }
 }

@@ -41,21 +41,35 @@ class _ReservationTabState extends State<ReservationTab> {
     final hr = SizedBox(height: 20.0);
 
     final title = Container(
-      padding: EdgeInsets.only(left: 15),
+      margin: EdgeInsets.only(top: 240 , left: 15),
       child: Row(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Explorez,", style: GoogleFonts.notoSans(
-                fontSize: 27,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.8)
+                color: Colors.blueGrey,
+                shadows: [
+                  Shadow(
+                    blurRadius:5.0,  // shadow blur
+                    color: Colors.blueGrey, // shadow color
+                    offset: Offset(0.1,0.1), // how much shadow will be shown
+                  ),
+                ]
               )),
               Text("Recherchez vos billets", style: GoogleFonts.notoSans(
-                  fontSize: 27,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.8)
+                  color: Colors.blueGrey,
+                  shadows: [
+                    Shadow(
+                      blurRadius:5.0,  // shadow blur
+                      color: Colors.blueGrey, // shadow color
+                      offset: Offset(0.1,0.1), // how much shadow will be shown
+                    ),
+                  ]
               )),
             ],
           ),
@@ -193,12 +207,29 @@ class _ReservationTabState extends State<ReservationTab> {
       ),
     );
 
+    final pictureImage = Positioned(
+        child: Container(
+          height: MediaQuery.of(context).size.height/2.5,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/man_walk.jpg"),
+              fit: BoxFit.cover
+            )
+          ),
+          child: title,
+        ),
+    );
+
     return Scaffold(
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 50),
         child: Column(
           children: [
-            title,
+            Stack(
+              children: [
+                pictureImage
+              ],
+            ),
+            //title,
             hr,
             card,
             SizedBox(height: 10,),

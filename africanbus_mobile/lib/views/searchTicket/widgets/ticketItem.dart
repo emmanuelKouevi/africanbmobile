@@ -81,6 +81,22 @@ class _TicketItemState extends State<TicketItem> {
       ],
     );
 
+    final nombrePlaceRestant = Row(
+      children: [
+        Text("Place(s) restante(s) :", style: GoogleFonts.ubuntu(
+            fontWeight: FontWeight.bold,
+            color: Color(0xff2f3640),
+            fontSize: 18
+        ),),
+        SizedBox(width: 5,),
+        Text(widget.ticket.nombrePlaceRestant.toString(), style: GoogleFonts.ubuntu(
+            fontWeight: FontWeight.bold,
+            color: Color(0xff2f3640),
+            fontSize: 18
+        ),),
+      ],
+    );
+
     final price = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -102,8 +118,8 @@ class _TicketItemState extends State<TicketItem> {
 
     return Card(
       child: Container(
-        padding: EdgeInsets.all(20),
-        height: MediaQuery.of(context).size.height/3.5,
+        padding: EdgeInsets.only(left: 20 , right: 20, bottom: 20),
+        height: MediaQuery.of(context).size.height/3.2,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             color: Colors.white,
@@ -116,6 +132,7 @@ class _TicketItemState extends State<TicketItem> {
             SizedBox(height: 15),
             libelle,
             dot,
+            nombrePlaceRestant,
             price
           ],
         ),

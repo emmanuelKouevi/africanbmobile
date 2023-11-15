@@ -51,7 +51,6 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
       controller: tabController,
         unselectedLabelColor: Colors.grey,
         dividerColor: Colors.transparent,
-        indicatorPadding: EdgeInsets.only(top: 50),
         labelColor: Colors.teal,
         indicatorColor: Colors.teal,
         tabs: dateList.map((date){
@@ -114,21 +113,15 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
           title: title,
           bottom: TabBar(
             isScrollable: true,
-            unselectedLabelColor: Colors.grey,
-            dividerColor: Colors.transparent,
-            indicatorPadding: EdgeInsets.only(top: 50),
-            labelColor: Colors.teal,
-            indicatorColor: Colors.teal,
             tabs: dateList.map((date){
               return Tab(
                 child: Text(
                   DateFormat('EEE' , 'fr_FR').format(date).toUpperCase() + ' ' + date.day.toString(),
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.teal.shade900,
                       fontSize: 17,
                       fontStyle: FontStyle.italic
                     ),
@@ -139,15 +132,10 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
         ),
         body: TabBarView(
           children: [
-            SingleChildScrollView(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.teal.shade900
-                ),
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: TicketDateReservation()
-              ),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: TicketDateReservation()
             ),
             Container(
                 height: MediaQuery.of(context).size.height,

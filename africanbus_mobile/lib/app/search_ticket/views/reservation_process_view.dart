@@ -320,7 +320,8 @@ class ReservationProcess extends GetView {
                             coutReservation: 27500.00,
                             compagnieTransport: "African Bus",
                             heureDepart: "15h30",
-                            heureArrivee: "19h55"
+                            heureArrivee: "19h55",
+                            nombrePlaceRestant: 4
                         ))
                 );
                 SearchTicketController().update();

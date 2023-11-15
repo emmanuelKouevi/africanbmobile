@@ -6,7 +6,8 @@
     "coutReservation" : 27500.00,
     "compagnieTransport" : "African Bus",
     "heureDepart" : "15h30",
-    "heureArrivee": "19h55"
+    "heureArrivee": "19h55",
+    "nombrePlaceRestant": 25
   },
   {
     "id": "BouAben21",
@@ -15,7 +16,8 @@
     "coutReservation" : 21000.00,
     "compagnieTransport" : "UTB",
     "heureDepart" : "7h",
-    "heureArrivee": "9h30"
+    "heureArrivee": "9h30",
+    "nombrePlaceRestant": 21
   },
   {
     "id": "KorSan85",
@@ -24,7 +26,8 @@
     "coutReservation" : 8500.00,
     "compagnieTransport" : "KOUEVI CT",
     "heureDepart" : "21h",
-    "heureArrivee": "2h13"
+    "heureArrivee": "2h13",
+    "nombrePlaceRestant": 13
   },
   {
     "id": "DimGag17",
@@ -33,7 +36,8 @@
     "coutReservation" : 17320.00,
     "compagnieTransport" : "FICTIVE TP",
     "heureDepart" : "5h35",
-    "heureArrivee": "9h23"
+    "heureArrivee": "9h23",
+    "nombrePlaceRestant": 1
   },
   {
     "id": "TiaYam13",
@@ -42,6 +46,7 @@
     "coutReservation" : 13600.00,
     "compagnieTransport" : "MANU TP",
     "heureDepart" : "14h03",
-    "heureArrivee": "18h14"
+    "heureArrivee": "18h14",
+    "nombrePlaceRestant": 32
   }
 ]
