@@ -7,7 +7,11 @@
     "compagnieTransport" : "African Bus",
     "heureDepart" : "15h30",
     "heureArrivee": "19h55",
-    "nombrePlaceRestant": 25
+    "nombrePlaceRestant": 25,
+    "modeOffreVoyage": "Classique",
+    "categorieOffreVoyage": "Adulte",
+    "propriete1": "Wifi",
+    "propriete2": "Confort"
   },
   {
     "id": "BouAben21",
@@ -17,7 +21,11 @@
     "compagnieTransport" : "UTB",
     "heureDepart" : "7h",
     "heureArrivee": "9h30",
-    "nombrePlaceRestant": 21
+    "nombrePlaceRestant": 21,
+    "modeOffreVoyage": "Classique",
+    "categorieOffreVoyage": "Enfant",
+    "propriete1": "Wifi",
+    "propriete2": "Confort"
   },
   {
     "id": "KorSan85",
@@ -27,7 +35,11 @@
     "compagnieTransport" : "KOUEVI CT",
     "heureDepart" : "21h",
     "heureArrivee": "2h13",
-    "nombrePlaceRestant": 13
+    "nombrePlaceRestant": 13,
+    "modeOffreVoyage": "VIP",
+    "categorieOffreVoyage": "Adulte",
+    "propriete1": "Wifi",
+    "propriete2": "Confort"
   },
   {
     "id": "DimGag17",
@@ -37,7 +49,11 @@
     "compagnieTransport" : "FICTIVE TP",
     "heureDepart" : "5h35",
     "heureArrivee": "9h23",
-    "nombrePlaceRestant": 1
+    "nombrePlaceRestant": 1,
+    "modeOffreVoyage": "Classique",
+    "categorieOffreVoyage": "Adulte",
+    "propriete1": "Wifi",
+    "propriete2": "Confort"
   },
   {
     "id": "TiaYam13",
@@ -47,6 +63,10 @@
     "compagnieTransport" : "MANU TP",
     "heureDepart" : "14h03",
     "heureArrivee": "18h14",
-    "nombrePlaceRestant": 32
+    "nombrePlaceRestant": 32,
+    "modeOffreVoyage": "VIP",
+    "categorieOffreVoyage": "Enfant",
+    "propriete1": "Wifi",
+    "propriete2": "Confort"
   }
 ]

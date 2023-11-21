@@ -11,17 +11,6 @@ class TicketListSelected extends GetView{
   @override
   Widget build (BuildContext context){
 
-    final hr = SizedBox(height: 20);
-
-    final title1= Text(
-        'VOS BILLETS DE VOYAGES',
-      style: TextStyle(
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-        fontSize: 15,
-      ),
-    );
-
     final listOfTicketSelected = ListView.builder(
       padding: EdgeInsets.only(top: 30 , left: 15 , right: 10),
         itemCount: ticketList.length,
@@ -130,14 +119,6 @@ class TicketListSelected extends GetView{
       ),
     );
 
-    final title1= Text(
-      'VOS BILLETS DE VOYAGES',
-      style: TextStyle(
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-        fontSize: 15,
-      ),
-    );
     return Container(
       padding: EdgeInsets.only(bottom: 20),
       child: Card(

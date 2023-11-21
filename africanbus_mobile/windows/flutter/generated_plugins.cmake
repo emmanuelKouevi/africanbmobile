@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  flutter_any_logo
   smart_auth
   url_launcher_windows
 )

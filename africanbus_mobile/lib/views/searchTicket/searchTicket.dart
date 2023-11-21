@@ -1,5 +1,4 @@
 import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
-import 'package:africanbus_mobile/app/search_ticket/views/ticket_selected_for_reservation.dart';
 import 'package:africanbus_mobile/views/searchTicket/ticketDateReservation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +34,7 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
 
-    final hr = SizedBox(height: 30);
+    //final hr = SizedBox(height: 30);
 
     final title = Row(
       children: [
@@ -47,7 +46,7 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
     );
 
 
-    final dates = TabBar(
+    /*final dates = TabBar(
       controller: tabController,
         unselectedLabelColor: Colors.grey,
         dividerColor: Colors.transparent,
@@ -77,9 +76,9 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
             )//Text(DateFormat('EEE').format(date).toUpperCase() + ' ' + date.day.toString()),
           );}
         ).toList()
-    );
+    );*/
 
-    final bodyListTicket = Container(
+    /*final bodyListTicket = Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
@@ -90,7 +89,7 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
         )
       ),
       child: TicketDateReservation()
-    );
+    );*/
 
     /*return Scaffold(
       extendBody: true,

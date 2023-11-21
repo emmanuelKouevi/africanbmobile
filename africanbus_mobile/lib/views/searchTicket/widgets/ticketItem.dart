@@ -1,8 +1,7 @@
-import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
-import 'package:africanbus_mobile/app/search_ticket/views/ticket_detail_view.dart';
 import 'package:africanbus_mobile/custom_widgets/custom_dot.dart';
+import 'package:africanbus_mobile/views/dialog/widgets/ticketView.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_any_logo/flutter_logo.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../app/data/models/ticket.dart';
@@ -27,6 +26,11 @@ class _TicketItemState extends State<TicketItem> {
           fontWeight: FontWeight.bold,
           color: Colors.teal.shade900
         ),),
+        Container(
+          child: AnyLogo.coding.swiftUI.image(
+            height: 25
+          ),
+        ),
         Text(widget.ticket.destination , style: GoogleFonts.rubik(
             fontWeight: FontWeight.bold,
             color: Colors.teal.shade900,
@@ -106,7 +110,9 @@ class _TicketItemState extends State<TicketItem> {
           fontSize: 20
         ),),
         TextButton(
-            onPressed: null,
+            onPressed: () {
+              Get.to(TicketView(billet: widget.ticket,));
+            },
             child: Text("Réserver ce billet".toUpperCase() , style: GoogleFonts.ubuntu(
               fontSize: 12,
               fontWeight: FontWeight.bold,

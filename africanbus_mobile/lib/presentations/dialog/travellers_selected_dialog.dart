@@ -6,8 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../app/data/models/categorieVoyageur.dart';
-
 
 class TypePassagerDialog extends StatefulWidget {
   TypePassagerDialog({Key?key, required this.passagerController}):super(key: key);
