@@ -55,7 +55,7 @@ class _ReservationTabState extends State<ReservationTab> {
                   Shadow(
                     blurRadius:5.0,  // shadow blur
                     color: Colors.blueGrey, // shadow color
-                    offset: Offset(0.1,0.1), // how much shadow will be shown
+                    offset: Offset(0.05,0.05), // how much shadow will be shown
                   ),
                 ]
               )),
@@ -83,7 +83,26 @@ class _ReservationTabState extends State<ReservationTab> {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.teal.shade900,
           ),
-          onPressed: () => Get.to(SearchTicket()),
+          onPressed: () {
+            if(depart.text.isEmpty){
+              Get.snackbar(
+                  "Erreur", "La gare de départ est obligatoire !!",
+                  colorText: Colors.white , backgroundColor: Color(0xfffc0392b)
+              );
+            }else if(destination.text.isEmpty){
+              Get.snackbar(
+                  "Erreur", "La gare de destination est obligatoire !!",
+                  colorText: Colors.white , backgroundColor: Color(0xfffc0392b)
+              );
+            }else if(dateAllerInput.text.isEmpty){
+              Get.snackbar(
+                  "Erreur", "Veuillez sélectionner une date !!",
+                  colorText: Colors.white , backgroundColor: Color(0xfffc0392b)
+              );
+            }else{
+              Get.to(SearchTicket());
+            }
+          },
           child: Text("Rechercher les offres".toUpperCase(),
               style: GoogleFonts.notoSans(
                 fontWeight: FontWeight.w600,

@@ -23,6 +23,18 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
     cities = await ServiceWebApi().getTravelCities();
   }
 
+  List<City>villeList = [
+    City(id: 1  , designation: "Lomé" , pays: "Togo"),
+    City(id: 2  , designation: "Abidjan" , pays: "Côte d'Ivoire"),
+    City(id: 3  , designation: "Korhogo" , pays: "Côte d'Ivoire"),
+    City(id: 4  , designation: "Abudja" , pays: "Nigeria"),
+    City(id: 5  , designation: "Accra" , pays: "Ghana"),
+    City(id: 6  , designation: "Tacoradi" , pays: "Ghana"),
+    City(id: 7  , designation: "Los Angeles" , pays: "United States"),
+    City(id: 8  , designation: "Johannesburg" , pays: "Afrique du sud"),
+    City(id: 9  , designation: "Tokyo" , pays: "Chine"),
+  ];
+
   @override
   void initState(){
     initializeCities();
@@ -34,9 +46,13 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
     List<City> results = [];
     if (enteredKeyword.isEmpty) {
       // if the search field is empty or only contains white-space, we'll display all users
-      results = cities;
+      //results = cities;
+      results = villeList ;
     } else {
-      results = cities.where((city) =>
+      /*results = cities.where((city) =>
+          city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();*/
+      results = villeList.where((city) =>
           city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
     }
