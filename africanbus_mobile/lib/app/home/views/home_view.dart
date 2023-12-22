@@ -18,7 +18,6 @@ class _TabsPageState extends State<HomeView> {
     ReservationTab(),
     ReservationListTab(),
     ProfilView()
-    //AuthentificationTab(),
   ];
 
   void onTabTapped(int index) {
@@ -30,7 +29,7 @@ class _TabsPageState extends State<HomeView> {
   Widget build(BuildContext context) {
 
     final bottomNavigation = Container(
-      height: MediaQuery.of(context).size.height/6,
+      height: MediaQuery.of(context).size.height/5,
       child: DotNavigationBar(
         margin: EdgeInsets.only(left: 10, right: 10),
         currentIndex: _currentIndex,

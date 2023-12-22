@@ -151,14 +151,14 @@ class _ReservationTabState extends State<ReservationTab> {
       onTap: () => Get.dialog(GareDepartDialog(villeGareDepart: depart)),
       controller: depart,
         icon: Container(),
-        label: "De"
+        label: "Depart"
     );
 
     final stationB = CustomFieldSearch(
         onTap: () => Get.dialog(GareDestinationDialog(villeGareDestination: destination)),
         controller: destination,
         icon: Container(),
-        label: "À"
+        label: "Arrivée"
     );
 
     final dayForTravel = CustomTextFieldIcon(
@@ -228,7 +228,7 @@ class _ReservationTabState extends State<ReservationTab> {
 
     final pictureImage = Positioned(
         child: Container(
-          height: MediaQuery.of(context).size.height/2.5,
+          height: MediaQuery.of(context).size.height/2.4,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/man_walk.jpg"),

@@ -1,6 +1,8 @@
 import 'package:africanbus_mobile/app/data/models/ticket.dart';
+import 'package:africanbus_mobile/dialogService/dialog_reservation_other_people.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_any_logo/flutter_logo.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../custom_widgets/custom_dot.dart';
@@ -177,7 +179,7 @@ class _TicketDetailItemState extends State<TicketDetailItem> {
           backgroundColor: Colors.teal.shade900
         ),
           onPressed: () {
-            print("Bonjour");
+            Get.dialog(DialogReservation() , transitionDuration: Duration(milliseconds: 800));
           },
           child: Text('PROCEDER À LA RESERVATION'.toUpperCase(), style: GoogleFonts.ubuntu(
             fontSize: 15,

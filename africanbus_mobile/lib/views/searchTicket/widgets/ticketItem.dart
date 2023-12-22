@@ -109,23 +109,31 @@ class _TicketItemState extends State<TicketItem> {
           color: Color(0xff192a56),
           fontSize: 20
         ),),
+
+      ],
+    );
+
+    final moreDetail = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
         TextButton(
             onPressed: () {
               Get.to(TicketView(billet: widget.ticket,));
             },
-            child: Text("Réserver ce billet".toUpperCase() , style: GoogleFonts.ubuntu(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              color: Color(0xff2f3640)
-            ),)
+            child: Text("Voir détail", style: TextStyle(
+              color: Colors.black,
+              fontSize: 19,
+              fontWeight: FontWeight.bold
+            ),),
         ),
+        Icon(Icons.arrow_drop_down_sharp , color: Colors.blueGrey, size: 25,)
       ],
     );
 
     return Card(
       child: Container(
         padding: EdgeInsets.only(left: 20 , right: 20, bottom: 20),
-        height: MediaQuery.of(context).size.height/3.2,
+        height: MediaQuery.of(context).size.height/3.0,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             color: Colors.white,
@@ -139,7 +147,8 @@ class _TicketItemState extends State<TicketItem> {
             libelle,
             dot,
             nombrePlaceRestant,
-            price
+            price,
+            moreDetail
           ],
         ),
       ),

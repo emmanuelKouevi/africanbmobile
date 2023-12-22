@@ -4,6 +4,7 @@ class CustomTextFormField extends StatefulWidget {
   final String labelText;
   final IconData icon;
   final bool isPasswordField;
+  final bool isTexterea;
   final TextEditingController controller;
   final bool enabled;
   final bool isOutlined ;
@@ -14,6 +15,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.controller,
     this.isOutlined = true ,
     this.isPasswordField = false,
+    this.isTexterea = false,
     this.enabled = false
   }):super(key: key);
 
@@ -26,6 +28,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: widget.isTexterea == true ? 3 : 1,
       style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 18,
@@ -42,6 +45,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         ),
         labelText: widget.labelText.toUpperCase(),
         labelStyle: TextStyle(
+          fontSize: 12,
             fontWeight: FontWeight.bold,
             color: Colors.grey.withOpacity(0.8)
         ),

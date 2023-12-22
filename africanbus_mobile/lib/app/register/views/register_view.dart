@@ -2,11 +2,11 @@ import 'package:africanbus_mobile/app/login/views/login_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../../custom_widgets/custom_text_form_field.dart';
-import '../../home/views/home_view.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}): super(key: key);
@@ -34,24 +34,33 @@ class _RegisterViewState extends State<RegisterView> {
       fontWeight: FontWeight.w600,
     );
 
-
-    final continueWithoutLogin = Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Text(
-          "Continuer sans connexion",
-          style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
-              color: Colors.white
-          ),
-        ),
-        IconButton(
-            onPressed: () => Get.to(HomeView()),
-            icon: Icon(Icons.arrow_forward, color: Colors.white,)
-        )
-      ],
+    final titleSignUp = Container(
+      child: Column(
+        children: [
+            Row(
+              children: [
+                Text("Ouvrir un compte" , style: GoogleFonts.roboto(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.7),
+                  fontSize: 35,
+                  wordSpacing: 2
+                ),)
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text("Créez-vous un compte voyageur pour bénéficier pleinement des fonctionnalités de la plateforme." , style: GoogleFonts.ubuntu(
+                    color: Colors.grey.withOpacity(0.9),
+                    fontWeight: FontWeight.w600
+                  ),),
+                )
+              ],
+            )
+        ],
+      )
     );
+
 
     final name = Container(
       child: CustomTextFormField(
@@ -75,10 +84,23 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
 
-    final login = Container(
+    final password = Container(
       child: CustomTextFormField(
-        labelText: "Votre pseudo",
-        key: Key("pseudoField"),
+        isPasswordField: true,
+        labelText: "Mot de passe",
+        key: Key("passwordField"),
+        icon: Icons.verified_user,
+        controller: pseudo,
+        enabled: true,
+        isOutlined: false,
+      ),
+    );
+
+    final confirmPassword = Container(
+      child: CustomTextFormField(
+        isPasswordField: true,
+        labelText: "Confirmation",
+        key: Key("confirmPassword"),
         icon: Icons.verified_user,
         controller: pseudo,
         enabled: true,
@@ -117,31 +139,23 @@ class _RegisterViewState extends State<RegisterView> {
         //controller.countryCode(phone.countryISOCode);
       },
       keyboardType: TextInputType.phone,
-      invalidNumberMessage: "Numéro de téléphone invalide",
+      invalidNumberMessage: "Mauvais format du numéro",
       countries: countries,
       // ignore: deprecated_member_use
     );
 
-    final connexionBtn = Container(
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Color(0xff273c75),
-                Colors.teal.shade700,
-                Colors.teal
-              ]
-          )
-      ),
+    final inscriptionBtn = Container(
       width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height/30,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent.withOpacity(0.0),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+            backgroundColor: Colors.teal.shade900,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
-          onPressed: () => print('Bonjour'),
-          child: Text("Inscription".toUpperCase(), style: TextStyle(
+          onPressed: () {
+            print("Bonjour");
+          },
+          child: Text("Ouvrir un compte".toUpperCase(), style: TextStyle(
               color: Colors.white
           ),)
       ),
@@ -169,91 +183,42 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
 
+    final hr = SizedBox(height: 15,);
+
+    final form = Form(
+      child: Column(
+        children: [
+          name,
+          hr,
+          surname,
+          hr,
+          mail,
+          hr,
+          telephone,
+          hr,
+          password,
+          hr,
+          confirmPassword,
+        ],
+      ),
+    );
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              colors: [
-                Color(0xff192a56),
-                Colors.teal.shade700,
-                Colors.teal
-              ]
-          ),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 30),
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 30),
-                    Text("Bienvenue", style: TextStyle(color: Colors.white, fontSize: 40 , fontWeight: FontWeight.bold)),
-                    SizedBox(height: 10),
-                    Text("Inscrivez-vous , ayez votre espace" , style: TextStyle(color: Colors.white, fontSize: 18),)
-                  ],
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(60) , topRight: Radius.circular(60)),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 60),
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromRGBO(0, 75, 0, .3),
-                                blurRadius: 20,
-                                offset: Offset(0, 10)
-                            )
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            Container(
-                              child: name,
-                            ),
-                            SizedBox(height: 5),
-                            Container(
-                              child: surname,
-                            ),
-                            SizedBox(height: 5),
-                            Container(
-                              child: login,
-                            ),
-                            SizedBox(height: 5),
-                            Container(
-                              child: mail,
-                            ),
-                            SizedBox(height: 5),
-                            Container(
-                              child: telephone,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      connexionBtn,
-                      SizedBox(height: 5),
-                      dontHaveAnAccount
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(left: 10 , right: 10),
+        child: Column(
+          children: [
+            titleSignUp,
+            SizedBox(height: 10,),
+            hr,
+            form,
+            hr,
+            inscriptionBtn,
+            hr,
+            dontHaveAnAccount,
+          ],
         ),
       ),
     );

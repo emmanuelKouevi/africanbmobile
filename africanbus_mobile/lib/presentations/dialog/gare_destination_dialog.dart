@@ -87,7 +87,7 @@ class _GareDestinationDialogState extends State<GareDestinationDialog> {
                     width: 2
                 )
             ),
-            labelText: 'À',
+            labelText: 'Arrivée',
             labelStyle: TextStyle(
                 color: Colors.teal
             )

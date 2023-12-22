@@ -102,7 +102,7 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
                     width: 2
                 )
             ),
-            labelText: 'De',
+            labelText: 'Départ',
             labelStyle: TextStyle(
                 color: Colors.teal
             )

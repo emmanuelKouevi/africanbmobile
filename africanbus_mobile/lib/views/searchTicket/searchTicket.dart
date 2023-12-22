@@ -38,7 +38,7 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
 
     final title = Row(
       children: [
-        Text("Billets de voyages" , style: GoogleFonts.ubuntu(
+        Text("Offres de voyages" , style: GoogleFonts.ubuntu(
           fontSize: 25,
           fontWeight: FontWeight.bold
         ),),
