@@ -1,8 +1,10 @@
 import 'package:africanbus_mobile/app/home/views/profil_view_tab.dart';
 import 'package:africanbus_mobile/app/home/views/reservation_ticket_list_view.dart';
 import 'package:africanbus_mobile/app/home/views/reservation_view.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../notification/views/notification_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -11,12 +13,13 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _TabsPageState();
 }
 
-class _TabsPageState extends State<HomeView> {
+class _TabsPageState extends State<HomeView> with TickerProviderStateMixin {
 
   int _currentIndex = 0;
   final List<Widget> _pages = [
     ReservationTab(),
     ReservationListTab(),
+    NotificationView(),
     ProfilView()
   ];
 
@@ -25,35 +28,40 @@ class _TabsPageState extends State<HomeView> {
       _currentIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
 
-    final bottomNavigation = Container(
-      height: MediaQuery.of(context).size.height/5,
-      child: DotNavigationBar(
-        margin: EdgeInsets.only(left: 10, right: 10),
-        currentIndex: _currentIndex,
-        dotIndicatorColor: Colors.white,
-        unselectedItemColor: Colors.grey[300],
-        splashBorderRadius: 50,
-        onTap: onTabTapped,
-        items: [
-          /// Home
-          DotNavigationBarItem( icon: Icon(Icons.home , size: 40,),
-            selectedColor: Colors.teal.shade900,
-          ),
-
-          /// Likes
-          DotNavigationBarItem(
-            icon: Icon(Icons.airplane_ticket , size: 40,),
-            selectedColor: Colors.teal.shade900,
-          ),
-          /// Profile
-          DotNavigationBarItem(icon: Icon(Icons.person , size: 40,),
-            selectedColor: Colors.teal.shade900,
-          ),
-        ],
+    final bottomNavigation = BottomNavigationBar(
+      type: BottomNavigationBarType.shifting,
+      showUnselectedLabels: false,
+      selectedFontSize: 20,
+      selectedIconTheme: IconThemeData(color: Colors.teal.shade800, size: 30),
+      selectedItemColor: Colors.teal.shade800,
+      selectedLabelStyle: GoogleFonts.ubuntu(fontWeight: FontWeight.bold , fontSize:11 ),
+      unselectedIconTheme: IconThemeData(
+        color: Colors.black.withOpacity(0.8),
       ),
+      currentIndex: _currentIndex,
+      items: [
+        BottomNavigationBarItem(
+          icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
+          label: 'Rechercher',
+        ),
+        BottomNavigationBarItem(
+          icon: FaIcon(FontAwesomeIcons.ticket),
+          label: 'Vos billets',
+        ),
+        BottomNavigationBarItem(
+          icon: FaIcon(FontAwesomeIcons.bell),
+          label: 'Notification',
+        ),
+        BottomNavigationBarItem(
+          icon: FaIcon(FontAwesomeIcons.user),
+          label: 'Mon compte',
+        ),
+      ],
+      onTap: onTabTapped,
     );
 
     return Scaffold(
@@ -63,5 +71,6 @@ class _TabsPageState extends State<HomeView> {
       ),
       bottomNavigationBar: bottomNavigation
     );
+
   }
 }

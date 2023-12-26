@@ -1,3 +1,6 @@
+import 'package:africanbus_mobile/app/data/models/customer.dart';
+import 'package:africanbus_mobile/app/data/models/ticket.dart';
+import 'package:africanbus_mobile/dialogService/confirm_reservation_other_people.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +10,8 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import '../custom_widgets/custom_text_form_field.dart';
 
 class DialogUserInfo extends StatefulWidget {
-  const DialogUserInfo({Key?key}):super(key: key);
+  final Billet billet ;
+  const DialogUserInfo({Key?key , required this.billet}):super(key: key);
 
   @override
   State<DialogUserInfo> createState() => _DialogUserInfoState();
@@ -97,7 +101,11 @@ class _DialogUserInfoState extends State<DialogUserInfo> {
             color: Color(0xff2c3e50),
           ),),
           onPressed: () {
-
+            Customer customer = Customer(
+                id: "Customer", firstname: nameOtherPerson.text,
+                lastname: surnameOtherPerson.text, phoneNumber: _telephone.text
+            );
+            Get.dialog(ConfirmReservation(customer: customer, billet: widget.billet));
           },
         ),
       ],

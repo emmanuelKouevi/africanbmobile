@@ -1,3 +1,4 @@
+import 'package:africanbus_mobile/app/data/models/ticket.dart';
 import 'package:africanbus_mobile/dialogService/dialog_info_user.dart';
 import 'package:africanbus_mobile/dialogService/dialog_reference_reservation.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DialogReservation extends StatefulWidget {
-  const DialogReservation({Key? key}):super(key: key);
+  final Billet ticket ;
+  const DialogReservation({Key? key , required this.ticket}):super(key: key);
 
   @override
   State<DialogReservation> createState() => _DialogReservationState();
@@ -13,6 +15,7 @@ class DialogReservation extends StatefulWidget {
 
 class _DialogReservationState extends State<DialogReservation> {
   int selectedOption = 1;
+  bool isNotForSelf = false;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -80,9 +83,9 @@ class _DialogReservationState extends State<DialogReservation> {
             ),),
             onPressed: () {
               if(selectedOption == 1){
-                Get.dialog(SelfReservationDialog());
+                Get.dialog(SelfReservationDialog(billet: widget.ticket,));
               }else{
-                Get.dialog(DialogUserInfo() , barrierDismissible: true);
+                Get.dialog(DialogUserInfo(billet: widget.ticket) , barrierDismissible: true);
               }
             },
         ),

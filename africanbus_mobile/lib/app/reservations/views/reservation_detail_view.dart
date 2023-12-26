@@ -1,21 +1,19 @@
 import 'package:africanbus_mobile/app/data/models/ticket.dart';
-import 'package:africanbus_mobile/dialogService/dialog_reservation_other_people.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_any_logo/flutter_logo.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../custom_widgets/custom_dot.dart';
 
-class TicketDetailItem extends StatefulWidget {
-  const TicketDetailItem({Key ? key, required this.billet}) : super(key: key);
+class ReservationDetailView extends StatefulWidget {
   final Billet billet ;
+  const ReservationDetailView({Key? key , required this.billet}): super(key: key);
 
   @override
-  State<TicketDetailItem> createState() => _TicketDetailItemState();
+  State<ReservationDetailView> createState() => _ReservationStoredState();
 }
 
-class _TicketDetailItemState extends State<TicketDetailItem> {
+class _ReservationStoredState extends State<ReservationDetailView> {
   @override
   Widget build(BuildContext context) {
 
@@ -74,9 +72,9 @@ class _TicketDetailItemState extends State<TicketDetailItem> {
         Column(
           children: [
             Text('Reference' , style: GoogleFonts.ubuntu(
-              fontWeight: FontWeight.bold,
-              color: Colors.grey,
-              fontSize: 18
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+                fontSize: 18
             ),),
             SizedBox(height: 5,),
             Text(widget.billet.id, style: GoogleFonts.rubik(
@@ -172,46 +170,56 @@ class _TicketDetailItemState extends State<TicketDetailItem> {
       ],
     );
 
-    final reservationBtn = Container(
+    final paiementBtn = Container(
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.teal.shade900
-        ),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.teal.shade900
+          ),
           onPressed: () {
-            Get.dialog(DialogReservation(ticket: widget.billet) , transitionDuration: Duration(milliseconds: 800));
           },
-          child: Text('PROCEDER À LA RESERVATION'.toUpperCase(), style: GoogleFonts.ubuntu(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-            color: Colors.white
+          child: Text('PROCEDER AU PAIEMENT'.toUpperCase(), style: GoogleFonts.ubuntu(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.white
           ),)
       ),
     );
 
-    return Container(
-      padding: EdgeInsets.only(left: 30 , right: 30),
-      child: Column(
-        children: [
-          compagnieTransportDetail,
-          SizedBox(height: 20),
-          trajet,
-          SizedBox(height: 10),
-          libelle,
-          dot,
-          SizedBox(height: 10,),
-          price,
-          SizedBox(height: 10,),
-          nombrePlaceRestant,
-          SizedBox(height: 15,),
-          features,
-          SizedBox(height: 15,),
-          modeOffreVoyage,
-          SizedBox(height: 15,),
-          categorie,
-          SizedBox(height: 40,),
-          reservationBtn
-        ],
+    final title = Text("Détail de la réservation" , style: GoogleFonts.ubuntu(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+    ),);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: title,
+        centerTitle: true,
+      ),
+      body: Container(
+        padding: EdgeInsets.only(left: 30 , right: 30),
+        child: Column(
+          children: [
+            compagnieTransportDetail,
+            SizedBox(height: 20),
+            trajet,
+            SizedBox(height: 10),
+            libelle,
+            dot,
+            SizedBox(height: 10,),
+            price,
+            SizedBox(height: 10,),
+            nombrePlaceRestant,
+            SizedBox(height: 15,),
+            features,
+            SizedBox(height: 15,),
+            modeOffreVoyage,
+            SizedBox(height: 15,),
+            categorie,
+            SizedBox(height: 40,),
+            paiementBtn
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:africanbus_mobile/app/data/models/reservationBillet.dart';
 import 'package:africanbus_mobile/app/data/models/reservation_ticket_model.dart';
 import 'package:africanbus_mobile/app/data/models/ticket.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ class SearchTicketController extends GetxController{
   RxList<Billet> ticketsSelectedList = <Billet>[].obs;
 
 
-  RxList<ReservationTicketModel> reservationTicketModelList = <ReservationTicketModel>[].obs;
+  RxList<ReservationBillet> reservationTicketModelList = <ReservationBillet>[].obs;
   // ADD A TRAVELLER IN LIST OF TRAVELLERS
   void selectTicket(Billet billet) {
     if (ticketsSelectedList != null) {
@@ -19,9 +20,17 @@ class SearchTicketController extends GetxController{
     }
   }
 
-  void addReservation(ReservationTicketModel reservationTicketModel) {
+  void addReservation(ReservationBillet reservationBillet) {
     if (reservationTicketModelList != null) {
-      reservationTicketModelList.add(reservationTicketModel);
+      reservationTicketModelList.add(reservationBillet);
+      update();
+    }
+  }
+
+  void removeReservation(ReservationBillet reservationBillet) {
+    if (reservationTicketModelList != null) {
+      reservationTicketModelList.remove(reservationBillet);
+      update();
     }
   }
 

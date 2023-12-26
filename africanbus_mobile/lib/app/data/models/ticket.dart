@@ -12,8 +12,10 @@ class Billet {
   String propriete1;
   String propriete2;
 
-  Billet({ required this.id , required this.depart, required this.destination , required this.coutReservation , required this.compagnieTransport,
-    required this.heureDepart , required this.heureArrivee , required this.nombrePlaceRestant , required this.modeOffreVoyage , required this.categorieOffreVoyage,
+  Billet({
+    required this.id , required this.depart, required this.destination , required this.coutReservation ,
+    required this.compagnieTransport, required this.heureDepart , required this.heureArrivee ,
+    required this.nombrePlaceRestant , required this.modeOffreVoyage , required this.categorieOffreVoyage,
     required this.propriete1 , required this.propriete2
   });
 
