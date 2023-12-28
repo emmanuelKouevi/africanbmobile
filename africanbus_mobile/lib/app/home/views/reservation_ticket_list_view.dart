@@ -1,4 +1,5 @@
 import 'package:africanbus_mobile/app/home/views/reservation_view.dart';
+import 'package:africanbus_mobile/app/payment/views/payment_view.dart';
 import 'package:africanbus_mobile/app/reservations/views/reservation_detail_view.dart';
 import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
 import 'package:flutter/material.dart';
@@ -103,6 +104,9 @@ class _ReservationListTabState extends State<ReservationListTab> {
                               PopupMenuItem<SampleItem>(
                                 value: SampleItem.itemThree,
                                 child: ListTile(
+                                  onTap: () {
+                                    Get.to(PaymentView(billet: reservationController.reservationTicketModelList[index].billet));
+                                  },
                                   leading: FaIcon(FontAwesomeIcons.moneyBillTransfer , color: Colors.green, size: 20,),
                                   title: Text("Payer" , style: GoogleFonts.ubuntu(
                                   fontSize: 16,
