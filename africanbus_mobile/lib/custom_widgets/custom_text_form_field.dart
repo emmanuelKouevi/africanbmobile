@@ -8,12 +8,14 @@ class CustomTextFormField extends StatefulWidget {
   final TextEditingController controller;
   final bool enabled;
   final bool isOutlined ;
+  final bool isEmailField ;
   const CustomTextFormField({
     required Key key,
     required this.labelText,
     required this.icon,
     required this.controller,
     this.isOutlined = true ,
+    this.isEmailField = false ,
     this.isPasswordField = false,
     this.isTexterea = false,
     this.enabled = false
@@ -25,9 +27,22 @@ class CustomTextFormField extends StatefulWidget {
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   bool _obscureText = true;
+  RegExp get _emailRegex => RegExp(r'^\S+@\S+$');
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if(widget.isEmailField == true){
+          if (!_emailRegex.hasMatch(value!)) {
+            return "Enter une adresse E-mail valide !";
+          }
+        }else{
+          if(value!.isEmpty){
+            return "Ce champs est requis";
+          }
+        }
+      },
       maxLines: widget.isTexterea == true ? 3 : 1,
       style: TextStyle(
           fontWeight: FontWeight.bold,

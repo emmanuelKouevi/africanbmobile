@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../data/models/categorieVoyageur.dart';
+import '../../data/models/reservationBillet.dart';
+import '../../data/models/ticket.dart';
 
 class HomeController extends GetxController{
 
@@ -34,5 +36,22 @@ class HomeController extends GetxController{
       String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
       day = formattedDate;
     } else {}
+  }
+
+  RxList<Billet> ticketsSelectedList = <Billet>[].obs;
+  RxList<ReservationBillet> reservationTicketModelList = <ReservationBillet>[].obs;
+
+  void addReservation(ReservationBillet reservationBillet) {
+    if (reservationTicketModelList != null) {
+      reservationTicketModelList.add(reservationBillet);
+      update();
+    }
+  }
+
+  void removeReservation(ReservationBillet reservationBillet) {
+    if (reservationTicketModelList != null) {
+      reservationTicketModelList.remove(reservationBillet);
+      update();
+    }
   }
 }

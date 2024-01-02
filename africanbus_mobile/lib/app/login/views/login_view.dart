@@ -57,7 +57,7 @@ class _LoginViewState extends State<LoginView> {
           ),
         ),
         IconButton(
-            onPressed: () => Get.to(HomeView()),
+            onPressed: () => Get.to(() => HomeView()),
             icon: Icon(Icons.arrow_forward, color: Colors.white,)
         )
       ],

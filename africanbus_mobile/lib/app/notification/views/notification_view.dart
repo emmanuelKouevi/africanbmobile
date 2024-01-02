@@ -20,10 +20,6 @@ class _NotificationViewState extends State<NotificationView> {
           fontWeight: FontWeight.bold,
           fontSize: 25,
         ),),
-        IconButton(
-            onPressed: null,
-            icon: FaIcon(FontAwesomeIcons.trashArrowUp)
-        ),
       ],
     );
     return Scaffold(

@@ -1,10 +1,13 @@
+import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:africanbus_mobile/app/home/views/profil_view_tab.dart';
 import 'package:africanbus_mobile/app/home/views/reservation_ticket_list_view.dart';
 import 'package:africanbus_mobile/app/home/views/reservation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../notification/views/notification_view.dart';
+
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -14,6 +17,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _TabsPageState extends State<HomeView> with TickerProviderStateMixin {
+
+  final homeController = Get.put(HomeController() , permanent: true);
 
   int _currentIndex = 0;
   final List<Widget> _pages = [
@@ -71,6 +76,5 @@ class _TabsPageState extends State<HomeView> with TickerProviderStateMixin {
       ),
       bottomNavigationBar: bottomNavigation
     );
-
   }
 }

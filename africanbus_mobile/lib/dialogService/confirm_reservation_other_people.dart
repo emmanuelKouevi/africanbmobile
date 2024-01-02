@@ -55,7 +55,7 @@ class _ConfirmReservationState extends State<ConfirmReservation> {
               billet: widget.billet, isForOtherPerson: true,
               customer: widget.customer
             );
-            reservationController.addReservation(reservationBillet);
+            reservationController.toBookPerson(reservationBillet);
             Get.snackbar("Reservation Reussie", "Votre programme a été enregistré avec succes" , backgroundColor: Colors.green , colorText: Colors.white);
           },
         ),

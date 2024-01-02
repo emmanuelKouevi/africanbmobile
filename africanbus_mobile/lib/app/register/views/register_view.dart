@@ -10,7 +10,6 @@ import '../../../custom_widgets/custom_text_form_field.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}): super(key: key);
-
   @override
   State<RegisterView> createState() => _RegisterViewState();
 }
@@ -18,9 +17,13 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   TextEditingController nom = new TextEditingController();
   TextEditingController prenom = new TextEditingController();
-  TextEditingController pseudo = new TextEditingController();
   TextEditingController email = new TextEditingController();
   TextEditingController tel = new TextEditingController();
+  TextEditingController password = new TextEditingController();
+  TextEditingController confirmPassword = new TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
 
@@ -84,25 +87,25 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
 
-    final password = Container(
+    final motDePasse = Container(
       child: CustomTextFormField(
         isPasswordField: true,
         labelText: "Mot de passe",
         key: Key("passwordField"),
         icon: Icons.verified_user,
-        controller: pseudo,
+        controller: password,
         enabled: true,
         isOutlined: false,
       ),
     );
 
-    final confirmPassword = Container(
+    final confirmerMotDePasse = Container(
       child: CustomTextFormField(
         isPasswordField: true,
         labelText: "Confirmation",
         key: Key("confirmPassword"),
         icon: Icons.verified_user,
-        controller: pseudo,
+        controller: confirmPassword,
         enabled: true,
         isOutlined: false,
       ),
@@ -115,6 +118,7 @@ class _RegisterViewState extends State<RegisterView> {
         icon: Icons.email,
         controller: email,
         enabled: true,
+        isEmailField: true,
         isOutlined : false
       ),
     );
@@ -153,7 +157,12 @@ class _RegisterViewState extends State<RegisterView> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
           onPressed: () {
-            print("Bonjour");
+            if(confirmPassword.text != password.text){
+              Get.snackbar("Erreur", "Le code de confirmation est différent du mot de passe" , backgroundColor: Colors.red , colorText: Colors.white);
+            }
+            if(_formKey.currentState!.validate()){
+              print("Bonjour");
+            }
           },
           child: Text("Ouvrir un compte".toUpperCase(), style: TextStyle(
               color: Colors.white
@@ -186,6 +195,7 @@ class _RegisterViewState extends State<RegisterView> {
     final hr = SizedBox(height: 15,);
 
     final form = Form(
+      key: _formKey,
       child: Column(
         children: [
           name,
@@ -196,9 +206,9 @@ class _RegisterViewState extends State<RegisterView> {
           hr,
           telephone,
           hr,
-          password,
+          motDePasse,
           hr,
-          confirmPassword,
+          confirmerMotDePasse,
         ],
       ),
     );

@@ -1,143 +1,221 @@
+import 'package:africanbus_mobile/app/profil/views/change_password_view.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfilView extends GetView{
   const ProfilView ({Key? key}): super(key: key);
 
   Widget build(BuildContext context){
 
-    final monProfil = Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            height: Get.height/5,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage('assets/emmanuel_herve.jpg'),
-                fit: BoxFit.cover,
-              )
-            ),
-          ),
-          SizedBox(height: 5,),
-          Text('Emmanuel Herve Kouevi' , style: TextStyle(
-            color: Colors.black,
+    final spacing = SizedBox(height: 15,);
+
+    final hr = SizedBox(height: 5,);
+
+    final divider = Divider();
+
+    final reservationSection = Row(
+      children: [
+        Container(
+          padding: EdgeInsets.only(left: 15),
+          child: Text("Reservations" , style: GoogleFonts.ubuntu(
+            color: Colors.grey,
+            fontSize: 15,
             fontWeight: FontWeight.bold,
-            fontSize: 20
-          ),)
-        ],
-      ),
+          ),),
+        ),
+      ],
     );
 
-    final settings = Container(
-      height: Get.height/2,
-      padding: EdgeInsets.only(left: 7 , top: 7),
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            offset: const Offset(
-              5.0,
-              5.0,
-            ),
-            blurRadius: 10.0,
-            spreadRadius: 2.0,
-          ), //BoxShadow
-          BoxShadow(
-            color: Colors.white,
-            offset: const Offset(0.0, 0.0),
-            blurRadius: 0.0,
-            spreadRadius: 0.0,
-          ), //BoxShadow
-        ],
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30),
-          topLeft: Radius.circular(30)
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Paramètres", style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 25
-          ),),
-          SizedBox(height: 10,),
-          ListTile(
-            leading: Text("Mes reservations", style: TextStyle(
-              fontSize: 18,
-              fontStyle: FontStyle.normal
-            ),),
-            trailing: IconButton(
-              onPressed: () => null,
-              icon: Icon(Icons.arrow_forward_ios_rounded),
-            ),
-          ),
-          ListTile(
-            leading: Text("Mon compte", style: TextStyle(
-                fontSize: 18,
-                fontStyle: FontStyle.normal
-            ),),
-            trailing: IconButton(
-              onPressed: () => null,
-              icon: Icon(Icons.arrow_forward_ios_rounded),
-            ),
-          ),
-          ListTile(
-            leading: Text("Sécurité", style: TextStyle(
-                fontSize: 18,
-                fontStyle: FontStyle.normal
-            ),),
-            trailing: IconButton(
-              onPressed: () => null,
-              icon: Icon(Icons.arrow_forward_ios_rounded),
-            ),
-          ),
-          ListTile(
-            leading: Text("Aide", style: TextStyle(
-                fontSize: 18,
-                fontStyle: FontStyle.normal
-            ),),
-            trailing: IconButton(
-              onPressed: () => null,
-              icon: Icon(Icons.arrow_forward_ios_rounded),
-            ),
-          ),
-          ListTile(
-            leading: Text("A propos", style: TextStyle(
-                fontSize: 18,
-                fontStyle: FontStyle.normal
-            ),),
-            trailing: IconButton(
-              onPressed: () => null,
-              icon: Icon(Icons.arrow_forward_ios_rounded),
-            ),
-          ),
-          ListTile(
-            leading: Text("Se déconnecter", style: TextStyle(
-                fontSize: 18,
-                fontStyle: FontStyle.normal
-            ),),
-            trailing: IconButton(
-              onPressed: () => null,
-              icon: Icon(Icons.arrow_forward_ios_rounded),
-            ),
-          ),
-        ],
-      ),
+    final mesReservations = ListTile(
+      leading: FaIcon(FontAwesomeIcons.ticketSimple ,),
+      title: Text("Mes réservations" , style: GoogleFonts.ubuntu(
+          color: Colors.black
+      ),),
     );
+
+    final checkingTicket = ListTile(
+      leading: FaIcon(FontAwesomeIcons.qrcode ),
+      title: Text("Scanner mon billet" , style: GoogleFonts.ubuntu(
+          color: Colors.black,
+      ),),
+    );
+
+
+    final logoutSection = Row(
+      children: [
+        Container(
+          padding: EdgeInsets.only(left: 15),
+          child: Text("Deconnexion" , style: GoogleFonts.ubuntu(
+            color: Colors.grey,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),),
+        ),
+      ],
+    );
+
+    final logout = ListTile(
+      leading: FaIcon(FontAwesomeIcons.rightFromBracket , color: Colors.teal.shade800,),
+      title: Text("Se déconnecter" , style: GoogleFonts.ubuntu(
+        color: Colors.teal.shade800,
+        fontWeight: FontWeight.bold
+      ),),
+    );
+
+    final securitySection = Row(
+      children: [
+        Container(
+          padding: EdgeInsets.only(left: 15),
+          child: Text("Paramètre et sécurité" , style: GoogleFonts.ubuntu(
+            color: Colors.grey,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),),
+        ),
+      ],
+    );
+
+    final modifierInfosPersonnel = ListTile(
+      leading: FaIcon(FontAwesomeIcons.pencil),
+      title: Text("Informations Personnelles" , style: GoogleFonts.ubuntu(
+        color: Colors.black,
+      ),),
+    );
+
+    final reinitialiseMotDePasse = ListTile(
+      leading: FaIcon(FontAwesomeIcons.key),
+      title: Text("Reinitialiser mon mot de passe" , style: GoogleFonts.ubuntu(
+        color: Colors.black,
+      ),),
+    );
+
+    final modifierMotDePasse = ListTile(
+      onTap: () => Get.to(ChangePasswordView()),
+      leading: FaIcon(FontAwesomeIcons.lock),
+      title: Text("Changer de mot de passe" , style: GoogleFonts.ubuntu(
+        color: Colors.black,
+      ),),
+    );
+
+
+    final helpingAndContactSection = Row(
+      children: [
+        Container(
+          padding: EdgeInsets.only(left: 15),
+          child: Text("Aide et Contact" , style: GoogleFonts.ubuntu(
+            color: Colors.grey,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),),
+        ),
+      ],
+    );
+
+    final title = Row(
+      children: [
+        Container(
+          padding: EdgeInsets.only(left: 10),
+          child: Text("Mon compte" , style: GoogleFonts.ubuntu(
+            color: Colors.black,
+            fontSize: 25,
+            fontWeight: FontWeight.bold
+          ),),
+        ),
+      ],
+    );
+
+    final aboutUs = ListTile(
+      leading: FaIcon(FontAwesomeIcons.circleInfo),
+      title: Text("À propos" , style: GoogleFonts.ubuntu(
+        color: Colors.black,
+      ),),
+    );
+
+    final contactUs = ListTile(
+      leading: FaIcon(FontAwesomeIcons.headset),
+      title: Text("Nous contacter" , style: GoogleFonts.ubuntu(
+        color: Colors.black,
+      ),),
+    );
+
+    final shareApp = ListTile(
+      leading: FaIcon(FontAwesomeIcons.shareNodes),
+      title: Text("Partager l'application" , style: GoogleFonts.ubuntu(
+        color: Colors.black,
+      ),),
+    );
+
+    final local = ListTile(
+      leading: FaIcon(FontAwesomeIcons.locationDot),
+      title: Text("Où nous trouver" , style: GoogleFonts.ubuntu(
+        color: Colors.black,
+      ),),
+    );
+
+    final help = ListTile(
+      leading: FaIcon(FontAwesomeIcons.handshakeAngle),
+      title: Text("Aide" , style: GoogleFonts.ubuntu(
+        color: Colors.black,
+      ),),
+    );
+
+    final historySection = Row(
+      children: [
+        Container(
+          padding: EdgeInsets.only(left: 15),
+          child: Text("Historiques" , style: GoogleFonts.ubuntu(
+            color: Colors.grey,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),),
+        ),
+      ],
+    );
+
+    final history = ListTile(
+      leading: FaIcon(FontAwesomeIcons.clockRotateLeft),
+      title: Text("Historiques" , style: GoogleFonts.ubuntu(
+        color: Colors.black,
+      ),),
+    );
+
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: title,
+        automaticallyImplyLeading: false,
+      ),
       backgroundColor: Colors.white70,
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 20),
+        padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [
-            monProfil,
-            SizedBox(height: 25,),
-            settings
+            spacing,
+            reservationSection,
+            mesReservations,
+            checkingTicket,
+            divider,
+            historySection,
+            history,
+            divider,
+            securitySection,
+            modifierInfosPersonnel,
+            reinitialiseMotDePasse,
+            modifierMotDePasse,
+            divider,
+            spacing,
+            helpingAndContactSection,
+            shareApp,
+            local,
+            contactUs,
+            aboutUs,
+            help,
+            divider,
+            logoutSection,
+            logout
           ],
         ),
       ),

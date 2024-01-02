@@ -13,6 +13,7 @@ class SearchTicketController extends GetxController{
 
 
   RxList<ReservationBillet> reservationTicketModelList = <ReservationBillet>[].obs;
+  RxList<ReservationBillet> booksForPersonList = <ReservationBillet>[].obs;
   // ADD A TRAVELLER IN LIST OF TRAVELLERS
   void selectTicket(Billet billet) {
     if (ticketsSelectedList != null) {
@@ -20,14 +21,35 @@ class SearchTicketController extends GetxController{
     }
   }
 
-  void addReservation(ReservationBillet reservationBillet) {
+  void toBookPerson(ReservationBillet reservationBillet){
+    if (booksForPersonList != null) {
+      booksForPersonList.add(reservationBillet);
+      update();
+    }
+  }
+
+  void toBook(ReservationBillet reservationBillet){
     if (reservationTicketModelList != null) {
       reservationTicketModelList.add(reservationBillet);
       update();
     }
   }
 
-  void removeReservation(ReservationBillet reservationBillet) {
+  /*void addReservation(ReservationBillet reservationBillet) {
+    if (reservationTicketModelList != null) {
+      reservationTicketModelList.add(reservationBillet);
+      update();
+    }
+  }*/
+
+  void removeBookForPerson(ReservationBillet reservationBillet){
+    if (booksForPersonList != null) {
+      booksForPersonList.remove(reservationBillet);
+      update();
+    }
+  }
+
+  void removeBook(ReservationBillet reservationBillet) {
     if (reservationTicketModelList != null) {
       reservationTicketModelList.remove(reservationBillet);
       update();

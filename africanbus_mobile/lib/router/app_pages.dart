@@ -41,7 +41,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.home,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
   ];

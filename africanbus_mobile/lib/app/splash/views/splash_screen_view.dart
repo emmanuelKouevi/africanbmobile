@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:africanbus_mobile/router/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({Key? key}) : super(key: key);
@@ -23,7 +24,8 @@ class _SplashScreenState extends State<SplashScreenView> {
     if(viewLoginPage){
       showToTabs = Routes.login;
     }
-    Navigator.of(context).pushReplacementNamed(showToTabs);
+    //Navigator.of(context).pushReplacementNamed(showToTabs);
+    Get.toNamed(showToTabs);
   }
 
   @override
