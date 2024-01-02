@@ -1,4 +1,5 @@
 import 'package:africanbus_mobile/app/profil/views/change_password_view.dart';
+import 'package:africanbus_mobile/app/profil/views/reset_password_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -85,6 +86,7 @@ class ProfilView extends GetView{
     );
 
     final reinitialiseMotDePasse = ListTile(
+      onTap: () => Get.to(ResetPasswordView()),
       leading: FaIcon(FontAwesomeIcons.key),
       title: Text("Reinitialiser mon mot de passe" , style: GoogleFonts.ubuntu(
         color: Colors.black,

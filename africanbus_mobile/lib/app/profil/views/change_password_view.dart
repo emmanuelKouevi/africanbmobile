@@ -18,9 +18,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   @override
   Widget build(BuildContext context) {
 
-    final space = SizedBox(height: 60,);
-
-    final hr = SizedBox(height: 20,);
+    const space = SizedBox(height: 60,);
+    const hr = SizedBox(height: 20,);
 
     final title = Row(
       children: [
