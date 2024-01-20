@@ -2,27 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../data/models/categorieVoyageur.dart';
+import '../../data/models/city.dart';
 import '../../data/models/reservationBillet.dart';
 import '../../data/models/ticket.dart';
 
 class HomeController extends GetxController{
 
+  var foundCities = List<City>.empty(growable: true).obs;
   RxList<TypePassager> categoriesVoyageurList = <TypePassager>[].obs;
   RxList<TypePassager> categorieTypeSelectedList = <TypePassager>[].obs;
 
   // ADD A TRAVELLER IN LIST OF TRAVELLERS
   void addVoyageur(TypePassager typePassager) {
-    if (categoriesVoyageurList != null) {
-      categoriesVoyageurList.add(typePassager);
+    categoriesVoyageurList.add(typePassager);
     }
-  }
 
   // REMOVE A TRAVELLER FROM LIST OF TRAVELLERS SELECTED
   void removeVoyageur(TypePassager typePassager) {
-    if (categoriesVoyageurList != null) {
-      categoriesVoyageurList.remove(typePassager);
+    categoriesVoyageurList.remove(typePassager);
     }
-  }
 
   //FUNCTION TO SELECTED DATE
   void selectedDate(BuildContext context , String day) async {
@@ -42,16 +40,25 @@ class HomeController extends GetxController{
   RxList<ReservationBillet> reservationTicketModelList = <ReservationBillet>[].obs;
 
   void addReservation(ReservationBillet reservationBillet) {
-    if (reservationTicketModelList != null) {
-      reservationTicketModelList.add(reservationBillet);
-      update();
+    reservationTicketModelList.add(reservationBillet);
+    update();
     }
-  }
 
   void removeReservation(ReservationBillet reservationBillet) {
-    if (reservationTicketModelList != null) {
-      reservationTicketModelList.remove(reservationBillet);
-      update();
-    }
+    reservationTicketModelList.remove(reservationBillet);
+    update();
   }
+
+  void runFilter(String enteredKeyword , List<City> cities) {
+    List<City> results = [];
+    if (enteredKeyword.isEmpty) {
+      results = cities;
+    } else {
+      results = cities.where((city) =>
+          city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+    foundCities.value = results;
+  }
+
 }

@@ -101,11 +101,19 @@ class _DialogUserInfoState extends State<DialogUserInfo> {
             color: Color(0xff2c3e50),
           ),),
           onPressed: () {
-            Customer customer = Customer(
-                id: "Customer", firstname: nameOtherPerson.text,
-                lastname: surnameOtherPerson.text, phoneNumber: _telephone.text
-            );
-            Get.dialog(ConfirmReservation(customer: customer, billet: widget.billet));
+            if(nameOtherPerson.text.isEmpty){
+              Get.snackbar("Erreur", "Le nom de la tiers personne est obligatoire", backgroundColor: Colors.red , colorText: Colors.white);
+            }else if(surnameOtherPerson.text.isEmpty){
+              Get.snackbar("Erreur", "Le prenom de la tiers personne est obligatoire", backgroundColor: Colors.red , colorText: Colors.white);
+            }else if(_telephone.text.isEmpty){
+              Get.snackbar("Erreur", "Le numero de la tiers personne est obligatoire", backgroundColor: Colors.red , colorText: Colors.white);
+            }else{
+              Customer customer = Customer(
+                  id: "Customer", firstname: nameOtherPerson.text,
+                  lastname: surnameOtherPerson.text, phoneNumber: _telephone.text
+              );
+              Get.dialog(ConfirmReservation(customer: customer, billet: widget.billet));
+            }
           },
         ),
       ],

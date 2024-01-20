@@ -1,8 +1,8 @@
 import 'package:africanbus_mobile/services/service_web.dart';
-import 'package:africanbus_mobile/views/dialog/widgets/cities/cityItem.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/data/models/city.dart';
+import 'cityItem.dart';
 
 class GareDestinationDialog extends StatefulWidget {
   final TextEditingController villeGareDestination ;
@@ -46,13 +46,8 @@ class _GareDestinationDialogState extends State<GareDestinationDialog> {
     List<City> results = [];
     if (enteredKeyword.isEmpty) {
       // if the search field is empty or only contains white-space, we'll display all users
-      //results = cities;
       results = villeList ;
     } else {
-      /*results = cities
-          .where((city) =>
-          city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
-          .toList();*/
       results = villeList
           .where((city) =>
           city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
@@ -79,12 +74,6 @@ class _GareDestinationDialogState extends State<GareDestinationDialog> {
             enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.teal.shade900,
-                )
-            ),
-            focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                    color: Colors.teal.shade900,
-                    width: 2
                 )
             ),
             labelText: 'Arrivée',

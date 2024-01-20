@@ -24,7 +24,6 @@ class _SplashScreenState extends State<SplashScreenView> {
     if(viewLoginPage){
       showToTabs = Routes.login;
     }
-    //Navigator.of(context).pushReplacementNamed(showToTabs);
     Get.toNamed(showToTabs);
   }
 
@@ -44,8 +43,7 @@ class _SplashScreenState extends State<SplashScreenView> {
           children: [
             Container(
                 height: MediaQuery.of(context).size.height/4,
-                child: Image.asset(
-                  'assets/logo_africanbus.jpg',
+                child: Image.asset('assets/logo_africanbus.jpg',
                   fit: BoxFit.cover,
                 )
             ),

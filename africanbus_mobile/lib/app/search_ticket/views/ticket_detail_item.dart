@@ -74,9 +74,9 @@ class _TicketDetailItemState extends State<TicketDetailItem> {
         Column(
           children: [
             Text('Reference' , style: GoogleFonts.ubuntu(
-              fontWeight: FontWeight.bold,
-              color: Colors.grey,
-              fontSize: 18
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+                fontSize: 18
             ),),
             SizedBox(height: 5,),
             Text(widget.billet.id, style: GoogleFonts.rubik(
@@ -175,16 +175,16 @@ class _TicketDetailItemState extends State<TicketDetailItem> {
     final reservationBtn = Container(
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.teal.shade900
-        ),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.teal.shade900
+          ),
           onPressed: () {
             Get.dialog(DialogReservation(ticket: widget.billet) , transitionDuration: Duration(milliseconds: 800));
           },
           child: Text('PROCEDER À LA RESERVATION'.toUpperCase(), style: GoogleFonts.ubuntu(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-            color: Colors.white
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.white
           ),)
       ),
     );

@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-
-import '../../../custom_widgets/custom_text_form_field.dart';
-
+/*
+  - Date: 18-01-2024
+  - Author: Kouevi Ayite Emmanuel
+  - Description: Ce widget permet de gerer la recuperation du mot du passe en cas d'oublie.
+ */
 class ForgetPasswordView extends StatefulWidget {
   const ForgetPasswordView({Key?key}):super(key: key);
 

@@ -1,7 +1,7 @@
+import 'package:africanbus_mobile/app/search_ticket/views/ticketListView.dart';
 import 'package:africanbus_mobile/services/service_web.dart';
-import 'package:africanbus_mobile/views/searchTicket/widgets/ticketListView.dart';
 import 'package:flutter/material.dart';
-import '../../app/data/models/ticket.dart';
+import '../../data/models/ticket.dart';
 
 
 class TicketDateReservation extends StatefulWidget {
@@ -17,10 +17,10 @@ class _TicketDateReservationState extends State<TicketDateReservation> {
 
   List<Billet>tickets = [
     Billet(
-      depart: "Abidjan" , categorieOffreVoyage: "Adulte" , id: "OFCI",
-      compagnieTransport: "AFRICAN" , coutReservation: 25600 , nombrePlaceRestant: 21,
-      propriete1: "Wifi" , propriete2: "Charge" , destination: "Man" , heureDepart: "11h45",
-      heureArrivee: "12h45" , modeOffreVoyage: "Classique"
+        depart: "Abidjan" , categorieOffreVoyage: "Adulte" , id: "OFCI",
+        compagnieTransport: "AFRICAN" , coutReservation: 25600 , nombrePlaceRestant: 21,
+        propriete1: "Wifi" , propriete2: "Charge" , destination: "Man" , heureDepart: "11h45",
+        heureArrivee: "12h45" , modeOffreVoyage: "Classique"
     ),
     Billet(
         depart: "Tiébissou" , categorieOffreVoyage: "Enfant" , id: "TUMP",

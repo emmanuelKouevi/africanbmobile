@@ -1,4 +1,4 @@
-import 'package:africanbus_mobile/views/searchTicket/widgets/ticketItem.dart';
+import 'package:africanbus_mobile/app/search_ticket/views/ticket_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/data/models/ticket.dart';

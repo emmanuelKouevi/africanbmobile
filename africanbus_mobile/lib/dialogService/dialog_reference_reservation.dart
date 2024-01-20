@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../app/reservations/views/reservation_ticket_list_view.dart';
+
 class SelfReservationDialog extends StatefulWidget {
   final Billet billet;
   const SelfReservationDialog({Key? key , required this.billet}):super(key: key);
@@ -27,11 +29,32 @@ class _SelfReservationDialogState extends State<SelfReservationDialog> {
           color: Colors.black,
           fontWeight: FontWeight.bold
       ),),
-      content: Text(""
-          "Vous êtes sur de vouloir réserver le billet "
-          "${widget.billet.depart} - ${widget.billet.destination} pour vous meme",
-        style: TextStyle(
-          fontSize: 16
+      content: RichText(
+        text: TextSpan(
+            children: [
+              TextSpan(
+                  text: "Vous êtes sur de vouloir réserver le billet ",
+                  style: GoogleFonts.ubuntu(
+                      fontSize: 17,
+                      color: Colors.black
+                  )
+              ),
+              TextSpan(
+                  text: "${widget.billet.depart} - ${widget.billet.destination} ",
+                  style: GoogleFonts.ubuntu(
+                      fontSize: 17,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold
+                  )
+              ),
+              TextSpan(
+                text: "pour Vous même. ",
+                style: GoogleFonts.ubuntu(
+                  fontSize: 17,
+                  color: Colors.black,
+                ),
+              ),
+            ]
         ),
       ),
       actions: [
@@ -55,6 +78,7 @@ class _SelfReservationDialogState extends State<SelfReservationDialog> {
             );
             reservationController.toBook(reservationBillet);
             Get.snackbar("Reservation Reussie", "Votre programme a été enregistré avec succes" , backgroundColor: Colors.green , colorText: Colors.white);
+            Get.to(ReservationListTab());
           },
         ),
       ],

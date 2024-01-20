@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
+/*
+   Date : 03-04-2024
+   Auteur : Kouevi Ayite Emmanuel Hervé
+   Description: Ecran permettant à un utilisateur de reinitialiser le mot de passe.
+ */
 class ResetPasswordView extends StatefulWidget {
   const ResetPasswordView({Key? key}): super(key: key);
 
@@ -12,6 +18,7 @@ class ResetPasswordView extends StatefulWidget {
 }
 
 class _ResetPasswordViewState extends State<ResetPasswordView> {
+
   TextEditingController customerPhone = TextEditingController();
 
   @override
@@ -53,7 +60,11 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.teal.shade800
         ),
-        onPressed: () => null,
+        onPressed: () {
+          if(customerPhone.text.isEmpty){
+            Get.snackbar('Erreur','Le numéro de téléphone est obligatoire pour reinitialiser votre code !', backgroundColor: Colors.red , colorText: Colors.white);
+          }
+        },
         child: Text("REINITIALISER" ,style: GoogleFonts.ubuntu(
             color: Colors.white,
             fontWeight: FontWeight.w700

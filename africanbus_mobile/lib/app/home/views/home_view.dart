@@ -1,6 +1,6 @@
 import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
-import 'package:africanbus_mobile/app/home/views/profil_view_tab.dart';
-import 'package:africanbus_mobile/app/home/views/reservation_ticket_list_view.dart';
+import 'package:africanbus_mobile/app/profil/views/profil_view_tab.dart';
+import 'package:africanbus_mobile/app/reservations/views/reservation_ticket_list_view.dart';
 import 'package:africanbus_mobile/app/home/views/reservation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,6 +8,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../notification/views/notification_view.dart';
 
+/**
+ * Date : 18-01-2024
+ * Author : Kouevi Ayite Emmanuel Herve
+ * Description : Ce widget répresente la page d'accueil de l'application African Bus
+ */
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);

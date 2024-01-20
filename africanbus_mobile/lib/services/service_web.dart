@@ -1,3 +1,4 @@
+import 'package:africanbus_mobile/app/data/models/reservationBillet.dart';
 import 'package:africanbus_mobile/global_config/globalConst.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -8,10 +9,10 @@ import '../app/data/models/ticket.dart';
 
 
 
-/*
-  - Date : 10-05-2023
-  - Author : Kouevi Ayite Emmanuel Herve
-  - Description: Cette classe regroupe la liste des services web
+/**
+  * Date : 10-05-2023
+  * Author : Kouevi Ayite Emmanuel Herve
+  * Description: Cette classe regroupe la liste des services web
  */
 
 class ServiceWebApi{
@@ -59,6 +60,63 @@ class ServiceWebApi{
           .toList();
       print(billetsList);
       return billetsList;
+    } else {
+      throw Exception('Failed to load campaigns');
+    }
+  }
+
+  // OBTENIR LA LISTE DES OFFRES DE VOYAGES PAR CRITERES
+  //TODO: Insérer le bon modele de reponse pour cet service web.
+  Future<void>obtenirOffreVoyageParCritere(String villeDepart,String villeDestination,String dateDepart ) async{
+    final url = GlobalConst.remoteApiUrl +"offreVoyages/getOffreVoyageByCriteria";
+    final response = await http.post(Uri.parse(url),
+      body: jsonEncode({
+        'villeDepart':villeDepart,
+        'villeDestination':villeDestination,
+        'dateDepart':dateDepart,
+      })
+    );
+    if (response.statusCode == 200) {
+      dynamic offreVoyageList ;
+      offreVoyageList = (json.decode(response.body)['data'] as List);
+      return offreVoyageList;
+    } else {
+      throw Exception('Failed to load campaigns');
+    }
+  }
+
+
+  // RESERVATION UN BILLET DE VOYAGE
+  //TODO: Insérer le bon modele de reponse pour cet service web.
+  Future<void>reserverBilletVoyage(ReservationBillet reservationBillet) async{
+    final url = GlobalConst.remoteApiUrl +"reservationBilletVoyages";
+    final response = await http.post(Uri.parse(url),
+        body: jsonEncode(reservationBillet)
+    );
+    if (response.statusCode == 200) {
+      dynamic reservationResponse ;
+      reservationResponse = (json.decode(response.body)['data'] as List);
+      return reservationResponse;
+    } else {
+      throw Exception('Failed to load campaigns');
+    }
+  }
+
+  // OBTENIR LA LISTE DES HISTORIQUES PAR IDENTIFIANT UTILISATEUR
+  //TODO: Insérer le bon modele de reponse pour cet service web.
+  Future<void>obtenirHistoriqueParUtilisateur(String userId) async{
+    final url = GlobalConst.remoteApiUrl +"historiquePaiements/getHistoriquePaiementByIdentifiantUnique";
+    final response = await http.post(Uri.parse(url),
+        body: jsonEncode({
+          "data":{
+            "identifiantUnique": userId
+          }
+        })
+    );
+    if (response.statusCode == 200) {
+      dynamic historiques ;
+      historiques = (json.decode(response.body)['data'] as List);
+      return historiques;
     } else {
       throw Exception('Failed to load campaigns');
     }

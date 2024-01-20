@@ -1,5 +1,5 @@
+import 'package:africanbus_mobile/app/search_ticket/views/ticket_view.dart';
 import 'package:africanbus_mobile/custom_widgets/custom_dot.dart';
-import 'package:africanbus_mobile/views/dialog/widgets/ticketView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_any_logo/flutter_logo.dart';
 import 'package:get/get.dart';
@@ -22,13 +22,13 @@ class _TicketItemState extends State<TicketItem> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(widget.ticket.depart , style: GoogleFonts.rubik(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Colors.teal.shade900
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.teal.shade900
         ),),
         Container(
           child: AnyLogo.coding.swiftUI.image(
-            height: 25
+              height: 25
           ),
         ),
         Text(widget.ticket.destination , style: GoogleFonts.rubik(
@@ -79,7 +79,7 @@ class _TicketItemState extends State<TicketItem> {
       children: [
         CustomDot(assetTitle: "assets/svg_icons/dot.svg", color: Colors.blueGrey),
         Text('----------------------------------------------------------' , style: TextStyle(
-          color: Colors.grey.withOpacity(0.5)
+            color: Colors.grey.withOpacity(0.5)
         ),),
         CustomDot(assetTitle: "assets/svg_icons/dot.svg", color: Colors.teal.shade900)
       ],
@@ -105,9 +105,9 @@ class _TicketItemState extends State<TicketItem> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(widget.ticket.coutReservation.toString() + ' ' + 'FCFA', style: GoogleFonts.ubuntu(
-          fontWeight: FontWeight.bold,
-          color: Color(0xff192a56),
-          fontSize: 20
+            fontWeight: FontWeight.bold,
+            color: Color(0xff192a56),
+            fontSize: 20
         ),),
 
       ],
@@ -117,14 +117,14 @@ class _TicketItemState extends State<TicketItem> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
-            onPressed: () {
-              Get.to(TicketView(billet: widget.ticket,));
-            },
-            child: Text("Voir détail", style: TextStyle(
+          onPressed: () {
+            Get.to(TicketView(billet: widget.ticket,));
+          },
+          child: Text("Voir détail", style: TextStyle(
               color: Colors.black,
               fontSize: 19,
               fontWeight: FontWeight.bold
-            ),),
+          ),),
         ),
         Icon(Icons.arrow_drop_down_sharp , color: Colors.blueGrey, size: 25,)
       ],
@@ -137,7 +137,7 @@ class _TicketItemState extends State<TicketItem> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(30))
+            borderRadius: BorderRadius.all(Radius.circular(30))
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

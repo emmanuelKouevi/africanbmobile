@@ -1,4 +1,5 @@
 import 'package:africanbus_mobile/app/data/models/customer.dart';
+import 'package:africanbus_mobile/app/reservations/views/reservation_ticket_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,12 +29,40 @@ class _ConfirmReservationState extends State<ConfirmReservation> {
           color: Colors.black,
           fontWeight: FontWeight.bold
       ),),
-      content: Text(""
-          "Vous êtes sur de vouloir réserver le billet "
-          "${widget.billet.depart} - ${widget.billet.destination} pour Mr/Mme ${widget.customer.firstname}"
-          "${widget.customer.lastname}",
-        style: TextStyle(
-            fontSize: 16
+      content: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: "Vous êtes sur de vouloir réserver le billet ",
+              style: GoogleFonts.ubuntu(
+                fontSize: 17,
+                color: Colors.black
+              )
+            ),
+            TextSpan(
+                text: "${widget.billet.depart} - ${widget.billet.destination} ",
+                style: GoogleFonts.ubuntu(
+                  fontSize: 17,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold
+                )
+            ),
+            TextSpan(
+                text: "pour Mr/Mme ",
+                style: GoogleFonts.ubuntu(
+                    fontSize: 17,
+                    color: Colors.black,
+                ),
+            ),
+            TextSpan(
+              text: "${widget.customer.firstname} " "${widget.customer.lastname}.",
+              style: GoogleFonts.ubuntu(
+                  fontSize: 17,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+          ]
         ),
       ),
       actions: [
@@ -57,6 +86,7 @@ class _ConfirmReservationState extends State<ConfirmReservation> {
             );
             reservationController.toBookPerson(reservationBillet);
             Get.snackbar("Reservation Reussie", "Votre programme a été enregistré avec succes" , backgroundColor: Colors.green , colorText: Colors.white);
+            Get.to(ReservationListTab());
           },
         ),
       ],

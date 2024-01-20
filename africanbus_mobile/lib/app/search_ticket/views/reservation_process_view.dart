@@ -1,5 +1,4 @@
 import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
-import 'package:africanbus_mobile/presentations/dialog/infos_passagers_section_dialog.dart';
 import 'package:africanbus_mobile/presentations/dialog/payment_type_choice.dart';
 import 'package:africanbus_mobile/presentations/dialog/reservation_section_dialog.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +64,6 @@ class ReservationProcess extends GetView {
     );
 
     final infosPassagersPanel = GestureDetector(
-      onTap: () => Get.dialog(InfosPassagerSectionDialog(), barrierDismissible: false),
       child: Card(
         elevation: 4,
         color: Colors.white,

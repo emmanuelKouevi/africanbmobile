@@ -1,15 +1,15 @@
-import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:africanbus_mobile/custom_widgets/custom_dot.dart';
 import 'package:africanbus_mobile/custom_widgets/custom_field_search.dart';
 import 'package:africanbus_mobile/custom_widgets/custom_textfield_icon.dart';
 import 'package:africanbus_mobile/presentations/dialog/gare_depart_dialog.dart';
 import 'package:africanbus_mobile/presentations/dialog/gare_destination_dialog.dart';
-import 'package:africanbus_mobile/views/searchTicket/searchTicket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+
+import '../../search_ticket/views/search_ticket.dart';
 
 
 class ReservationTab extends StatefulWidget {
@@ -31,7 +31,6 @@ class _ReservationTabState extends State<ReservationTab> {
 
   @override
   void initState(){
-    print(HomeController().categorieTypeSelectedList.length);
     super.initState();
   }
 
@@ -104,11 +103,7 @@ class _ReservationTabState extends State<ReservationTab> {
             }
           },
           child: Text("Rechercher les offres".toUpperCase(),
-              style: GoogleFonts.notoSans(
-                fontWeight: FontWeight.w600,
-                fontSize: 15,
-                color: Colors.white
-              )
+              style: GoogleFonts.notoSans(fontWeight: FontWeight.w600, fontSize: 15, color: Colors.white)
           )
       ),
     );
@@ -244,9 +239,7 @@ class _ReservationTabState extends State<ReservationTab> {
         child: Column(
           children: [
             Stack(
-              children: [
-                pictureImage
-              ],
+              children: [ pictureImage ],
             ),
             //title,
             hr,
@@ -254,7 +247,6 @@ class _ReservationTabState extends State<ReservationTab> {
             SizedBox(height: 10,),
             dateCard,
             SizedBox(height: 10,),
-            //personCard,
             hr,
             searchTicketBtn,
           ],

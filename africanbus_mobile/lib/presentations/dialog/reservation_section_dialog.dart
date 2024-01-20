@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 class ReservationSectionDialog extends GetView{
   ReservationSectionDialog({ Key?key }): super(key: key);
 
-  TextEditingController designationController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
+  final designationController = TextEditingController();
+  final descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context){
 

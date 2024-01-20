@@ -1,4 +1,3 @@
-import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +18,7 @@ class PaymentChoice extends GetView{
                 fontWeight: FontWeight.bold
               ),),
               trailing: IconButton(
-                onPressed: () => SearchTicketController().checkingToken(),
+                onPressed: () => null,
                 icon: Icon(Icons.arrow_forward_ios_rounded),
               ),
             ),

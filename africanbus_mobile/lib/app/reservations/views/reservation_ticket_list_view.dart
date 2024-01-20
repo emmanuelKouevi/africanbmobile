@@ -1,3 +1,4 @@
+import 'package:africanbus_mobile/app/data/models/reservationBillet.dart';
 import 'package:africanbus_mobile/app/home/views/reservation_view.dart';
 import 'package:africanbus_mobile/app/payment/views/payment_view.dart';
 import 'package:africanbus_mobile/app/reservations/views/reservation_detail_view.dart';
@@ -16,7 +17,6 @@ class ReservationListTab extends StatefulWidget {
 }
 
 class _ReservationListTabState extends State<ReservationListTab> {
-  SampleItem? selectedMenu;
   final reservationController = Get.put(SearchTicketController(),permanent: true );
 
   @override
@@ -69,68 +69,9 @@ class _ReservationListTabState extends State<ReservationListTab> {
                             ),),
                             Row(
                               children: [
-                                Container(
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.teal.shade800,
-                                    ),
-                                    onPressed: () => Get.to(PaymentView(billet: reservationController.reservationTicketModelList[index].billet)),
-                                    child: Text('Payer' , style: GoogleFonts.ubuntu(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white
-                                    ),),
-                                  ),
-                                ),
-                                PopupMenuButton<SampleItem>(
-                                  initialValue: selectedMenu,
-                                  // Callback that sets the selected popup menu item.
-                                  onSelected: (SampleItem item) {
-                                    setState(() {
-                                      selectedMenu = item;
-                                    });
-                                  },
-                                  itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
-                                    PopupMenuItem<SampleItem>(
-                                      onTap: () {
-                                        Get.to(ReservationDetailView(billet: reservationController.reservationTicketModelList[index].billet));
-                                      },
-                                      value: SampleItem.itemOne,
-                                      child: ListTile(
-                                        leading: FaIcon(FontAwesomeIcons.circleInfo ,color: Color(0xfff192a56), size: 20,),
-                                        title: Text("Voir plus", style: GoogleFonts.ubuntu(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400
-                                        )),
-                                      ),
-                                    ),
-                                    PopupMenuItem<SampleItem>(
-                                      value: SampleItem.itemTwo,
-                                      child: ListTile(
-                                        onTap: () {
-                                          reservationController.removeBook(reservationController.reservationTicketModelList[index]);
-                                          Get.snackbar("Suppression effectuée",  "La réservation a bien été supprimé", backgroundColor: Colors.green , colorText: Colors.white);
-                                        },
-                                        leading: FaIcon(FontAwesomeIcons.trash , color: Colors.red, size:20),
-                                        title: Text("Supprimer" , style: GoogleFonts.ubuntu(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400
-                                        )),
-                                      ),
-                                    ),
-                                    PopupMenuItem<SampleItem>(
-                                      value: SampleItem.itemThree,
-                                      child: ListTile(
-                                        onTap: () {
-                                          Get.to(PaymentView(billet: reservationController.reservationTicketModelList[index].billet));
-                                        },
-                                        leading: FaIcon(FontAwesomeIcons.moneyBillTransfer , color: Colors.green, size: 20,),
-                                        title: Text("Payer" , style: GoogleFonts.ubuntu(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400
-                                        )),
-                                      ),
-                                    ),
-                                  ],
+                                IconButton(
+                                    onPressed:() => openBottomSheet(context, reservationController.reservationTicketModelList[index]),
+                                    icon: FaIcon(FontAwesomeIcons.ellipsisVertical)
                                 ),
                               ],
                             ),
@@ -201,15 +142,30 @@ class _ReservationListTabState extends State<ReservationListTab> {
                         ),
                         SizedBox(height: 10,),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Status: " , style: GoogleFonts.roboto(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold
+                            ),),
+                            Text('En cours de réservation' , style: GoogleFonts.roboto(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xfff130f40)
+                            ),),
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Chip(
-                              side: BorderSide.none,
-                              backgroundColor: Colors.orangeAccent,
-                              label: Text('En cours de réservation' , style: GoogleFonts.ubuntu(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white
-                              ),),
+                            TextButton.icon(
+                                onPressed: () => Get.to(PaymentView(billet: reservationController.reservationTicketModelList[index].billet)),
+                                icon: FaIcon(FontAwesomeIcons.caretLeft , color: Colors.teal.shade800,),
+                                label: Text("Payer" , style: GoogleFonts.ubuntu(
+                                  color: Colors.teal.shade800,
+                                  fontWeight: FontWeight.bold
+                                ),)
                             )
                           ],
                         ),
@@ -248,68 +204,9 @@ class _ReservationListTabState extends State<ReservationListTab> {
                         ),),
                         Row(
                           children: [
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.teal.shade800,
-                                ),
-                                onPressed: () => Get.to(PaymentView(billet: reservationController.booksForPersonList[index].billet)),
-                                child: Text('Payer' , style: GoogleFonts.ubuntu(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white
-                                ),),
-                              ),
-                            ),
-                            PopupMenuButton<SampleItem>(
-                              initialValue: selectedMenu,
-                              // Callback that sets the selected popup menu item.
-                              onSelected: (SampleItem item) {
-                                setState(() {
-                                  selectedMenu = item;
-                                });
-                              },
-                              itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
-                                PopupMenuItem<SampleItem>(
-                                  onTap: () {
-                                    Get.to(ReservationDetailView(billet: reservationController.booksForPersonList[index].billet));
-                                  },
-                                  value: SampleItem.itemOne,
-                                  child: ListTile(
-                                    leading: FaIcon(FontAwesomeIcons.circleInfo ,color: Color(0xfff192a56), size: 20,),
-                                    title: Text("Voir plus", style: GoogleFonts.ubuntu(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400
-                                    )),
-                                  ),
-                                ),
-                                PopupMenuItem<SampleItem>(
-                                  value: SampleItem.itemTwo,
-                                  child: ListTile(
-                                    onTap: () {
-                                      reservationController.removeBookForPerson(reservationController.booksForPersonList[index]);
-                                      Get.snackbar("Suppression effectuée",  "La réservation a bien été supprimé", backgroundColor: Colors.green , colorText: Colors.white);
-                                    },
-                                    leading: FaIcon(FontAwesomeIcons.trash , color: Colors.red, size:20),
-                                    title: Text("Supprimer" , style: GoogleFonts.ubuntu(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400
-                                    )),
-                                  ),
-                                ),
-                                PopupMenuItem<SampleItem>(
-                                  value: SampleItem.itemThree,
-                                  child: ListTile(
-                                    onTap: () {
-                                      Get.to(PaymentView(billet: reservationController.booksForPersonList[index].billet));
-                                    },
-                                    leading: FaIcon(FontAwesomeIcons.moneyBillTransfer , color: Colors.green, size: 20,),
-                                    title: Text("Payer" , style: GoogleFonts.ubuntu(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400
-                                    )),
-                                  ),
-                                ),
-                              ],
+                            IconButton(
+                                onPressed:() => openBottomSheet(context, reservationController.booksForPersonList[index]),
+                                icon: FaIcon(FontAwesomeIcons.ellipsisVertical)
                             ),
                           ],
                         ),
@@ -319,12 +216,10 @@ class _ReservationListTabState extends State<ReservationListTab> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-
                         Text(DateTime.now().toString(),style: GoogleFonts.ubuntu(
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
                             color: Color(0xfff130f40)
-
                         ),)
                       ],
                     ),
@@ -342,7 +237,6 @@ class _ReservationListTabState extends State<ReservationListTab> {
                               fontSize: 15,
                               fontWeight: FontWeight.bold, color: Color(0xfff130f40)
                           ),),
-
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -425,14 +319,30 @@ class _ReservationListTabState extends State<ReservationListTab> {
                     ),
                     SizedBox(height: 10,),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Status: " , style: GoogleFonts.roboto(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold
+                        ),),
+                        Text('En cours de réservation' , style: GoogleFonts.roboto(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xfff130f40)
+                        ),),
+                      ],
+                    ),
+                    SizedBox(height: 10,),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Chip(
-                          backgroundColor: Colors.orangeAccent,
-                          label: Text('En cours de réservation' , style: GoogleFonts.ubuntu(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white
-                          ),),
+                        TextButton.icon(
+                            onPressed: () => Get.to(PaymentView(billet: reservationController.booksForPersonList[index].billet)),
+                            icon: FaIcon(FontAwesomeIcons.caretLeft , color: Colors.teal.shade800,),
+                            label: Text("Payer" , style: GoogleFonts.ubuntu(
+                                color: Colors.teal.shade800,
+                                fontWeight: FontWeight.bold
+                            ),)
                         )
                       ],
                     ),
@@ -519,6 +429,49 @@ class _ReservationListTabState extends State<ReservationListTab> {
       ),
     );
   }
+
+  void openBottomSheet(BuildContext context , ReservationBillet reservationBillet){
+    final more = ListTile(
+      onTap: () => Get.to(ReservationDetailView(billet: reservationBillet.billet)),
+      leading: FaIcon(FontAwesomeIcons.circleInfo),
+      title: Text("Voir plus"),
+    );
+
+    final delete = ListTile(
+      onTap: () {
+        if(reservationBillet.isForOtherPerson){
+          reservationController.removeBookForPerson(reservationBillet);
+          Get.snackbar("Suppression effectuée",  "La réservation a bien été supprimé", backgroundColor: Colors.green , colorText: Colors.white);
+        }else{
+          reservationController.removeBook(reservationBillet);
+          Get.snackbar("Suppression effectuée",  "La réservation a bien été supprimé", backgroundColor: Colors.green , colorText: Colors.white);
+        }
+      },
+      leading: FaIcon(FontAwesomeIcons.trash),
+      title: Text("Supprimer"),
+    );
+
+    Get.bottomSheet(
+      Container(
+        height: MediaQuery.of(context).size.height/3,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            )
+        ),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.only(top: 30),
+          child: Column(
+            children: [
+              more,
+              delete,
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
-enum SampleItem { itemOne, itemTwo, itemThree }

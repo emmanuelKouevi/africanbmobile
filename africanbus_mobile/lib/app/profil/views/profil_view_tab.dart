@@ -1,4 +1,5 @@
 import 'package:africanbus_mobile/app/profil/views/change_password_view.dart';
+import 'package:africanbus_mobile/app/profil/views/edit_profil_user_view.dart';
 import 'package:africanbus_mobile/app/profil/views/reset_password_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,9 +12,7 @@ class ProfilView extends GetView{
   Widget build(BuildContext context){
 
     final spacing = SizedBox(height: 15,);
-
-    final hr = SizedBox(height: 5,);
-
+    
     final divider = Divider();
 
     final reservationSection = Row(
@@ -79,6 +78,7 @@ class ProfilView extends GetView{
     );
 
     final modifierInfosPersonnel = ListTile(
+      onTap: () => Get.to(EditProfilUserView()),
       leading: FaIcon(FontAwesomeIcons.pencil),
       title: Text("Informations Personnelles" , style: GoogleFonts.ubuntu(
         color: Colors.black,

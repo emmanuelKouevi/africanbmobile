@@ -1,9 +1,10 @@
+import 'package:africanbus_mobile/custom_widgets/simpleTextField.dart';
 import 'package:africanbus_mobile/services/service_web.dart';
-import 'package:africanbus_mobile/views/dialog/widgets/cities/cityItem.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../app/data/models/city.dart';
+import 'cityItem.dart';
 
 class GareDepartDialog extends StatefulWidget {
   final TextEditingController villeGareDepart ;
@@ -16,7 +17,7 @@ class GareDepartDialog extends StatefulWidget {
 class _GareDepartDialogState extends State<GareDepartDialog> {
 
   List<City>cities = [];
-  List<City>foundCities = [];
+  List<City>citiesFound = [];
   TextEditingController villeDepart = TextEditingController();
 
   void initializeCities() async{
@@ -45,20 +46,15 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
   void _runFilter(String enteredKeyword) {
     List<City> results = [];
     if (enteredKeyword.isEmpty) {
-      // if the search field is empty or only contains white-space, we'll display all users
-      //results = cities;
       results = villeList ;
     } else {
-      /*results = cities.where((city) =>
-          city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
-          .toList();*/
       results = villeList.where((city) =>
           city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
     }
     // Refresh the UI
     setState(() {
-      foundCities = results;
+      citiesFound = results;
     });
   }
 
@@ -81,6 +77,7 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
       ),
     );
 
+
     final departureCity = Container(
       child: TextField(
         style: TextStyle( fontSize: 17 , fontWeight: FontWeight.bold , color: Colors.black.withOpacity(0.7) ),
@@ -96,16 +93,8 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
                   width: 2
                 )
             ),
-            focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                    color: Colors.teal.shade900,
-                    width: 2
-                )
-            ),
             labelText: 'Départ',
-            labelStyle: TextStyle(
-                color: Colors.teal
-            )
+            labelStyle: TextStyle(color: Colors.teal)
         ),
       ),
     );
@@ -124,15 +113,14 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
       ),
     );
 
-    final cityList = foundCities.isNotEmpty ? Container(
+    final cityList = citiesFound.isNotEmpty ? Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Container(
-          child: ListView.builder(
-            itemCount: foundCities.length,
-            itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: widget.villeGareDepart,),
-          ),
-        )
+            child: ListView.builder(
+              itemCount: citiesFound.length,
+              itemBuilder: (context, index) => CityItem(city: citiesFound[index] , textEditingController: widget.villeGareDepart,),
+            ),)
     ):Container(
         margin: EdgeInsets.only(top: 60),
         child: Center(

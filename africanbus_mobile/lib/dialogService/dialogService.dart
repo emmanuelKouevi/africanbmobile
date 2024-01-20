@@ -1,8 +1,6 @@
-import 'package:africanbus_mobile/views/dialog/gareDestinationDialog.dart';
-import 'package:africanbus_mobile/views/dialog/passagerTypeDialog.dart';
-import 'package:africanbus_mobile/views/dialog/passagers.dart';
-import 'package:africanbus_mobile/views/dialog/gareDepartDialog.dart';
 import 'package:flutter/material.dart';
+import '../presentations/dialog/gare_depart_dialog.dart';
+import '../presentations/dialog/gare_destination_dialog.dart';
 
 class DialogService {
 
@@ -29,13 +27,5 @@ class DialogService {
     );
   }
 
-  Future<void> showPassagersSectionDialog(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return PassagersSection();
-      },
-    );
-  }
 
 }

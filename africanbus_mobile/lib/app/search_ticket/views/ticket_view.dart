@@ -1,5 +1,5 @@
 import 'package:africanbus_mobile/app/data/models/ticket.dart';
-import 'package:africanbus_mobile/views/searchTicket/widgets/ticketDetailItem.dart';
+import 'package:africanbus_mobile/app/search_ticket/views/ticket_detail_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +9,7 @@ class TicketView extends StatelessWidget {
   final Billet billet;
   @override
   Widget build(BuildContext context) {
-    
+
     final title = Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -23,7 +23,7 @@ class TicketView extends StatelessWidget {
         ),),
       ],
     );
-    
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

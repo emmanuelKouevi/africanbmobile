@@ -212,6 +212,7 @@ class _RegisterViewState extends State<RegisterView> {
         ],
       ),
     );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
