@@ -98,6 +98,11 @@ class _ReservationTabState extends State<ReservationTab> {
                   "Erreur", "Veuillez sélectionner une date !!",
                   colorText: Colors.white , backgroundColor: Color(0xfffc0392b)
               );
+            }else if(depart.text == destination.text){
+              Get.snackbar(
+                  "Erreur", "La ville de départ ne peut pas être la ville de destination !!",
+                  colorText: Colors.white , backgroundColor: Color(0xfffc0392b)
+              );
             }else{
               Get.to(SearchTicket());
             }

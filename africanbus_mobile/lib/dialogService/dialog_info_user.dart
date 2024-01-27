@@ -40,7 +40,7 @@ class _DialogUserInfoState extends State<DialogUserInfo> {
         controller: surnameOtherPerson,
         icon: Icons.person_add,
         key: Key("nameField"),
-        labelText: "Prenom",
+        labelText: "Prénoms",
         isOutlined: false,
         enabled: true,
       ),

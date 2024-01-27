@@ -12,7 +12,7 @@ import '../app/data/models/ticket.dart';
 /**
   * Date : 10-05-2023
   * Author : Kouevi Ayite Emmanuel Herve
-  * Description: Cette classe regroupe la liste des services web
+  * Description: Cette classe regroupe la liste des services webs
  */
 
 class ServiceWebApi{

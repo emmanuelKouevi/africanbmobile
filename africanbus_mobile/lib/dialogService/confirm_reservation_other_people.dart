@@ -86,7 +86,7 @@ class _ConfirmReservationState extends State<ConfirmReservation> {
             );
             reservationController.toBookPerson(reservationBillet);
             Get.snackbar("Reservation Reussie", "Votre programme a été enregistré avec succes" , backgroundColor: Colors.green , colorText: Colors.white);
-            Get.to(ReservationListTab());
+            Get.offAll(ReservationListTab());
           },
         ),
       ],
