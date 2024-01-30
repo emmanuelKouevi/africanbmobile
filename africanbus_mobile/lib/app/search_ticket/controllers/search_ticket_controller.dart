@@ -11,45 +11,28 @@ class SearchTicketController extends GetxController{
   RxList<ReservationBillet> booksForPersonList = <ReservationBillet>[].obs;
   // ADD A TRAVELLER IN LIST OF TRAVELLERS
   void selectTicket(Billet billet) {
-    if (ticketsSelectedList != null) {
-      ticketsSelectedList.add(billet);
+    ticketsSelectedList.add(billet);
     }
-  }
 
   void toBookPerson(ReservationBillet reservationBillet){
-    if (booksForPersonList != null) {
-      booksForPersonList.add(reservationBillet);
-      update();
+    booksForPersonList.add(reservationBillet);
+    update();
     }
-  }
 
   void toBook(ReservationBillet reservationBillet){
-    if (reservationTicketModelList != null) {
-      reservationTicketModelList.add(reservationBillet);
-      update();
+    reservationTicketModelList.add(reservationBillet);
+    update();
     }
-  }
-
-  /*void addReservation(ReservationBillet reservationBillet) {
-    if (reservationTicketModelList != null) {
-      reservationTicketModelList.add(reservationBillet);
-      update();
-    }
-  }*/
 
   void removeBookForPerson(ReservationBillet reservationBillet){
-    if (booksForPersonList != null) {
-      booksForPersonList.remove(reservationBillet);
-      update();
+    booksForPersonList.remove(reservationBillet);
+    update();
     }
-  }
 
   void removeBook(ReservationBillet reservationBillet) {
-    if (reservationTicketModelList != null) {
-      reservationTicketModelList.remove(reservationBillet);
-      update();
+    reservationTicketModelList.remove(reservationBillet);
+    update();
     }
-  }
 
   bool isModeProcessPayment = false;
   final _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';

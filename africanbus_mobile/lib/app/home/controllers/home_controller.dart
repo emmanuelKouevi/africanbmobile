@@ -15,12 +15,12 @@ class HomeController extends GetxController{
   // ADD A TRAVELLER IN LIST OF TRAVELLERS
   void addVoyageur(TypePassager typePassager) {
     categoriesVoyageurList.add(typePassager);
-    }
+  }
 
   // REMOVE A TRAVELLER FROM LIST OF TRAVELLERS SELECTED
   void removeVoyageur(TypePassager typePassager) {
     categoriesVoyageurList.remove(typePassager);
-    }
+  }
 
   //FUNCTION TO SELECTED DATE
   void selectedDate(BuildContext context , String day) async {

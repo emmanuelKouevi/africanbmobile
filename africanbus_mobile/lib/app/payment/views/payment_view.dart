@@ -2,7 +2,6 @@ import 'package:africanbus_mobile/app/data/models/ticket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_any_logo/flutter_logo.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../custom_widgets/custom_dot.dart';
 
 class PaymentView extends StatefulWidget {
@@ -169,7 +168,7 @@ class _PaymentViewState extends State<PaymentView> {
       ],
     );
 
-    final title = Text("Paiement" , style: GoogleFonts.ubuntu(
+    final title = Text("PROCÉDER AU PAIEMENT".toUpperCase() , style: GoogleFonts.ubuntu(
       fontWeight: FontWeight.bold,
       fontSize: 17
     ),);
@@ -190,9 +189,9 @@ class _PaymentViewState extends State<PaymentView> {
           backgroundColor: Colors.teal.shade800
         ),
         onPressed: () => null,
-        child: Text("Paiement" , style: GoogleFonts.ubuntu(
+        child: Text("PAYER" , style: GoogleFonts.ubuntu(
           fontWeight: FontWeight.bold,
-          fontSize: 17,
+          fontSize: 15,
           color: Colors.white
         ),),
       ),
@@ -204,7 +203,7 @@ class _PaymentViewState extends State<PaymentView> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 15 , left: 10 , right: 10),
+        padding: EdgeInsets.only(left: 10 , right: 10),
         child: Column(
           children: [
             compagnieTransportDetail,

@@ -2,11 +2,9 @@ import 'package:africanbus_mobile/app/data/models/reservationBillet.dart';
 import 'package:africanbus_mobile/global_config/globalConst.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
 import '../app/data/models/categorieVoyageur.dart';
 import '../app/data/models/city.dart';
 import '../app/data/models/ticket.dart';
-
 
 
 /**

@@ -1,4 +1,5 @@
 import 'package:africanbus_mobile/app/forgot_password/views/forget_password_view.dart';
+import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:africanbus_mobile/app/home/views/home_view.dart';
 import 'package:africanbus_mobile/app/register/views/register_view.dart';
 import 'package:flutter/gestures.dart';
@@ -16,6 +17,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   TextEditingController id = new TextEditingController();
   TextEditingController code = new TextEditingController();
+  final homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
 

@@ -34,25 +34,15 @@ class _SelfReservationDialogState extends State<SelfReservationDialog> {
             children: [
               TextSpan(
                   text: "Vous êtes sur de vouloir réserver le billet ",
-                  style: GoogleFonts.ubuntu(
-                      fontSize: 17,
-                      color: Colors.black
-                  )
+                  style: GoogleFonts.ubuntu(fontSize: 17, color: Colors.black)
               ),
               TextSpan(
                   text: "${widget.billet.depart} - ${widget.billet.destination} ",
-                  style: GoogleFonts.ubuntu(
-                      fontSize: 17,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
-                  )
+                  style: GoogleFonts.ubuntu( fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold)
               ),
               TextSpan(
-                text: "pour Vous même. ",
-                style: GoogleFonts.ubuntu(
-                  fontSize: 17,
-                  color: Colors.black,
-                ),
+                text: "pour Vous. ",
+                style: GoogleFonts.ubuntu( fontSize: 17, color: Colors.black,),
               ),
             ]
         ),
@@ -78,7 +68,7 @@ class _SelfReservationDialogState extends State<SelfReservationDialog> {
             );
             reservationController.toBook(reservationBillet);
             Get.snackbar("Reservation Reussie", "Votre programme a été enregistré avec succes" , backgroundColor: Colors.green , colorText: Colors.white);
-            Get.offAll(ReservationListTab());
+            Get.off(ReservationListTab());
           },
         ),
       ],
