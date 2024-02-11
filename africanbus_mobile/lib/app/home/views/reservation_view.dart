@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import '../../search_ticket/views/search_ticket.dart';
+import '../controllers/home_controller.dart';
 
 
 class ReservationTab extends StatefulWidget {
@@ -25,12 +26,15 @@ class _ReservationTabState extends State<ReservationTab> {
   TextEditingController destination = TextEditingController();
 
   TextEditingController dateAllerInput = TextEditingController();
-  TextEditingController dateRetourInput = TextEditingController();
-
   TextEditingController customerController = TextEditingController();
+
+  final homeController = Get.put(HomeController() , permanent: true);
 
   @override
   void initState(){
+    depart.text = homeController.gareDepart.value;
+    destination.text = homeController.gareDestination.value;
+    dateAllerInput.text = homeController.dateDepart.value;
     super.initState();
   }
 
@@ -104,6 +108,9 @@ class _ReservationTabState extends State<ReservationTab> {
                   colorText: Colors.white , backgroundColor: Color(0xfffc0392b)
               );
             }else{
+              homeController.gareDepart.value = depart.text;
+              homeController.gareDestination.value = destination.text;
+              homeController.dateDepart.value = dateAllerInput.text;
               Get.to(SearchTicket());
             }
           },

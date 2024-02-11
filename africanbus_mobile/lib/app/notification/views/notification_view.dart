@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class NotificationView extends StatefulWidget {
   const NotificationView({Key? key}): super(key: key);
@@ -22,12 +22,18 @@ class _NotificationViewState extends State<NotificationView> {
         ),),
       ],
     );
+
+    final noNotification = LottieBuilder.asset("assets/lottie/no_notification.json");
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 20 , left: 10 , right: 10),
         child: Column(
           children: [
-            title
+            title,
+            Center(
+              child: noNotification,
+            )
           ],
         ),
       ),

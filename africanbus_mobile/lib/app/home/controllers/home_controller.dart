@@ -8,6 +8,10 @@ import '../../data/models/ticket.dart';
 
 class HomeController extends GetxController{
 
+  RxString gareDepart = "".obs;
+  RxString gareDestination = "".obs;
+  RxString dateDepart = "".obs;
+
   var foundCities = List<City>.empty(growable: true).obs;
   RxList<TypePassager> categoriesVoyageurList = <TypePassager>[].obs;
   RxList<TypePassager> categorieTypeSelectedList = <TypePassager>[].obs;
