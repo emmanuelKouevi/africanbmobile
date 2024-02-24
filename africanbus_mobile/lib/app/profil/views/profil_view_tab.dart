@@ -1,3 +1,5 @@
+import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
+import 'package:africanbus_mobile/app/login/views/login_view.dart';
 import 'package:africanbus_mobile/app/profil/views/change_password_view.dart';
 import 'package:africanbus_mobile/app/profil/views/edit_profil_user_view.dart';
 import 'package:africanbus_mobile/app/profil/views/reset_password_view.dart';
@@ -10,6 +12,8 @@ class ProfilView extends GetView{
   const ProfilView ({Key? key}): super(key: key);
 
   Widget build(BuildContext context){
+
+    final homeController = Get.put(HomeController());
 
     final spacing = SizedBox(height: 15,);
     
@@ -191,7 +195,7 @@ class ProfilView extends GetView{
         automaticallyImplyLeading: false,
       ),
       backgroundColor: Colors.white70,
-      body: SingleChildScrollView(
+      body: homeController.currentUser.value!.id.isNotEmpty ? SingleChildScrollView(
         padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [
@@ -218,6 +222,24 @@ class ProfilView extends GetView{
             divider,
             logoutSection,
             logout
+          ],
+        ),
+      ): Center(
+        child: Column(
+          children: [
+            Text("Aucun compte utilisateur détecté", style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+              fontWeight: FontWeight.w700
+            ),textAlign: TextAlign.center,),
+            SizedBox(height: 5,),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+                onPressed: () => Get.to(LoginView()),
+                child: Text("Connectez-vous", style: TextStyle(
+                  color: Colors.white,
+                ),)
+            ),
           ],
         ),
       ),

@@ -5,12 +5,15 @@ import '../../data/models/categorieVoyageur.dart';
 import '../../data/models/city.dart';
 import '../../data/models/reservationBillet.dart';
 import '../../data/models/ticket.dart';
+import '../../data/models/user.dart';
 
 class HomeController extends GetxController{
 
   RxString gareDepart = "".obs;
   RxString gareDestination = "".obs;
   RxString dateDepart = "".obs;
+
+  Rxn<User> currentUser = Rxn<User>();
 
   var foundCities = List<City>.empty(growable: true).obs;
   RxList<TypePassager> categoriesVoyageurList = <TypePassager>[].obs;

@@ -1,4 +1,5 @@
 import 'package:africanbus_mobile/app/data/models/ticket.dart';
+import 'package:africanbus_mobile/app/data/services/paydunya_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_any_logo/flutter_logo.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -188,7 +189,7 @@ class _PaymentViewState extends State<PaymentView> {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.teal.shade800
         ),
-        onPressed: () => null,
+        onPressed: () => PaydunyaPayment().payment(),
         child: Text("PAYER" , style: GoogleFonts.ubuntu(
           fontWeight: FontWeight.bold,
           fontSize: 15,
