@@ -191,11 +191,11 @@ class ProfilView extends GetView{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: title,
+        title: homeController.currentUser.value != null ? title : Text(""),
         automaticallyImplyLeading: false,
       ),
       backgroundColor: Colors.white70,
-      body: homeController.currentUser.value!.id.isNotEmpty ? SingleChildScrollView(
+      body: homeController.currentUser.value != null ? SingleChildScrollView(
         padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [
@@ -227,6 +227,7 @@ class ProfilView extends GetView{
       ): Center(
         child: Column(
           children: [
+            const SizedBox(height: 200,),
             Text("Aucun compte utilisateur détecté", style: TextStyle(
               color: Colors.black,
               fontSize: 15,
@@ -234,7 +235,7 @@ class ProfilView extends GetView{
             ),textAlign: TextAlign.center,),
             SizedBox(height: 5,),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal.shade800),
                 onPressed: () => Get.to(LoginView()),
                 child: Text("Connectez-vous", style: TextStyle(
                   color: Colors.white,

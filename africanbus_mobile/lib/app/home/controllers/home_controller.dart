@@ -13,7 +13,7 @@ class HomeController extends GetxController{
   RxString gareDestination = "".obs;
   RxString dateDepart = "".obs;
 
-  Rxn<User> currentUser = Rxn<User>();
+  Rxn<User?> currentUser = Rxn<User?>();
 
   var foundCities = List<City>.empty(growable: true).obs;
   RxList<TypePassager> categoriesVoyageurList = <TypePassager>[].obs;
