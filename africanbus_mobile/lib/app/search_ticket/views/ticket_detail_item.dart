@@ -184,11 +184,11 @@ class _TicketDetailItemState extends State<TicketDetailItem> {
               backgroundColor: Colors.teal.shade900
           ),
           onPressed: () {
-            if(homeController.currentUser.value != null){
+            //if(homeController.currentUser.value != null){
               Get.dialog(DialogReservation(ticket: widget.billet) , transitionDuration: Duration(milliseconds: 800));
-            }else{
-             Get.dialog(WarningNotAccount());
-            }
+            //}else{
+             //Get.dialog(WarningNotAccount());
+            //}
           },
           child: Text('PROCEDER À LA RESERVATION'.toUpperCase(), style: GoogleFonts.ubuntu(
               fontSize: 15,

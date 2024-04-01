@@ -42,6 +42,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             return "Ce champs est requis";
           }
         }
+        return null;
       },
       maxLines: widget.isTexterea == true ? 3 : 1,
       style: TextStyle(

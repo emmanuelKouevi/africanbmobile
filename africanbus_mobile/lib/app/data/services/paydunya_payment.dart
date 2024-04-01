@@ -1,14 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:paydunya/paydunya.dart';
 
 class PaydunyaPayment{
 
   void payment() async {
-    String masterKey = "QXeVLEG5-tSBV-HdZn-UN1R-LF7SsrI7Wiob";
-    String privateKey = "test_private_Zwo1cbfXGP1SelkZ0JFuvQ3ByVm";
-    String token = "hyEXXyOeFan9QDJnvgxn";
+    String masterKey = "iYSYah2u-o3J1-4BDh-h0FJ-s3esvlGl6X43";
+    String privateKey = "test_private_Y9GkbnlGZmfeDibAL43GceLXMgF";
+    String token = "ncljx0bAuO1FR3l17D5g";
 
     // Les clés d'APIs et d'environnements
     final keysApi = KeysApi(
@@ -37,7 +35,7 @@ class PaydunyaPayment{
     final payerInfo = PayerInfo(
         fullName: "Kouevi Emmanuel Herve",
         email:"emmanuelhervekouevi@gmail.com",
-        phone: "+2250789728501",
+        phone: "0789728501",
         otp: 000000,
         paymentToken: checkoutInvoice.token
     );
@@ -45,8 +43,8 @@ class PaydunyaPayment{
 
     // Effectuez le paiement avec une méthode de paiement
     final response = await paydunya.pay(
-      payerInfo: payerInfo,
-      paymentMethod: PaymentMethod.orangeMoneySenegal,
+      payerInfo: PayerInfo(fullName: "Kouevi Emmanuel Herve", phone: "0789728501", paymentToken: checkoutInvoice.token , otp: 000000),
+      paymentMethod: PaymentMethod.orangeMoneySenegal
     );
 
     // Affichez l'URL de paiement de Wave

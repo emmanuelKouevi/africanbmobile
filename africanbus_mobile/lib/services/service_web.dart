@@ -17,7 +17,7 @@ class ServiceWebApi{
 
   // RECUPERER LA LISTE DES VILLES DEPUIS UN SERVICE WEB
   Future <List<City>>getTravelCities() async {
-    final url = GlobalConst.remoteApiUrl +"villes.json";
+    final url = GlobalConst.remoteApiDev +"villes.json";
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       List<City> cities = [];
@@ -33,7 +33,7 @@ class ServiceWebApi{
 
   // RECUPERER LA LISTE DES CATEGORIE VOYAGEUR DEPUIS UN SERVICE WEB
   Future <List<TypePassager>>getCategoryTravellerMocking() async{
-    final url = GlobalConst.remoteApiUrl +"typePassagers.json";
+    final url = GlobalConst.remoteApiDev +"typePassagers.json";
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       List<TypePassager> typePassagers = [];
@@ -48,7 +48,7 @@ class ServiceWebApi{
 
   // RECUPERER LA LISTE DES OFFRES DE VOYAGES DISPONIBLES DEPUIS UN SERVICE WEB
   Future <List<Billet>>getOffersTravels() async{
-    final url = GlobalConst.remoteApiUrl +"billet.json";
+    final url = GlobalConst.remoteApiDev +"billet.json";
     final response = await http.get(Uri.parse(url));
     print(response);
     if (response.statusCode == 200) {
@@ -66,7 +66,7 @@ class ServiceWebApi{
   // OBTENIR LA LISTE DES OFFRES DE VOYAGES PAR CRITERES
   //TODO: Insérer le bon modele de reponse pour cet service web.
   Future<void>obtenirOffreVoyageParCritere(String villeDepart,String villeDestination,String dateDepart ) async{
-    final url = GlobalConst.remoteApiUrl +"offreVoyages/getOffreVoyageByCriteria";
+    final url = GlobalConst.remoteApiDev +"offreVoyages/getOffreVoyageByCriteria";
     final response = await http.post(Uri.parse(url),
       body: jsonEncode({
         'villeDepart':villeDepart,
@@ -87,7 +87,7 @@ class ServiceWebApi{
   // RESERVATION UN BILLET DE VOYAGE
   //TODO: Insérer le bon modele de reponse pour cet service web.
   Future<void>reserverBilletVoyage(ReservationBillet reservationBillet) async{
-    final url = GlobalConst.remoteApiUrl +"reservationBilletVoyages";
+    final url = GlobalConst.remoteApiDev +"reservationBilletVoyages";
     final response = await http.post(Uri.parse(url),
         body: jsonEncode(reservationBillet)
     );
@@ -103,7 +103,7 @@ class ServiceWebApi{
   // OBTENIR LA LISTE DES HISTORIQUES PAR IDENTIFIANT UTILISATEUR
   //TODO: Insérer le bon modele de reponse pour cet service web.
   Future<void>obtenirHistoriqueParUtilisateur(String userId) async{
-    final url = GlobalConst.remoteApiUrl +"historiquePaiements/getHistoriquePaiementByIdentifiantUnique";
+    final url = GlobalConst.remoteApiDev +"historiquePaiements/getHistoriquePaiementByIdentifiantUnique";
     final response = await http.post(Uri.parse(url),
         body: jsonEncode({
           "data":{

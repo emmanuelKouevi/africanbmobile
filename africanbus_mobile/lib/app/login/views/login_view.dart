@@ -1,6 +1,7 @@
 import 'package:africanbus_mobile/app/forgot_password/views/forget_password_view.dart';
 import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:africanbus_mobile/app/home/views/home_view.dart';
+import 'package:africanbus_mobile/app/login/services/login_service.dart';
 import 'package:africanbus_mobile/app/register/views/register_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +107,7 @@ class _LoginViewState extends State<LoginView> {
             backgroundColor: Colors.transparent.withOpacity(0.0),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
           ),
-          onPressed: () => print('Bonjour'),
+          onPressed: () async => await AuthentificationService().toLogin(id.text, code.text),
           child: Text("Connexion".toUpperCase(), style: TextStyle(
               color: Colors.white
           ),)

@@ -1,6 +1,8 @@
+import 'package:africanbus_mobile/app/login/services/login_service.dart';
 import 'package:africanbus_mobile/app/login/views/login_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/countries.dart';
@@ -18,6 +20,7 @@ class _RegisterViewState extends State<RegisterView> {
   TextEditingController nom = new TextEditingController();
   TextEditingController prenom = new TextEditingController();
   TextEditingController email = new TextEditingController();
+  TextEditingController username = new TextEditingController();
   TextEditingController tel = new TextEditingController();
   TextEditingController password = new TextEditingController();
   TextEditingController confirmPassword = new TextEditingController();
@@ -123,7 +126,7 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
 
-    final telephone = IntlPhoneField(
+    /*final telephone = IntlPhoneField(
       decoration: const InputDecoration(
           labelText: 'Numéro de téléphone',
           labelStyle: TextStyle(
@@ -146,7 +149,21 @@ class _RegisterViewState extends State<RegisterView> {
       invalidNumberMessage: "Mauvais format du numéro",
       countries: countries,
       // ignore: deprecated_member_use
+    );*/
+
+    final pseudo = Container(
+      child: CustomTextFormField(
+          labelText: "Pseudo",
+          key: Key("pseudoField"),
+          icon: Icons.person_add_alt_outlined,
+          controller: username,
+          enabled: true,
+          isEmailField: false,
+          isOutlined : false
+      ),
     );
+
+
 
     final inscriptionBtn = Container(
       width: MediaQuery.of(context).size.width,
@@ -156,12 +173,12 @@ class _RegisterViewState extends State<RegisterView> {
             backgroundColor: Colors.teal.shade900,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
-          onPressed: () {
+          onPressed: () async {
             if(confirmPassword.text != password.text){
               Get.snackbar("Erreur", "Le code de confirmation est différent du mot de passe" , backgroundColor: Colors.red , colorText: Colors.white);
             }
             if(_formKey.currentState!.validate()){
-              print("Bonjour");
+              await AuthentificationService().toRegister(nom.text, prenom.text, username.text, email.text);
             }
           },
           child: Text("Ouvrir un compte".toUpperCase(), style: TextStyle(
@@ -204,7 +221,8 @@ class _RegisterViewState extends State<RegisterView> {
           hr,
           mail,
           hr,
-          telephone,
+          pseudo,
+          //telephone,
           hr,
           motDePasse,
           hr,
