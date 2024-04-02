@@ -7,31 +7,33 @@ import 'package:http/http.dart' as http;
 class AuthentificationService{
 
   // CONNEXION UTILISATEUR
-  Future<bool>toLogin(String pseudo , String password)async{
-    bool isLogged = false;
-
-    final url = GlobalConst.remoteApiProd +"users/login";
-    final body = {
+  Future<dynamic>toLogin(String pseudo , String password)async{
+    dynamic user = "";
+    Get.dialog(Center(child: CircularProgressIndicator(color: Colors.teal)));
+    final url = GlobalConst.remoteApiProd +"/users/login";
+    final body = jsonEncode({
       "data" : {
         "login" : pseudo, "password" : password,
       }
-    };
+    });
     final response = await http.post(Uri.parse(url) , body: body , headers: GlobalConst.requestHeaders);
     try{
       if(response.statusCode == 200){
         final result = jsonDecode(response.body);
         if(result['status']['code'] == '800'){
-          isLogged = true;
+          user = result['status']['item'];
         }else{
-          isLogged = false;
-          Get.snackbar("Erreur" , result['status']['message'], backgroundColor: Colors.red , colorText: Colors.white);
+          Get.back();
+          Get.snackbar("Erreur" , "Identifant ou mot de passe incorrect", backgroundColor: Colors.red , colorText: Colors.white);
+          user = "";
         }
       }
     }catch(e){
+      Get.back();
       Get.snackbar("Erreur" , e.toString() , backgroundColor: Colors.red , colorText: Colors.white);
-      isLogged = false ;
+      user = "";
     }
-    return isLogged;
+    return user;
   }
 
   // OUVERTURE D'UN COMPTE UTILISATEUR
@@ -62,6 +64,7 @@ class AuthentificationService{
       }
       registeringMode = false;
     }catch(e){
+      Get.back();
       Get.snackbar("Erreur" , e.toString() , backgroundColor: Colors.red , colorText: Colors.white);
       registeringMode = false;
     }

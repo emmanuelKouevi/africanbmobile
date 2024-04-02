@@ -95,9 +95,7 @@ class _LoginViewState extends State<LoginView> {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
               colors: [
-                Color(0xff273c75),
-                Colors.teal.shade700,
-                Colors.teal
+                Color(0xff273c75), Colors.teal.shade700,Colors.teal
               ]
           )
       ),
@@ -107,7 +105,12 @@ class _LoginViewState extends State<LoginView> {
             backgroundColor: Colors.transparent.withOpacity(0.0),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
           ),
-          onPressed: () async => await AuthentificationService().toLogin(id.text, code.text),
+          onPressed: () async{
+            final success = await AuthentificationService().toLogin(id.text, code.text);
+            if(success != ""){
+              Get.to(HomeView());
+            }
+          },
           child: Text("Connexion".toUpperCase(), style: TextStyle(
               color: Colors.white
           ),)

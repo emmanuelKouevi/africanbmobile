@@ -25,15 +25,17 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
   }
 
   List<City>villeList = [
-    City(id: 1  , designation: "Lomé" , pays: "Togo"),
+    City(id: 1  , designation: "Man" , pays: "Côte d'Ivoire"),
     City(id: 2  , designation: "Abidjan" , pays: "Côte d'Ivoire"),
     City(id: 3  , designation: "Korhogo" , pays: "Côte d'Ivoire"),
-    City(id: 4  , designation: "Abudja" , pays: "Nigeria"),
-    City(id: 5  , designation: "Accra" , pays: "Ghana"),
-    City(id: 6  , designation: "Tacoradi" , pays: "Ghana"),
-    City(id: 7  , designation: "Los Angeles" , pays: "United States"),
-    City(id: 8  , designation: "Johannesburg" , pays: "Afrique du sud"),
-    City(id: 9  , designation: "Tokyo" , pays: "Chine"),
+    City(id: 4  , designation: "Boundiali" , pays: "Côte d'Ivoire"),
+    City(id: 5  , designation: "San pédro" , pays: "Côte d'Ivoire"),
+    City(id: 6  , designation: "Danané" , pays: "Abidjan"),
+    City(id: 7  , designation: "Yamoussokro" , pays: "Côte d'Ivoire"),
+    City(id: 8  , designation: "Bouaflé" , pays: "Côte d'Ivoire"),
+    City(id: 9  , designation: "Aboisso" , pays: "Côte d'Ivoire"),
+    City(id: 10  , designation: "Jacqueville" , pays: "Côte d'Ivoire"),
+    City(id: 11  , designation: "Dabou" , pays: "Côte d'Ivoire"),
   ];
 
   @override
