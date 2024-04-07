@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../app/data/models/city.dart';
+import '../../app/data/models/villeModel.dart';
+import '../../app/data/services/commonServiceWeb.dart';
 import 'cityItem.dart';
 
 class GareDepartDialog extends StatefulWidget {
@@ -17,26 +19,14 @@ class GareDepartDialog extends StatefulWidget {
 class _GareDepartDialogState extends State<GareDepartDialog> {
 
   List<City>cities = [];
-  List<City>citiesFound = [];
+  List<Ville>citiesFound = [];
+  List<Ville>villesList = [];
   TextEditingController villeDepart = TextEditingController();
 
   void initializeCities() async{
-    cities = await ServiceWebApi().getTravelCities();
+    villesList = await CommonServiceWeb().obtenirListeDesVilles();
   }
 
-  List<City>villeList = [
-    City(id: 1  , designation: "Man" , pays: "Côte d'Ivoire"),
-    City(id: 2  , designation: "Abidjan" , pays: "Côte d'Ivoire"),
-    City(id: 3  , designation: "Korhogo" , pays: "Côte d'Ivoire"),
-    City(id: 4  , designation: "Boundiali" , pays: "Côte d'Ivoire"),
-    City(id: 5  , designation: "San pédro" , pays: "Côte d'Ivoire"),
-    City(id: 6  , designation: "Danané" , pays: "Abidjan"),
-    City(id: 7  , designation: "Yamoussokro" , pays: "Côte d'Ivoire"),
-    City(id: 8  , designation: "Bouaflé" , pays: "Côte d'Ivoire"),
-    City(id: 9  , designation: "Aboisso" , pays: "Côte d'Ivoire"),
-    City(id: 10  , designation: "Jacqueville" , pays: "Côte d'Ivoire"),
-    City(id: 11  , designation: "Dabou" , pays: "Côte d'Ivoire"),
-  ];
 
   @override
   void initState(){
@@ -46,12 +36,12 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
 
   // This function is called whenever the text field changes
   void _runFilter(String enteredKeyword) {
-    List<City> results = [];
+    List<Ville> results = [];
     if (enteredKeyword.isEmpty) {
-      results = villeList ;
+      results = villesList ;
     } else {
-      results = villeList.where((city) =>
-          city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
+      results = villesList.where((ville) =>
+          ville.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
     }
     // Refresh the UI
@@ -121,7 +111,7 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
         child: Container(
             child: ListView.builder(
               itemCount: citiesFound.length,
-              itemBuilder: (context, index) => CityItem(city: citiesFound[index] , textEditingController: widget.villeGareDepart,),
+              itemBuilder: (context, index) => CityItem(ville: citiesFound[index] , textEditingController: widget.villeGareDepart,),
             ),)
     ):Container(
         margin: EdgeInsets.only(top: 60),

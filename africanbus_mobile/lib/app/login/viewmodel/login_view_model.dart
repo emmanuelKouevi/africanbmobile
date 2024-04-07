@@ -11,4 +11,9 @@ class LoginViewModel extends ChangeNotifier{
     userConnected = user ;
     notifyListeners();
   }
+
+  void destroySessionUser(){
+    userConnected = User();
+    notifyListeners();
+  }
 }

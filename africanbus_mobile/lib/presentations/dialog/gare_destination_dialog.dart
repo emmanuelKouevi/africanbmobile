@@ -1,8 +1,8 @@
 import 'package:africanbus_mobile/app/data/services/commonServiceWeb.dart';
-import 'package:africanbus_mobile/services/service_web.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/data/models/city.dart';
+import '../../app/data/models/villeModel.dart';
 import 'cityItem.dart';
 
 class GareDestinationDialog extends StatefulWidget {
@@ -16,45 +16,32 @@ class GareDestinationDialog extends StatefulWidget {
 class _GareDestinationDialogState extends State<GareDestinationDialog> {
 
   List<City>cities = [];
-  List<City>foundCities = [];
+  List<Ville>foundCities = [];
+  List<Ville>villesList = [];
 
   TextEditingController villeDestination = TextEditingController();
 
   void initializeCities() async{
-    cities = await ServiceWebApi().getTravelCities();
+    villesList = await CommonServiceWeb().obtenirListeDesVilles();
+    print(villesList.length);
   }
 
-  List<City>villeList = [
-    City(id: 1  , designation: "Man" , pays: "Côte d'Ivoire"),
-    City(id: 2  , designation: "Abidjan" , pays: "Côte d'Ivoire"),
-    City(id: 3  , designation: "Korhogo" , pays: "Côte d'Ivoire"),
-    City(id: 4  , designation: "Boundiali" , pays: "Côte d'Ivoire"),
-    City(id: 5  , designation: "San pédro" , pays: "Côte d'Ivoire"),
-    City(id: 6  , designation: "Danané" , pays: "Abidjan"),
-    City(id: 7  , designation: "Yamoussokro" , pays: "Côte d'Ivoire"),
-    City(id: 8  , designation: "Bouaflé" , pays: "Côte d'Ivoire"),
-    City(id: 9  , designation: "Aboisso" , pays: "Côte d'Ivoire"),
-    City(id: 10  , designation: "Jacqueville" , pays: "Côte d'Ivoire"),
-    City(id: 11  , designation: "Dabou" , pays: "Côte d'Ivoire"),
-  ];
 
   @override
   void initState(){
     initializeCities();
-    CommonServiceWeb().obtenirListeDesVilles();
     super.initState();
   }
 
   // This function is called whenever the text field changes
   void _runFilter(String enteredKeyword) {
-    List<City> results = [];
+    List<Ville> results = [];
     if (enteredKeyword.isEmpty) {
-      // if the search field is empty or only contains white-space, we'll display all users
-      results = villeList ;
+      results = villesList ;
     } else {
-      results = villeList
-          .where((city) =>
-          city.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
+      results = villesList
+          .where((ville) =>
+          ville.designation.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
       // we use the toLowerCase() method to make it case-insensitive
     }
@@ -104,7 +91,7 @@ class _GareDestinationDialogState extends State<GareDestinationDialog> {
         child: Container(
           child: ListView.builder(
             itemCount: foundCities.length,
-            itemBuilder: (context, index) => CityItem(city: foundCities[index] , textEditingController: widget.villeGareDestination),
+            itemBuilder: (context, index) => CityItem(ville: foundCities[index] , textEditingController: widget.villeGareDestination),
           ),
         )
     ) : Container(

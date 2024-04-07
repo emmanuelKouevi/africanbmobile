@@ -71,4 +71,65 @@ class AuthentificationService{
     return registeringMode;
   }
 
+
+  // DECONNEXION UTILISATEUR
+  Future<bool>toLogout()async{
+    bool isLogout = false ;
+    Get.dialog(Center(child: CircularProgressIndicator(color: Colors.teal)));
+    final url = GlobalConst.remoteApiProd +"/users/logout";
+    final body = jsonEncode({
+      "data" : {}
+    });
+    final response = await http.post(Uri.parse(url) , body: body , headers: GlobalConst.requestHeaders);
+    try{
+      if(response.statusCode == 200){
+        final result = jsonDecode(response.body);
+        if(result['status']['code'] == '800'){
+          isLogout = true;
+        }else{
+          Get.back();
+          isLogout = false ;
+        }
+      }
+    }catch(e){
+      Get.back();
+      Get.snackbar("Erreur" , e.toString() , backgroundColor: Colors.red , colorText: Colors.white);
+      isLogout = false;
+    }
+    return isLogout;
+  }
+
+  // CHANGER DE MOT DE PASSE UTILISATEUR
+  Future<bool>changePasswordUser(String email,String oldPassword , String newPassword)async{
+    bool passwordHasChanged = false ;
+    Get.dialog(Center(child: CircularProgressIndicator(color: Colors.teal)));
+    final url = GlobalConst.remoteApiProd +"/users/resetPasswordUser";
+    final body = jsonEncode({
+      "data" : {
+        'email':email, 'oldPassWord':oldPassword, 'newPassWord':newPassword
+      }
+    });
+    log(body);
+    final response = await http.post(Uri.parse(url) , body: body , headers: GlobalConst.requestHeaders);
+    try{
+      if(response.statusCode == 200){
+        final result = jsonDecode(response.body);
+        if(result['status']['code'] == '800'){
+          Get.back();
+          Get.snackbar("Succes" , "Mot de passe modifié avec succes", backgroundColor: Colors.green , colorText: Colors.white);
+          passwordHasChanged = true;
+        }else{
+          Get.back();
+          Get.snackbar("Erreur" , result['status']['message'] , backgroundColor: Colors.red , colorText: Colors.white);
+          passwordHasChanged = false;
+        }
+      }
+    }catch(e){
+      Get.back();
+      Get.snackbar("Erreur" , e.toString() , backgroundColor: Colors.red , colorText: Colors.white);
+      passwordHasChanged = false;
+    }
+    return passwordHasChanged;
+  }
+
 }

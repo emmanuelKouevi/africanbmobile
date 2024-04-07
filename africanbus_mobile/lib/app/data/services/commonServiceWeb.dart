@@ -13,13 +13,12 @@ class CommonServiceWeb {
 
   //Récupérer la liste des villes
   Future<List<Ville>>obtenirListeDesVilles() async{
-    log("Nous devons sommes dans la fonction de recuperation des villes");
     List<Ville> villesList = [];
     final url = GlobalConst.remoteApiProd +"/villes/getAllCities";
     final body = jsonEncode(myObject);
     print("My body is : $body");
     final response = await http.post(Uri.parse(url) , body: body , headers: GlobalConst.requestHeaders);
-    //try{
+    try{
       print('Dans le try');
       print(json.decode(response.body)['items']);
       if(response.statusCode == 200){
@@ -35,10 +34,10 @@ class CommonServiceWeb {
           Get.snackbar("Erreur", result['status']['message'] , backgroundColor: Colors.red , colorText: Colors.white);
         }
       }
-    //}catch(e){
-      //Get.snackbar("Erreur", e.toString() , backgroundColor: Colors.red , colorText: Colors.white);
+    }catch(e){
+      Get.snackbar("Erreur", e.toString() , backgroundColor: Colors.red , colorText: Colors.white);
       villesList = [];
-    //}
+    }
     return villesList;
   }
 }

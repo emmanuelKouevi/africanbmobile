@@ -45,7 +45,18 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
       ],
     );
 
-    return DefaultTabController(
+    return Scaffold(
+      appBar: AppBar(
+        title: title,
+      ),
+      body: Center(
+        child: Text("Aucune offre disponible pour votre recherche !" , style: GoogleFonts.ubuntu(
+          fontSize: 15 , fontWeight: FontWeight.bold,
+        ),),
+      ),
+    );
+
+    /*return DefaultTabController(
       length: 6,
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -102,6 +113,6 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
           ],
         ),
       ),
-    );
+    );*/
   }
 }

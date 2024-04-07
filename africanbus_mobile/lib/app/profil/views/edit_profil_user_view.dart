@@ -1,9 +1,11 @@
+import 'package:africanbus_mobile/app/login/viewmodel/login_view_model.dart';
 import 'package:africanbus_mobile/custom_widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:provider/provider.dart';
 
 
 /*
@@ -30,6 +32,10 @@ class _EditProfilUserViewState extends State<EditProfilUserView> {
   @override
   Widget build(BuildContext context) {
 
+    final loginProvider = Provider.of<LoginViewModel>(context);
+    firstname.text = loginProvider.userConnected.nom;
+    lastname.text = loginProvider.userConnected.prenoms;
+    email.text = loginProvider.userConnected.email;
     final title = Text("Modifier mon profil", style: GoogleFonts.ubuntu(
         color: Colors.black.withOpacity(0.7),
         fontWeight: FontWeight.bold,
@@ -64,7 +70,7 @@ class _EditProfilUserViewState extends State<EditProfilUserView> {
         icon: FontAwesomeIcons.user,
         key: Key("username"),
         controller: firstname,
-        enabled: true,
+        enabled: false,
         isOutlined: false,
       ),
     );
@@ -75,7 +81,7 @@ class _EditProfilUserViewState extends State<EditProfilUserView> {
         icon: FontAwesomeIcons.user,
         key: Key("prenoms"),
         controller: lastname,
-        enabled: true,
+        enabled: false,
         isOutlined: false,
       ),
     );
@@ -86,7 +92,7 @@ class _EditProfilUserViewState extends State<EditProfilUserView> {
           key: Key("mailField"),
           icon: Icons.email,
           controller: email,
-          enabled: true,
+          enabled: false,
           isEmailField: true,
           isOutlined : false
       ),
@@ -114,6 +120,7 @@ class _EditProfilUserViewState extends State<EditProfilUserView> {
       keyboardType: TextInputType.phone,
       invalidNumberMessage: "Mauvais format du numéro",
       countries: countries,
+      enabled: false,
       // ignore: deprecated_member_use
     );
 
@@ -138,11 +145,12 @@ class _EditProfilUserViewState extends State<EditProfilUserView> {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.teal.shade800
         ),
-        onPressed: () {
+        onPressed: () => null,
+        /*onPressed: () {
           if(_formKey.currentState!.validate()){
             print("Bonjour");
           }
-        },
+        },*/
         child: Text("Modifier le profil", style: GoogleFonts.ubuntu(
           color: Colors.white,
           fontWeight: FontWeight.bold

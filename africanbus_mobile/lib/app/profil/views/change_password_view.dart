@@ -1,7 +1,11 @@
+import 'package:africanbus_mobile/app/login/services/login_service.dart';
+import 'package:africanbus_mobile/app/login/viewmodel/login_view_model.dart';
 import 'package:africanbus_mobile/custom_widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ChangePasswordView extends StatefulWidget {
   const ChangePasswordView({Key? key}) : super(key: key);
@@ -17,6 +21,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
 
   @override
   Widget build(BuildContext context) {
+
+    final loginProvider = Provider.of<LoginViewModel>(context);
 
     const space = SizedBox(height: 60,);
     const hr = SizedBox(height: 20,);
@@ -93,7 +99,17 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.teal.shade800
         ),
-        onPressed: () => null,
+        onPressed:() async{
+           if(currentPassword.text.isEmpty || newPassword.text.isEmpty || confirmNewPassword.text.isEmpty){
+             Get.snackbar("Erreur", "Champs non renseigné" , backgroundColor: Colors.red , colorText: Colors.white);
+           }else if(currentPassword.text == newPassword.text){
+             Get.snackbar("Erreur", "Votre mot de passe actuel est le meme que le nouveau mot de passe" , backgroundColor: Colors.red , colorText: Colors.white);
+           }else if(newPassword.text != confirmNewPassword.text){
+             Get.snackbar("Erreur", "Le mot de passe de confirmation est incorrect" , backgroundColor: Colors.red , colorText: Colors.white);
+           }else{
+             await AuthentificationService().changePasswordUser(loginProvider.userConnected.email, currentPassword.text, newPassword.text);
+           }
+        },
         child: Text("CHANGER VOTRE MOT DE PASSE" ,style: GoogleFonts.ubuntu(
           color: Colors.white,
           fontWeight: FontWeight.w700

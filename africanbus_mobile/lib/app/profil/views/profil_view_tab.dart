@@ -1,4 +1,5 @@
 import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
+import 'package:africanbus_mobile/app/login/services/login_service.dart';
 import 'package:africanbus_mobile/app/login/views/login_view.dart';
 import 'package:africanbus_mobile/app/profil/views/change_password_view.dart';
 import 'package:africanbus_mobile/app/profil/views/edit_profil_user_view.dart';
@@ -65,6 +66,13 @@ class ProfilView extends GetView{
     );
 
     final logout = ListTile(
+      onTap: () async{
+        final logout = await AuthentificationService().toLogout();
+        if(logout == true){
+          loginProvider.destroySessionUser();
+          Get.to(LoginView());
+        }
+      },
       leading: FaIcon(FontAwesomeIcons.rightFromBracket , color: Colors.teal.shade800,),
       title: Text("Se déconnecter" , style: GoogleFonts.ubuntu(
         color: Colors.teal.shade800,
