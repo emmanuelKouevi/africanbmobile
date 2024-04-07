@@ -7,11 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../../login/viewmodel/login_view_model.dart';
 
 class ProfilView extends GetView{
   const ProfilView ({Key? key}): super(key: key);
 
   Widget build(BuildContext context){
+
+    final loginProvider = Provider.of<LoginViewModel>(context);
 
     final homeController = Get.put(HomeController());
 
@@ -189,13 +193,8 @@ class ProfilView extends GetView{
 
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: homeController.currentUser.value != null ? title : Text(""),
-        automaticallyImplyLeading: false,
-      ),
       backgroundColor: Colors.white70,
-      body: homeController.currentUser.value != null ? SingleChildScrollView(
+      body: loginProvider.data.login.isNotEmpty ? SingleChildScrollView(
         padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [

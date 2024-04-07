@@ -1,3 +1,4 @@
+import 'package:africanbus_mobile/app/data/services/commonServiceWeb.dart';
 import 'package:africanbus_mobile/services/service_web.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,7 @@ class _GareDestinationDialogState extends State<GareDestinationDialog> {
   @override
   void initState(){
     initializeCities();
+    CommonServiceWeb().obtenirListeDesVilles();
     super.initState();
   }
 

@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:developer';
+import 'package:africanbus_mobile/app/data/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../global_config/globalConst.dart';
@@ -7,8 +9,8 @@ import 'package:http/http.dart' as http;
 class AuthentificationService{
 
   // CONNEXION UTILISATEUR
-  Future<dynamic>toLogin(String pseudo , String password)async{
-    dynamic user = "";
+  Future<User>toLogin(String pseudo , String password)async{
+    User user = User();
     Get.dialog(Center(child: CircularProgressIndicator(color: Colors.teal)));
     final url = GlobalConst.remoteApiProd +"/users/login";
     final body = jsonEncode({
@@ -21,17 +23,17 @@ class AuthentificationService{
       if(response.statusCode == 200){
         final result = jsonDecode(response.body);
         if(result['status']['code'] == '800'){
-          user = result['status']['item'];
+          user = User.fromJson(result[('item')]);
         }else{
           Get.back();
           Get.snackbar("Erreur" , "Identifant ou mot de passe incorrect", backgroundColor: Colors.red , colorText: Colors.white);
-          user = "";
+          user = User();
         }
       }
     }catch(e){
       Get.back();
       Get.snackbar("Erreur" , e.toString() , backgroundColor: Colors.red , colorText: Colors.white);
-      user = "";
+      user = User();
     }
     return user;
   }
@@ -43,9 +45,7 @@ class AuthentificationService{
     final url = GlobalConst.remoteApiProd+'/users';
     final body = jsonEncode({
       "datas":[
-        {
-          "nom": firstname , "prenoms" : lastname , "login": pseudo , "email": email , "roleCode": "UserSimple"
-        }
+        {"nom": firstname , "prenoms" : lastname , "login": pseudo , "email": email , "roleCode": "UserSimple"}
       ]
     });
     final response = await http.post(Uri.parse(url) , body: body , headers: GlobalConst.requestHeaders);

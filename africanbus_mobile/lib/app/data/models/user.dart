@@ -1,47 +1,69 @@
 class User{
-  String id ;
-  String firstname;
-  String lastname ;
+  int compagnieTransportId;
+  int id;
+  bool isActif;
+  String createdAt;
+  String login;
   String email;
-  String phoneNumber;
+  String nom;
+  String prenoms;
+  String token;
 
-  User({this.id = "" , this.lastname = "" ,  this.firstname = "" , required this.email , this.phoneNumber = "" });
+  User({this.compagnieTransportId = 0 , this.id = 0 , this.isActif = false , this.createdAt = "" ,
+    this.login = "" , this.email = "" , this.nom = "" , this.prenoms = "" , this.token = ""
+  });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
+      compagnieTransportId: json['compagnieTransportId'],
       id: json['id'],
-      firstname: json['firstname'],
-      lastname: json['lastname'],
+      isActif: json['isActif'],
+      createdAt: json['createdAt'],
+      login: json['login'],
       email: json['email'],
-      phoneNumber: json['phoneNumber'],
+      nom: json['nom'],
+      prenoms: json['prenoms'],
+      token: json['token'],
     );
   }
 
   User.fromMap(Map map)
       :id = map['id'],
-        firstname = map['firstname'],
-        lastname = map['lastname'],
+        compagnieTransportId = map['compagnieTransportId'],
+        isActif = map['isActif'],
+        createdAt = map['createAt'],
+        login = map['login'],
         email = map['email'],
-        phoneNumber = map['phoneNumber'];
+        nom = map['nom'],
+        prenoms = map['prenoms'],
+        token = map['token'];
 
 
   Map toMap(){
     return {
       'id': id,
-      'firstname': firstname,
-      'lastname': lastname,
-      'email': email ,
-      'phoneNumber': phoneNumber
+      'compagnieTransportId': compagnieTransportId,
+      'isActif':isActif,
+      'createAt': createdAt,
+      'login': login,
+      'email': email,
+      'nom': nom,
+      'prenoms': prenoms,
+      'token': token,
     };
   }
 
   Map toJson(){
     return{
-      'id' : id,
-      'firstname' : firstname,
-      'lastname' : lastname,
-      'email' : email,
-      'phoneNumber' : phoneNumber,
+      'id': id,
+      'compagnieTransportId': compagnieTransportId,
+      'isActif':isActif,
+      'createAt': createdAt,
+      'login': login,
+      'email': email,
+      'nom': nom,
+      'prenoms': prenoms,
+      'token': token,
     };
   }
 }

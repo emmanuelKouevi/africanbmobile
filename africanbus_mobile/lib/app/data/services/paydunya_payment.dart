@@ -33,18 +33,16 @@ class PaydunyaPayment{
 
     // Fournissez les informations de paiement
     final payerInfo = PayerInfo(
-        fullName: "Kouevi Emmanuel Herve",
-        email:"emmanuelhervekouevi@gmail.com",
-        phone: "0789728501",
-        otp: 000000,
+        fullName: "Kouevi Emmanuel Herve", email:"emmanuelhervekouevi@gmail.com",
+        phone: "+2250789728501", otp: 000000,
         paymentToken: checkoutInvoice.token
     );
 
 
     // Effectuez le paiement avec une méthode de paiement
     final response = await paydunya.pay(
-      payerInfo: PayerInfo(fullName: "Kouevi Emmanuel Herve", phone: "0789728501", paymentToken: checkoutInvoice.token , otp: 000000),
-      paymentMethod: PaymentMethod.orangeMoneySenegal
+      payerInfo: payerInfo,
+      paymentMethod: PaymentMethod.waveSenegal
     );
 
     // Affichez l'URL de paiement de Wave

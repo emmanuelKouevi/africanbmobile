@@ -2,10 +2,12 @@ import 'package:africanbus_mobile/app/forgot_password/views/forget_password_view
 import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:africanbus_mobile/app/home/views/home_view.dart';
 import 'package:africanbus_mobile/app/login/services/login_service.dart';
+import 'package:africanbus_mobile/app/login/viewmodel/login_view_model.dart';
 import 'package:africanbus_mobile/app/register/views/register_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import '../../../custom_widgets/custom_text_form_field.dart';
 
 class LoginView extends StatefulWidget {
@@ -21,6 +23,8 @@ class _LoginViewState extends State<LoginView> {
   final homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
+
+    final loginProvider = Provider.of<LoginViewModel>(context);
 
     final defaultTextStyle = TextStyle(
       color: Colors.grey,
@@ -40,10 +44,7 @@ class _LoginViewState extends State<LoginView> {
         onTap: () => Get.to(ForgetPasswordView()),
         child: Text(
           "Mot de passe oublié?",
-          style: TextStyle(
-            color: Colors.grey,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -52,11 +53,8 @@ class _LoginViewState extends State<LoginView> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          "Continuer sans connexion",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-            color: Colors.white
+          "Continuer sans connexion", style: TextStyle(
+            fontWeight: FontWeight.w600, fontSize: 16, color: Colors.white
           ),
         ),
         IconButton(
@@ -68,35 +66,25 @@ class _LoginViewState extends State<LoginView> {
 
     final email = Container(
       child: CustomTextFormField(
-        controller: id,
-        icon: Icons.mail,
-        key: Key("idField"),
-        labelText: "E-mail Ou Pseudo",
-        enabled: true,
-        isOutlined: false,
+        controller: id, icon: Icons.mail,
+        key: Key("idField"), labelText: "E-mail Ou Pseudo",
+        enabled: true, isOutlined: false,
       ),
     );
 
     final password = Container(
       child: CustomTextFormField(
-        labelText: "Mot de Passe",
-        key: Key("motDePasse"),
-        icon: Icons.lock,
-        isPasswordField: true,
-        controller: code,
-        enabled: true,
-        isOutlined: false,
+        labelText: "Mot de Passe", key: Key("motDePasse"),
+        icon: Icons.lock, isPasswordField: true,
+        controller: code, enabled: true, isOutlined: false,
       ),
     );
 
     final connexionBtn = Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Color(0xff273c75), Colors.teal.shade700,Colors.teal
-              ]
+              begin: Alignment.bottomCenter, end: Alignment.topCenter,
+              colors: [Color(0xff273c75), Colors.teal.shade700,Colors.teal]
           )
       ),
       width: MediaQuery.of(context).size.width,
@@ -106,8 +94,9 @@ class _LoginViewState extends State<LoginView> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
           ),
           onPressed: () async{
-            final success = await AuthentificationService().toLogin(id.text, code.text);
-            if(success != ""){
+            final userConnected = await AuthentificationService().toLogin(id.text, code.text);
+            if(userConnected.login.isNotEmpty && userConnected.email.isNotEmpty && userConnected.id != 0){
+              loginProvider.initializeUserConnected(userConnected);
               Get.to(HomeView());
             }
           },
