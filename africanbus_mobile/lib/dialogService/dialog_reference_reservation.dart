@@ -64,7 +64,7 @@ class _SelfReservationDialogState extends State<SelfReservationDialog> {
             ReservationBillet reservationBillet = ReservationBillet(
                 id: 1, designation: "Ma reservation", description: "Ma reservation",
                 billet: widget.billet, isForOtherPerson: false,
-                customer: Customer(id: '8' , firstname: "Null" , lastname: "Null" , phoneNumber: "Null")
+                customer: CustomerApp(id: '8' , firstname: "Null" , lastname: "Null" , phoneNumber: "Null")
             );
             reservationController.toBook(reservationBillet);
             Get.snackbar("Reservation Reussie", "Votre programme a été enregistré avec succes" , backgroundColor: Colors.green , colorText: Colors.white);

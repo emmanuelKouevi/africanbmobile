@@ -9,7 +9,7 @@ import '../app/data/models/ticket.dart';
 import '../app/search_ticket/controllers/search_ticket_controller.dart';
 
 class ConfirmReservation extends StatefulWidget {
-  final Customer customer ;
+  final CustomerApp customer ;
   final Billet billet;
   const ConfirmReservation({Key? key , required this.customer , required this.billet}): super(key: key);
 

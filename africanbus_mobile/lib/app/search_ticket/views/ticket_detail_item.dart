@@ -1,13 +1,15 @@
 import 'package:africanbus_mobile/app/data/models/ticket.dart';
 import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
-import 'package:africanbus_mobile/app/reservations/views/without_account_warning.dart';
+import 'package:africanbus_mobile/app/login/viewmodel/login_view_model.dart';
 import 'package:africanbus_mobile/dialogService/dialog_reservation_other_people.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_any_logo/flutter_logo.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../../custom_widgets/custom_dot.dart';
+import '../../reservations/views/without_account_warning.dart';
 
 class TicketDetailItem extends StatefulWidget {
   const TicketDetailItem({Key ? key, required this.billet}) : super(key: key);
@@ -23,6 +25,8 @@ class _TicketDetailItemState extends State<TicketDetailItem> {
 
   @override
   Widget build(BuildContext context) {
+
+    final userProvider = Provider.of<LoginViewModel>(context);
 
     final compagnieTransportDetail = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -184,11 +188,11 @@ class _TicketDetailItemState extends State<TicketDetailItem> {
               backgroundColor: Colors.teal.shade900
           ),
           onPressed: () {
-            //if(homeController.currentUser.value != null){
+            if(userProvider.userConnected.nom.isNotEmpty){
               Get.dialog(DialogReservation(ticket: widget.billet) , transitionDuration: Duration(milliseconds: 800));
-            //}else{
-             //Get.dialog(WarningNotAccount());
-            //}
+            }else{
+             Get.dialog(WarningNotAccount());
+            }
           },
           child: Text('PROCEDER À LA RESERVATION'.toUpperCase(), style: GoogleFonts.ubuntu(
               fontSize: 15,

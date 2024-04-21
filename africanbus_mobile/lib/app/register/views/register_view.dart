@@ -2,11 +2,8 @@ import 'package:africanbus_mobile/app/login/services/login_service.dart';
 import 'package:africanbus_mobile/app/login/views/login_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl_phone_field/countries.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../../custom_widgets/custom_text_form_field.dart';
 
@@ -178,7 +175,10 @@ class _RegisterViewState extends State<RegisterView> {
               Get.snackbar("Erreur", "Le code de confirmation est différent du mot de passe" , backgroundColor: Colors.red , colorText: Colors.white);
             }
             if(_formKey.currentState!.validate()){
-              await AuthentificationService().toRegister(nom.text, prenom.text, username.text, email.text);
+              final registrationMode = await AuthentificationService().toRegister(nom.text, prenom.text, username.text, email.text);
+              if(registrationMode == true){
+                Get.offAll(LoginView());
+              }
             }
           },
           child: Text("Ouvrir un compte".toUpperCase(), style: TextStyle(

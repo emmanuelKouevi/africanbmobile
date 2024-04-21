@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:africanbus_mobile/app/data/models/villeModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -32,7 +32,7 @@ class ReservationTicketModel{
     return {
       'designation': designation,
       'description': description,
-      'description': billet,
+      'billet': billet,
     };
   }
 }

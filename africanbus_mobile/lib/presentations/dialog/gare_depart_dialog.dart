@@ -1,5 +1,4 @@
-import 'package:africanbus_mobile/custom_widgets/simpleTextField.dart';
-import 'package:africanbus_mobile/services/service_web.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';

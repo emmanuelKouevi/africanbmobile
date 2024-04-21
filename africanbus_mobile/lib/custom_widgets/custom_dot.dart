@@ -25,6 +25,6 @@ class CustomDot extends StatelessWidget {
             fit: BoxFit.scaleDown,
           )
       ),
-    );;
+    );
   }
 }

@@ -45,7 +45,7 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
       ],
     );
 
-    return Scaffold(
+    /*return Scaffold(
       appBar: AppBar(
         title: title,
       ),
@@ -54,9 +54,9 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
           fontSize: 15 , fontWeight: FontWeight.bold,
         ),),
       ),
-    );
+    );*/
 
-    /*return DefaultTabController(
+    return DefaultTabController(
       length: 6,
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -113,6 +113,6 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
           ],
         ),
       ),
-    );*/
+    );
   }
 }

@@ -1,4 +1,3 @@
-import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:africanbus_mobile/app/login/services/login_service.dart';
 import 'package:africanbus_mobile/app/login/views/login_view.dart';
 import 'package:africanbus_mobile/app/profil/views/change_password_view.dart';
@@ -18,7 +17,7 @@ class ProfilView extends GetView{
 
     final loginProvider = Provider.of<LoginViewModel>(context);
 
-    final homeController = Get.put(HomeController());
+    //final homeController = Get.put(HomeController());
 
     final spacing = SizedBox(height: 15,);
     
@@ -131,7 +130,7 @@ class ProfilView extends GetView{
       ],
     );
 
-    final title = Row(
+    /*final title = Row(
       children: [
         Container(
           padding: EdgeInsets.only(left: 10),
@@ -142,7 +141,7 @@ class ProfilView extends GetView{
           ),),
         ),
       ],
-    );
+    );*/
 
     final aboutUs = ListTile(
       leading: FaIcon(FontAwesomeIcons.circleInfo),

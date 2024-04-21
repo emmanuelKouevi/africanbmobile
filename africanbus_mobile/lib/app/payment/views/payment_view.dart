@@ -1,8 +1,16 @@
 import 'package:africanbus_mobile/app/data/models/ticket.dart';
 import 'package:africanbus_mobile/app/data/services/paydunya_payment.dart';
+import 'package:africanbus_mobile/app/login/viewmodel/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_any_logo/flutter_logo.dart';
+import 'package:flutterwave_standard/core/flutterwave.dart';
+import 'package:flutterwave_standard/models/requests/customer.dart';
+import 'package:flutterwave_standard/models/requests/customizations.dart';
+import 'package:flutterwave_standard/models/responses/charge_response.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 import '../../../custom_widgets/custom_dot.dart';
 
 class PaymentView extends StatefulWidget {
@@ -16,6 +24,9 @@ class PaymentView extends StatefulWidget {
 class _PaymentViewState extends State<PaymentView> {
   @override
   Widget build(BuildContext context) {
+
+    final userProvider = Provider.of<LoginViewModel>(context);
+
     final compagnieTransportDetail = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -189,7 +200,41 @@ class _PaymentViewState extends State<PaymentView> {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.teal.shade800
         ),
-        onPressed: () => PaydunyaPayment().payment(),
+        //onPressed: () => PaydunyaPayment().payment(),
+        onPressed: () async{
+            final Customer customer = Customer(
+                email: userProvider.userConnected.email,
+                phoneNumber: '0789728501',
+                name: userProvider.userConnected.nom + ' ' + userProvider.userConnected.prenoms
+            );
+            Flutterwave flutterwave = Flutterwave(
+                context: context,
+                publicKey: "FLWPUBK_TEST-5164dceea60a978d836f597b5bbc1d85-X",
+                txRef: const Uuid().v1(),
+                amount: widget.billet.coutReservation.toString(),
+                customer: customer,
+                paymentOptions: "card, payattitude, barter, bank transfer, ussd",
+                customization: Customization(
+                    description: "Vous serez dépité de ${widget.billet.coutReservation}",
+                    title: "Achat de votre billet de voyage !",
+                    logo: "https://images.ariahapp.com/support/images/Groupe_19111.png"
+                ),
+                redirectUrl: "https://africanweb-26408e5071aa.herokuapp.com",
+                isTestMode: true,
+                currency: "XOF");
+
+            ChargeResponse response = await flutterwave.charge();
+            if(response.status == "successful") {
+
+
+            } else {
+              Get.snackbar("Achat Refusé !",
+                  "Votre achat a été refusé. \nVeuillez reessayer votre paiement dans de bonne conditions.",
+                  backgroundColor: Colors.red,
+                  colorText: Colors.white
+              );
+            }
+        },
         child: Text("PAYER" , style: GoogleFonts.ubuntu(
           fontWeight: FontWeight.bold,
           fontSize: 15,

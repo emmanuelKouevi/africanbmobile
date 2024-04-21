@@ -7,7 +7,7 @@ class ReservationBillet{
   String description;
   Billet billet ;
   bool isForOtherPerson;
-  Customer customer;
+  CustomerApp customer;
 
   ReservationBillet({
     required this.id , required this.designation , required this.description ,
@@ -21,7 +21,7 @@ class ReservationBillet{
         description: json['description'],
         billet: Billet.fromJson(json['billet']),
         isForOtherPerson: json['isForOtherPerson'],
-        customer: Customer.fromJson(json['customer']),
+        customer: CustomerApp.fromJson(json['customer']),
     );
   }
 

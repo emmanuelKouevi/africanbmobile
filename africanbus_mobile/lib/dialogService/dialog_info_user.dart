@@ -108,7 +108,7 @@ class _DialogUserInfoState extends State<DialogUserInfo> {
             }else if(_telephone.text.isEmpty){
               Get.snackbar("Erreur", "Le numero de la tiers personne est obligatoire", backgroundColor: Colors.red , colorText: Colors.white);
             }else{
-              Customer customer = Customer(
+              CustomerApp customer = CustomerApp(
                   id: "Customer", firstname: nameOtherPerson.text,
                   lastname: surnameOtherPerson.text, phoneNumber: _telephone.text
               );

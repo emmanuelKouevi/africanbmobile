@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:africanbus_mobile/app/data/models/user.dart';
+import 'package:africanbus_mobile/app/login/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../global_config/globalConst.dart';
@@ -55,7 +56,8 @@ class AuthentificationService{
         if(result['status']['code'] == '800'){
           Get.back();
           Get.snackbar("Opération effectuée" , "Creation de votre compte est un succès" , backgroundColor: Colors.green, colorText: Colors.white);
-          registeringMode = false;
+          registeringMode = true;
+          Get.off(LoginView());
         }else{
           registeringMode = false;
           Get.back();
@@ -130,6 +132,45 @@ class AuthentificationService{
       passwordHasChanged = false;
     }
     return passwordHasChanged;
+  }
+
+
+
+  // CHANGER LE PROFIL DE L'UTILISATEUR
+  Future<bool>changerProfil(int id , String nom ,String prenoms , String login)async{
+    bool profilHasChanged = false ;
+    Get.dialog(Center(child: CircularProgressIndicator(color: Colors.teal)));
+    final url = GlobalConst.remoteApiProd +"/users";
+    final body = jsonEncode({
+      "datas": [
+        {
+          'id':id, 'nom':nom, 'prenoms':prenoms , 'login':login
+        }
+      ]
+    });
+    final response = await http.put(Uri.parse(url) , body: body , headers: GlobalConst.requestHeaders);
+    log("La reponse vaut ${response.body}");
+    try{
+      if(response.statusCode == 200){
+        final result = jsonDecode(response.body);
+        if(result['status']['code'] == '800'){
+          //Get.snackbar("Succes" , "Mot de passe modifié avec succes", backgroundColor: Colors.green , colorText: Colors.white);
+          profilHasChanged = true;
+          Get.back();
+        }else{
+          //Get.back();
+          //Get.snackbar("Erreur" , result['status']['message'] , backgroundColor: Colors.red , colorText: Colors.white);
+          profilHasChanged = false;
+          Get.back();
+        }
+      }
+    }catch(e){
+      //Get.back();
+      //Get.snackbar("Erreur" , e.toString() , backgroundColor: Colors.red , colorText: Colors.white);
+      profilHasChanged = false;
+      Get.back();
+    }
+    return profilHasChanged;
   }
 
 }
