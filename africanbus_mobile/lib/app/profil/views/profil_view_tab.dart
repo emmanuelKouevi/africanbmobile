@@ -43,12 +43,12 @@ class ProfilView extends GetView{
       ),),
     );
 
-    final checkingTicket = ListTile(
+    /*final checkingTicket = ListTile(
       leading: FaIcon(FontAwesomeIcons.qrcode ),
       title: Text("Scanner mon billet" , style: GoogleFonts.ubuntu(
           color: Colors.black,
       ),),
-    );
+    );*/
 
 
     final logoutSection = Row(
@@ -208,7 +208,7 @@ class ProfilView extends GetView{
             spacing,
             reservationSection,
             mesReservations,
-            checkingTicket,
+            //checkingTicket,
             divider,
             historySection,
             history,

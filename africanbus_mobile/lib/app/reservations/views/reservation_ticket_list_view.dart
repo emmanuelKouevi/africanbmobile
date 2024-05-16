@@ -10,7 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class ReservationListTab extends StatefulWidget {
-  const ReservationListTab({Key?key}):super(key: key);
+  final int index ;
+  const ReservationListTab({Key?key, required this.index}):super(key: key);
 
   @override
   State<ReservationListTab> createState() => _ReservationListTabState();
@@ -373,6 +374,7 @@ class _ReservationListTabState extends State<ReservationListTab> {
 
 
     return DefaultTabController(
+      initialIndex: widget.index,
       length: 2,
       child: Scaffold(
         appBar: AppBar(
@@ -431,6 +433,21 @@ class _ReservationListTabState extends State<ReservationListTab> {
   }
 
   void openBottomSheet(BuildContext context , ReservationBillet reservationBillet){
+
+    final dividerTitle = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width/8,
+          height: 5,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ],
+    );
+
     final more = ListTile(
       onTap: () => Get.to(ReservationDetailView(billet: reservationBillet.billet)),
       leading: FaIcon(FontAwesomeIcons.circleInfo),
@@ -465,6 +482,7 @@ class _ReservationListTabState extends State<ReservationListTab> {
           padding: EdgeInsets.only(top: 30),
           child: Column(
             children: [
+              dividerTitle,
               more,
               delete,
             ],

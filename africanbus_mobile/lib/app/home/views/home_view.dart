@@ -28,7 +28,7 @@ class _TabsPageState extends State<HomeView> with TickerProviderStateMixin {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     ReservationTab(),
-    ReservationListTab(),
+    ReservationListTab(index: 0,),
     NotificationView(),
     ProfilView()
   ];

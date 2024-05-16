@@ -68,7 +68,7 @@ class _SelfReservationDialogState extends State<SelfReservationDialog> {
             );
             reservationController.toBook(reservationBillet);
             Get.snackbar("Reservation Reussie", "Votre programme a été enregistré avec succes" , backgroundColor: Colors.green , colorText: Colors.white);
-            Get.off(ReservationListTab());
+            Get.off(ReservationListTab(index: 0,));
           },
         ),
       ],
