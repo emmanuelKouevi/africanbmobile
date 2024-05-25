@@ -1,5 +1,7 @@
 import 'package:africanbus_mobile/app/login/services/login_service.dart';
 import 'package:africanbus_mobile/app/login/views/login_view.dart';
+import 'package:africanbus_mobile/app/profil/sections/about_us.dart';
+import 'package:africanbus_mobile/app/profil/sections/help_view.dart';
 import 'package:africanbus_mobile/app/profil/views/change_password_view.dart';
 import 'package:africanbus_mobile/app/profil/views/edit_profil_user_view.dart';
 import 'package:africanbus_mobile/app/profil/views/reset_password_view.dart';
@@ -145,6 +147,7 @@ class ProfilView extends GetView{
 
     final aboutUs = ListTile(
       leading: FaIcon(FontAwesomeIcons.circleInfo),
+      onTap: () => Get.to(AboutUs()),
       title: Text("À propos" , style: GoogleFonts.ubuntu(
         color: Colors.black,
       ),),
@@ -176,6 +179,7 @@ class ProfilView extends GetView{
       title: Text("Aide" , style: GoogleFonts.ubuntu(
         color: Colors.black,
       ),),
+      onTap: () => Get.to(HelpingView()),
     );
 
     final historySection = Row(
