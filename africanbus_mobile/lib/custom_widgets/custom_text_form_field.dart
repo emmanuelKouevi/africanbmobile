@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final String labelText;
@@ -45,14 +46,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         return null;
       },
       maxLines: widget.isTexterea == true ? 3 : 1,
-      style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-          color: Colors.black.withOpacity(0.5)
+      style: GoogleFonts.akshar(
+        color: Colors.black.withOpacity(0.7)
       ),
       decoration: InputDecoration(
         border: widget.isOutlined == true ? OutlineInputBorder() : null,
-        focusColor: Colors.teal,
+        focusColor: Color(0xff1dd1a1),
+        fillColor: Color(0xff1dd1a1),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
                 color: Colors.teal.shade900,
@@ -60,10 +60,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             )
         ),
         labelText: widget.labelText.toUpperCase(),
-        labelStyle: TextStyle(
-          fontSize: 12,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey.withOpacity(0.8)
+        labelStyle: GoogleFonts.ubuntu(
+            color: Colors.black.withOpacity(0.7), fontSize: 10
         ),
         prefixIcon: widget.icon == widget.icon ? Icon( widget.icon,color: Colors.teal.shade900.withOpacity(0.4),): null,
         suffixIcon: widget.isPasswordField
@@ -80,7 +78,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   Widget _buildPasswordFieldVisibilityToggle() {
     return IconButton(
       icon: Icon(
-        _obscureText ? Icons.visibility_off : Icons.visibility,color: Colors.teal.shade900,
+        _obscureText ? Icons.visibility_off : Icons.visibility,color: Colors.teal.shade900.withOpacity(0.4),
       ),
       onPressed: () {
         setState(() {

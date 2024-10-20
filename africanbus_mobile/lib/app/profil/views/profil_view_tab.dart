@@ -205,7 +205,7 @@ class ProfilView extends GetView{
 
     return Scaffold(
       backgroundColor: Colors.white70,
-      body: loginProvider.data.login.isNotEmpty ? SingleChildScrollView(
+      body: loginProvider.data.login != null ? SingleChildScrollView(
         padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [

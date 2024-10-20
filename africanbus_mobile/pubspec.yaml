@@ -31,6 +31,7 @@ dependencies:
   http:
   provider:
   flutter_svg:
+  flutter_spinkit:
   paydunya:
   pinput:
   flutter_localizations:
@@ -46,6 +47,7 @@ dependencies:
   auto_size_text:
   circular_reveal_animation:
   email_validator:
+  animated_text_kit:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2

@@ -188,7 +188,7 @@ class _TicketDetailItemState extends State<TicketDetailItem> {
               backgroundColor: Colors.teal.shade900
           ),
           onPressed: () {
-            if(userProvider.userConnected.nom.isNotEmpty){
+            if(userProvider.userConnected.nom!.isNotEmpty){
               Get.dialog(DialogReservation(ticket: widget.billet) , transitionDuration: Duration(milliseconds: 800));
             }else{
              Get.dialog(WarningNotAccount());

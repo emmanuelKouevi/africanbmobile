@@ -1,6 +1,6 @@
 import 'package:africanbus_mobile/app/forgot_password/views/forget_password_view.dart';
 import 'package:africanbus_mobile/app/login/bindings/login_binding.dart';
-import 'package:africanbus_mobile/app/login/views/login_view.dart';
+import 'package:africanbus_mobile/app/modules/auth/views/login.dart';
 import 'package:africanbus_mobile/app/register/bindings/register_binding.dart';
 import 'package:africanbus_mobile/app/register/views/register_view.dart';
 import 'package:africanbus_mobile/app/splash/bindings/splash_binding.dart';

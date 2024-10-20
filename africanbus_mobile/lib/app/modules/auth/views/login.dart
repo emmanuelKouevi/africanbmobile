@@ -1,30 +1,29 @@
-import 'package:africanbus_mobile/app/forgot_password/views/forget_password_view.dart';
-import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
-import 'package:africanbus_mobile/app/home/views/home_view.dart';
-import 'package:africanbus_mobile/app/login/services/login_service.dart';
-import 'package:africanbus_mobile/app/login/viewmodel/login_view_model.dart';
-import 'package:africanbus_mobile/app/register/views/register_view.dart';
+import 'package:africanbus_mobile/app/modules/auth/repository/auth_repository.dart';
+import 'package:africanbus_mobile/router/router.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import '../../../custom_widgets/custom_text_form_field.dart';
+import '../../../../custom_widgets/custom_text_form_field.dart';
+import '../../../forgot_password/views/forget_password_view.dart';
+import '../../../register/views/register_view.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({Key? key}): super(key: key);
+  const LoginView({Key? key});
 
   @override
   State<LoginView> createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
+
   TextEditingController id = new TextEditingController();
   TextEditingController code = new TextEditingController();
-  final homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
 
-    final loginProvider = Provider.of<LoginViewModel>(context);
+    final authProvider = Provider.of<AuthRepository>(context, listen: false);
 
     final defaultTextStyle = TextStyle(
       color: Colors.grey,
@@ -42,8 +41,7 @@ class _LoginViewState extends State<LoginView> {
       alignment: Alignment.centerRight,
       child: GestureDetector(
         onTap: () => Get.to(ForgetPasswordView()),
-        child: Text(
-          "Mot de passe oublié?",
+        child: Text("Mot de passe oublié?",
           style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
         ),
       ),
@@ -52,13 +50,9 @@ class _LoginViewState extends State<LoginView> {
     final continueWithoutLogin = Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text(
-          "Continuer sans connexion", style: TextStyle(
-            fontWeight: FontWeight.w600, fontSize: 16, color: Colors.white
-          ),
-        ),
+        Text("Continuer sans connexion", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Colors.white)),
         IconButton(
-            onPressed: () => Get.to(() => HomeView()),
+            onPressed: () => Navigator.pushNamed(context, homeViewRoute),
             icon: Icon(Icons.arrow_forward, color: Colors.white,)
         )
       ],
@@ -83,8 +77,7 @@ class _LoginViewState extends State<LoginView> {
     final connexionBtn = Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.bottomCenter, end: Alignment.topCenter,
-              colors: [Color(0xff273c75), Colors.teal.shade700,Colors.teal]
+              begin: Alignment.bottomCenter, end: Alignment.topCenter, colors: [Color(0xff273c75), Colors.teal.shade700,Colors.teal]
           )
       ),
       width: MediaQuery.of(context).size.width,
@@ -93,12 +86,10 @@ class _LoginViewState extends State<LoginView> {
             backgroundColor: Colors.transparent.withOpacity(0.0),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
           ),
-          onPressed: () async{
-            final userConnected = await AuthentificationService().toLogin(id.text, code.text);
-            if(userConnected.login!.isNotEmpty && userConnected.email!.isNotEmpty && userConnected.id != 0){
-              loginProvider.initializeUserConnected(userConnected);
-              Get.to(HomeView());
-            }
+          onPressed: (){
+            authProvider.pseudoOrMailController = id ;
+            authProvider.passwordController = code;
+            Navigator.pushNamed(context, loadingPageViewRoute);
           },
           child: Text("Connexion".toUpperCase(), style: TextStyle(
               color: Colors.white

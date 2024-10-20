@@ -12,7 +12,6 @@ class AuthentificationService{
   // CONNEXION UTILISATEUR
   Future<User>toLogin(String pseudo , String password)async{
     User user = User();
-    Get.dialog(Center(child: CircularProgressIndicator(color: Colors.teal)));
     final url = GlobalConst.remoteApiProd +"/users/login";
     final body = jsonEncode({
       "data" : {

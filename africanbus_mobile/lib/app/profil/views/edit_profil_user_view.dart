@@ -33,10 +33,10 @@ class _EditProfilUserViewState extends State<EditProfilUserView> {
   Widget build(BuildContext context) {
 
     final loginProvider = Provider.of<LoginViewModel>(context);
-    firstname.text = loginProvider.userConnected.nom;
-    lastname.text = loginProvider.userConnected.prenoms;
-    email.text = loginProvider.userConnected.email;
-    login.text = loginProvider.userConnected.login;
+    firstname.text = loginProvider.userConnected.nom!;
+    lastname.text = loginProvider.userConnected.prenoms!;
+    email.text = loginProvider.userConnected.email!;
+    login.text = loginProvider.userConnected.login!;
     final title = Text("Modifier mon profil", style: GoogleFonts.ubuntu(
         color: Colors.black.withOpacity(0.7),
         fontWeight: FontWeight.bold,
@@ -159,7 +159,7 @@ class _EditProfilUserViewState extends State<EditProfilUserView> {
         onPressed: () async{
           if(_formKey.currentState!.validate()){
             final profilHasChanged = await AuthentificationService().changerProfil(
-                loginProvider.userConnected.id, firstname.text,
+                loginProvider.userConnected.id!, firstname.text,
                 lastname.text, login.text
             );
             if(profilHasChanged == true){
@@ -170,9 +170,9 @@ class _EditProfilUserViewState extends State<EditProfilUserView> {
                   title: 'Succès!', message: 'Votre profil a été mis à jour', contentType: ContentType.success,
                 ),
               );
-              loginProvider.userConnected.nom = firstname.text;
-              loginProvider.userConnected.prenoms = lastname.text;
-              loginProvider.userConnected.login = login.text;
+              //loginProvider.userConnected.nom = firstname.text;
+              //loginProvider.userConnected.prenoms = lastname.text;
+              //loginProvider.userConnected.login = login.text;
               ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(mySnackbar);

@@ -1,9 +1,12 @@
+import 'package:africanbus_mobile/app/home/repository/reservation_reporitory.dart';
 import 'package:africanbus_mobile/app/search_ticket/controllers/search_ticket_controller.dart';
 import 'package:africanbus_mobile/app/search_ticket/views/ticketDateReservation.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class SearchTicket extends StatefulWidget {
   const SearchTicket({Key? key}) : super(key: key);
@@ -56,7 +59,40 @@ class _SearchTicketState extends State<SearchTicket> with SingleTickerProviderSt
       ),
     );*/
 
-    return DefaultTabController(
+    final reservationProvider = Provider.of<ReservationRepository>(context);
+
+    return reservationProvider.data.isEmpty ? Scaffold(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(top: 260),
+        child: Center(
+          child: Column(
+            children: [
+              Icon(Icons.warning, color: Colors.red , size: 70,),
+              SizedBox(height: 10,),
+              AnimatedTextKit(
+                totalRepeatCount: 1,
+                  animatedTexts: [
+                    TyperAnimatedText("AUCUNE OFFRE DISPONIBLE POUR LES CRITERES INDIQUÉS !!!", textAlign: TextAlign.center,textStyle: GoogleFonts.ubuntu(
+                        fontWeight: FontWeight.bold , fontSize: 16
+                    ),),
+                  ]
+              ),
+              SizedBox(height: 20),
+              /*ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0XFF130f40)
+                  ),
+                  onPressed: () => Get.back(),
+                  child: Text("RETOUR" , style: GoogleFonts.ubuntu(
+                      color: Colors.white , fontSize: 15
+                  ),)
+              )*/
+            ],
+          ),
+        ),
+      )
+    ) : DefaultTabController(
       length: 6,
       child: Scaffold(
         backgroundColor: Colors.white,

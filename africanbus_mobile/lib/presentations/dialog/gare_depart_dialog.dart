@@ -71,7 +71,7 @@ class _GareDepartDialogState extends State<GareDepartDialog> {
 
     final departureCity = Container(
       child: TextField(
-        style: TextStyle( fontSize: 17 , fontWeight: FontWeight.bold , color: Colors.black.withOpacity(0.7) ),
+        style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.7) ),
         controller: villeDepart,
         onChanged: (value) {
           _runFilter(value);

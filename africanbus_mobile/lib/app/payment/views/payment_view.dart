@@ -1,5 +1,4 @@
 import 'package:africanbus_mobile/app/data/models/ticket.dart';
-import 'package:africanbus_mobile/app/data/services/paydunya_payment.dart';
 import 'package:africanbus_mobile/app/login/viewmodel/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_any_logo/flutter_logo.dart';
@@ -203,9 +202,9 @@ class _PaymentViewState extends State<PaymentView> {
         //onPressed: () => PaydunyaPayment().payment(),
         onPressed: () async{
             final Customer customer = Customer(
-                email: userProvider.userConnected.email,
+                email: userProvider.userConnected.email!,
                 phoneNumber: '0789728501',
-                name: userProvider.userConnected.nom + ' ' + userProvider.userConnected.prenoms
+                name: userProvider.userConnected.nom! + ' ' + userProvider.userConnected.prenoms!
             );
             Flutterwave flutterwave = Flutterwave(
                 context: context,
@@ -221,7 +220,8 @@ class _PaymentViewState extends State<PaymentView> {
                 ),
                 redirectUrl: "https://africanweb-26408e5071aa.herokuapp.com",
                 isTestMode: true,
-                currency: "XOF");
+                currency: "XOF"
+            );
 
             ChargeResponse response = await flutterwave.charge();
             if(response.status == "successful") {

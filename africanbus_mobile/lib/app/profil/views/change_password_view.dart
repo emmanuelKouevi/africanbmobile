@@ -107,7 +107,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
            }else if(newPassword.text != confirmNewPassword.text){
              Get.snackbar("Erreur", "Le mot de passe de confirmation est incorrect" , backgroundColor: Colors.red , colorText: Colors.white);
            }else{
-             await AuthentificationService().changePasswordUser(loginProvider.userConnected.email, currentPassword.text, newPassword.text);
+             await AuthentificationService().changePasswordUser(loginProvider.userConnected.email!, currentPassword.text, newPassword.text);
            }
         },
         child: Text("CHANGER VOTRE MOT DE PASSE" ,style: GoogleFonts.ubuntu(

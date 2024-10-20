@@ -1,16 +1,16 @@
 class User{
-  int compagnieTransportId;
-  int id;
-  bool isActif;
-  String createdAt;
-  String login;
-  String email;
-  String nom;
-  String prenoms;
-  String token;
+  final int?  compagnieTransportId;
+  final int? id;
+  final bool? isActif;
+  final String? createdAt;
+  final String? login;
+  final String? email;
+  final String? nom;
+  final String? prenoms;
+  final String? token;
 
-  User({this.compagnieTransportId = 0 , this.id = 0 , this.isActif = false , this.createdAt = "" ,
-    this.login = "" , this.email = "" , this.nom = "" , this.prenoms = "" , this.token = ""
+  const User({this.compagnieTransportId , this.id, this.isActif, this.createdAt,
+    this.login, this.email, this.nom, this.prenoms, this.token
   });
 
   factory User.fromJson(Map<String, dynamic> json) {

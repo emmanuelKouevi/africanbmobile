@@ -3,10 +3,12 @@ import 'package:africanbus_mobile/app/home/controllers/home_controller.dart';
 import 'package:africanbus_mobile/app/home/views/home_view.dart';
 import 'package:africanbus_mobile/app/login/services/login_service.dart';
 import 'package:africanbus_mobile/app/login/viewmodel/login_view_model.dart';
-import 'package:africanbus_mobile/app/register/views/register_view.dart';
+import 'package:africanbus_mobile/application/modules/auth/register_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../../custom_widgets/custom_text_form_field.dart';
 
@@ -18,22 +20,23 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+
+  bool isLoading = false;
   TextEditingController id = new TextEditingController();
   TextEditingController code = new TextEditingController();
   final homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
 
     final loginProvider = Provider.of<LoginViewModel>(context);
 
-    final defaultTextStyle = TextStyle(
-      color: Colors.grey,
-      fontWeight: FontWeight.w600,
+    final defaultTextStyle = GoogleFonts.ubuntuCondensed(
+      color: Colors.black
     );
 
-    final linkTextStyle = TextStyle(
-      color: Colors.teal.shade900,
-      fontWeight: FontWeight.w600,
+    final linkTextStyle = GoogleFonts.ubuntuCondensed(
+      color:Colors.teal.shade900, fontSize: 16, fontWeight: FontWeight.bold
     );
 
 
@@ -42,9 +45,8 @@ class _LoginViewState extends State<LoginView> {
       alignment: Alignment.centerRight,
       child: GestureDetector(
         onTap: () => Get.to(ForgetPasswordView()),
-        child: Text(
-          "Mot de passe oublié?",
-          style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
+        child: Text("Mot de passe oublié?",
+          style: GoogleFonts.ubuntuCondensed(color: Colors.black.withOpacity(0.7), fontSize: 15),
         ),
       ),
     );
@@ -52,11 +54,7 @@ class _LoginViewState extends State<LoginView> {
     final continueWithoutLogin = Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text(
-          "Continuer sans connexion", style: TextStyle(
-            fontWeight: FontWeight.w600, fontSize: 16, color: Colors.white
-          ),
-        ),
+        Text("Continuer sans connexion", style: GoogleFonts.akshar(color: Colors.white, fontSize: 18)),
         IconButton(
             onPressed: () => Get.to(() => HomeView()),
             icon: Icon(Icons.arrow_forward, color: Colors.white,)
@@ -81,22 +79,22 @@ class _LoginViewState extends State<LoginView> {
     );
 
     final connexionBtn = Container(
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.bottomCenter, end: Alignment.topCenter,
-              colors: [Color(0xff273c75), Colors.teal.shade700,Colors.teal]
-          )
-      ),
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent.withOpacity(0.0),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+            backgroundColor: Colors.teal.shade900.withOpacity(0.7),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           ),
           onPressed: () async{
+            setState(() {
+              isLoading = true;
+            });
             final userConnected = await AuthentificationService().toLogin(id.text, code.text);
             if(userConnected.login!.isNotEmpty && userConnected.email!.isNotEmpty && userConnected.id != 0){
               loginProvider.initializeUserConnected(userConnected);
+              setState(() {
+                isLoading = false;
+              });
               Get.to(HomeView());
             }
           },
@@ -106,13 +104,19 @@ class _LoginViewState extends State<LoginView> {
       ),
     );
 
+    final loading = Center(
+      child: SpinKitFadingCircle(
+        size: 35, color: Colors.teal.shade900,
+      ),
+    );
+
     final dontHaveAnAccount = Container(
       alignment: Alignment.center,
       margin: EdgeInsets.only(top: 40.0),
       child: RichText(
         key: Key("registerRouter"),
         text: TextSpan(
-          text: "Vous n'avez pas de compte ? ",
+          text: "Vous n'avez pas de compte ! ",
           style: defaultTextStyle,
           recognizer: TapGestureRecognizer()
             ..onTap = () {
@@ -139,8 +143,8 @@ class _LoginViewState extends State<LoginView> {
               begin: Alignment.topCenter,
               colors: [
                 Color(0xff192a56),
-                Colors.teal.shade700,
-                Colors.teal
+                Color(0xff1dd1a1),
+                //Colors.teal
               ]
           ),
         ),
@@ -156,9 +160,13 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     continueWithoutLogin,
                     SizedBox(height: 30),
-                    Text("Bienvenue", style: TextStyle(color: Colors.white, fontSize: 40 , fontWeight: FontWeight.bold)),
+                    Text("Bienvenue", style: GoogleFonts.akshar(
+                      fontWeight: FontWeight.bold, fontSize: 40, color: Colors.white
+                    )),
                     SizedBox(height: 10),
-                    Text("Connectez-vous à votre compte" , style: TextStyle(color: Colors.white, fontSize: 18),)
+                    Text("Connectez-vous à votre compte" , style: GoogleFonts.akshar(
+                        color: Colors.white, fontSize: 25
+                    ),)
                   ],
                 ),
               ),
@@ -198,9 +206,9 @@ class _LoginViewState extends State<LoginView> {
                       SizedBox(height: 5),
                       forgotPassword,
                       SizedBox(height: 5),
-                      connexionBtn,
+                      isLoading == true ? loading : connexionBtn,
                       SizedBox(height: 5),
-                      dontHaveAnAccount
+                      dontHaveAnAccount,
                     ],
                   ),
                 ),

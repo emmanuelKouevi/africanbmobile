@@ -1,13 +1,17 @@
+import 'package:africanbus_mobile/app/home/repository/reservation_reporitory.dart';
 import 'package:africanbus_mobile/custom_widgets/custom_dot.dart';
 import 'package:africanbus_mobile/custom_widgets/custom_field_search.dart';
 import 'package:africanbus_mobile/custom_widgets/custom_textfield_icon.dart';
 import 'package:africanbus_mobile/presentations/dialog/gare_depart_dialog.dart';
 import 'package:africanbus_mobile/presentations/dialog/gare_destination_dialog.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../../search_ticket/views/search_ticket.dart';
 import '../controllers/home_controller.dart';
@@ -28,6 +32,7 @@ class _ReservationTabState extends State<ReservationTab> {
   TextEditingController dateAllerInput = TextEditingController();
   TextEditingController customerController = TextEditingController();
 
+
   final homeController = Get.put(HomeController() , permanent: true);
 
   @override
@@ -41,39 +46,31 @@ class _ReservationTabState extends State<ReservationTab> {
   @override
   Widget build(BuildContext context) {
 
+    final reservationProvider = Provider.of<ReservationRepository>(context);
+
     final hr = SizedBox(height: 20.0);
 
     final title = Container(
-      margin: EdgeInsets.only(top: 240 , left: 15),
+      //margin: EdgeInsets.only(top: 240 , left: 15),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          IconButton(
+              onPressed: () => Get.back(),
+              icon: FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.black,)
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Explorez,", style: GoogleFonts.notoSans(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
-                shadows: [
-                  Shadow(
-                    blurRadius:5.0,  // shadow blur
-                    color: Colors.blueGrey, // shadow color
-                    offset: Offset(0.05,0.05), // how much shadow will be shown
-                  ),
-                ]
-              )),
-              Text("Recherchez vos billets", style: GoogleFonts.notoSans(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey,
-                  shadows: [
-                    Shadow(
-                      blurRadius:5.0,  // shadow blur
-                      color: Colors.blueGrey, // shadow color
-                      offset: Offset(0.1,0.1), // how much shadow will be shown
-                    ),
-                  ]
-              )),
+              Container(
+                width: MediaQuery.of(context).size.width/1.3,
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TyperAnimatedText('Explorez et obtenez vos billets sans casse-tête.', textStyle: GoogleFonts.akshar(
+                      fontWeight: FontWeight.bold, fontSize: 16
+                    )),
+                ],),
+              )
             ],
           ),
         ],
@@ -84,9 +81,9 @@ class _ReservationTabState extends State<ReservationTab> {
       width: MediaQuery.of(context).size.width/1.1,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.teal.shade900,
+            backgroundColor: Colors.teal.shade900.withOpacity(0.7),
           ),
-          onPressed: () {
+          onPressed: () async{
             if(depart.text.isEmpty){
               Get.snackbar(
                   "Erreur", "La gare de départ est obligatoire !!",
@@ -111,6 +108,7 @@ class _ReservationTabState extends State<ReservationTab> {
               homeController.gareDepart.value = depart.text;
               homeController.gareDestination.value = destination.text;
               homeController.dateDepart.value = dateAllerInput.text;
+              await reservationProvider.initializeOffreByFeatures(depart.text, destination.text, dateAllerInput.text);
               Get.to(SearchTicket());
             }
           },
@@ -178,7 +176,7 @@ class _ReservationTabState extends State<ReservationTab> {
           locale: const Locale('fr' , "FR"),
         );
         if (pickedDate != null) {
-          String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
+          String formattedDate = DateFormat('dd/MM/yyyy').format(pickedDate);
           setState(() {
             dateAllerInput.text = formattedDate; //set output date to TextField value.
           });
@@ -235,21 +233,24 @@ class _ReservationTabState extends State<ReservationTab> {
 
     final pictureImage = Positioned(
         child: Container(
-          height: MediaQuery.of(context).size.height/2.4,
+          height: MediaQuery.of(context).size.height/3,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/man_walk.jpg"),
+              image: AssetImage("assets/svg_icons/illustration.png"),
               fit: BoxFit.cover
             )
           ),
-          child: title,
+          //child: title,
         ),
     );
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
+        padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [
+            title,
             Stack(
               children: [ pictureImage ],
             ),
