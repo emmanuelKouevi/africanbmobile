@@ -12,14 +12,17 @@ class AuthentificationService{
   // CONNEXION UTILISATEUR
   Future<User>toLogin(String pseudo , String password)async{
     User user = User();
-    final url = GlobalConst.remoteApiProd +"/users/login";
+
+    final url = GlobalConst.remoteApiDev +"/users/login";
     final body = jsonEncode({
       "data" : {
         "login" : pseudo, "password" : password,
       }
     });
     final response = await http.post(Uri.parse(url) , body: body , headers: GlobalConst.requestHeaders);
+    log('Nous sommes dans le service de login');
     try{
+      log('nous sommes dans le try');
       if(response.statusCode == 200){
         final result = jsonDecode(response.body);
         if(result['status']['code'] == '800'){

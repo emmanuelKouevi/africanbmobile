@@ -11,14 +11,12 @@ import '../app/modules/auth/repository/auth_repository.dart';
 
 class GlobalConst{
 
-  static final String remoteApiDev ='https://127.0.0.1:8443';
+  static final String remoteApiDev ='http://192.168.1.8:8080';
   static final String remoteApiProd = 'https://africanbrg-1c70f693e9c8.herokuapp.com';
 
   static final Map<String , String> requestHeaders = {
-    'Content-type': 'application/json',
-    'Accept': 'application/json',
-    'server_id': 'backend@africanb',
-    'client_id' : 'frontend@africanb',
+    'Content-type': 'application/json', 'Accept': 'application/json',
+    'server_id': 'backend@africanb', 'client_id' : 'frontend@africanb',
     'is_admin' : 'isAdmin'
   };
 

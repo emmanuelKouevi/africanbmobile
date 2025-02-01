@@ -90,12 +90,16 @@ class _LoginViewState extends State<LoginView> {
               isLoading = true;
             });
             final userConnected = await AuthentificationService().toLogin(id.text, code.text);
-            if(userConnected.login!.isNotEmpty && userConnected.email!.isNotEmpty && userConnected.id != 0){
+            if(userConnected.login!.isNotEmpty && userConnected.email!.isNotEmpty && userConnected.id != null){
               loginProvider.initializeUserConnected(userConnected);
               setState(() {
                 isLoading = false;
               });
               Get.to(HomeView());
+            }else{
+              setState(() {
+                isLoading = false;
+              });
             }
           },
           child: Text("Connexion".toUpperCase(), style: TextStyle(
